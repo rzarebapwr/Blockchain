@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_testy/src/Checkout.cpp
+Checkout.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_testy/src/Checkout.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_testy/src/Checkout.h
+string
+-
+map
+-
+
