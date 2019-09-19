@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.cpp
+cstring
+-
+fstream
+-
+sha256.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.h
+string
+-
+
