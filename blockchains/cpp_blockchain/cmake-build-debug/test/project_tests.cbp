@@ -284,7 +284,7 @@
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256Test.cpp">
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp">
 			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/tests.cpp">

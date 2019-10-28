@@ -74,6 +74,9 @@
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Blockchain.h">
 			<Option target="src"/>
 		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h">
+			<Option target="src"/>
+		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.cpp">
 			<Option target="src"/>
 		</Unit>

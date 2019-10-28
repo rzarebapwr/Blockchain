@@ -6,23 +6,23 @@
 
 #IncludeRegexTransform: 
 
-../src/Block.h
+../src/cryptography.h
 string
 -
-utility
--
-
-../src/sha256.h
-string
+vector
 -
 
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/main.cpp
 iostream
 -
-utility
+vector
 -
-Block.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Block.h
-sha256.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/sha256.h
+sstream
+-
+type_traits
+-
+algorithm
+-
+cryptography.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cryptography.h
 

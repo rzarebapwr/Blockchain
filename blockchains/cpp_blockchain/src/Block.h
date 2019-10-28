@@ -9,18 +9,13 @@
 #include <utility>
 
 
-struct BlockData {
-    std::string data;
-};
-
-
 class Block {
 public:
-    Block(std::string timestamp, std::string lastHash, std::string hash, BlockData data);
+    Block(std::string timestamp, std::string lastHash, std::string hash, std::string data);
     std::string getTimestamp() const;
-    std::string getLastHash() const;
+    [[nodiscard]] std::string getLastHash() const;
     std::string getHash() const;
-    BlockData getData() const;
+    std::string getData() const;
 
     static Block getGenesisBlock();
 
@@ -28,7 +23,7 @@ private:
     std::string timestamp;
     std::string lastHash;
     std::string hash;
-    BlockData data;
+    std::string data;
 
 };
 

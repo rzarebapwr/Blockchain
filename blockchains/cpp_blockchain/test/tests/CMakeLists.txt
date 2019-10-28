@@ -4,7 +4,7 @@ add_executable(tests
         tests.cpp
         blockTest.cpp
         blockchainTest.cpp
-        sha256Test.cpp)
+        cryptographyTest.cpp)
 
 target_link_libraries(tests gtest gtest_main)
 target_link_libraries(tests src)

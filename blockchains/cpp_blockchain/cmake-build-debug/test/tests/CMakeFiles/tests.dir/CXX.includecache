@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+../src/cryptography.h
+string
+-
+vector
+-
+sha256.h
+../src/sha256.h
+
 ../src/sha256.h
 string
 -
@@ -304,9 +312,9 @@ cxxabi.h
 acxx_demangle.h
 -
 
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256Test.cpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp
 gtest/gtest.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/gtest/gtest.h
-sha256.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256.h
+cryptography.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptography.h
 

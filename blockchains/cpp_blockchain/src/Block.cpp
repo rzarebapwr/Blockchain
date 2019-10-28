@@ -6,7 +6,7 @@
 #include <utility>
 
 
-Block::Block(std::string timestamp, std::string lastHash, std::string hash, BlockData data)
+Block::Block(std::string timestamp, std::string lastHash, std::string hash, std::string data)
              :
              timestamp(std::move(timestamp)),
              lastHash(std::move(lastHash)),
@@ -17,7 +17,7 @@ Block::Block(std::string timestamp, std::string lastHash, std::string hash, Bloc
              }
 
 Block Block::getGenesisBlock() {
-    return Block("1", "1", "1", BlockData{"1"});
+    return Block("1", "1", "1", "1");
 }
 
 std::string Block::getTimestamp() const {
@@ -32,7 +32,7 @@ std::string Block::getHash() const {
     return this->hash;
 }
 
-BlockData Block::getData() const {
+std::string Block::getData() const {
     return this->data;
 }
 

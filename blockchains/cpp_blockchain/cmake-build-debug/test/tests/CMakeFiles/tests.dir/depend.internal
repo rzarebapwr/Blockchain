@@ -26,7 +26,8 @@ test/tests/CMakeFiles/tests.dir/blockTest.cpp.o
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockTest.cpp
 test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.o
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp
-test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o
+test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o
+ ../src/cryptography.h
  ../src/sha256.h
  ../test/lib/googletest-master/googletest/include/gtest/gtest-death-test.h
  ../test/lib/googletest-master/googletest/include/gtest/gtest-matchers.h
@@ -48,6 +49,6 @@ test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o
  ../test/lib/googletest-master/googletest/include/gtest/internal/gtest-port.h
  ../test/lib/googletest-master/googletest/include/gtest/internal/gtest-string.h
  ../test/lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
- /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256Test.cpp
+ /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp
 test/tests/CMakeFiles/tests.dir/tests.cpp.o
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/tests.cpp

@@ -225,32 +225,32 @@ blockchainTest.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.s
 .PHONY : blockchainTest.cpp.s
 
-sha256Test.o: sha256Test.cpp.o
+cryptographyTest.o: cryptographyTest.cpp.o
 
-.PHONY : sha256Test.o
+.PHONY : cryptographyTest.o
 
 # target to build an object file
-sha256Test.cpp.o:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o
-.PHONY : sha256Test.cpp.o
+cryptographyTest.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o
+.PHONY : cryptographyTest.cpp.o
 
-sha256Test.i: sha256Test.cpp.i
+cryptographyTest.i: cryptographyTest.cpp.i
 
-.PHONY : sha256Test.i
+.PHONY : cryptographyTest.i
 
 # target to preprocess a source file
-sha256Test.cpp.i:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/sha256Test.cpp.i
-.PHONY : sha256Test.cpp.i
+cryptographyTest.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.i
+.PHONY : cryptographyTest.cpp.i
 
-sha256Test.s: sha256Test.cpp.s
+cryptographyTest.s: cryptographyTest.cpp.s
 
-.PHONY : sha256Test.s
+.PHONY : cryptographyTest.s
 
 # target to generate assembly for a file
-sha256Test.cpp.s:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/sha256Test.cpp.s
-.PHONY : sha256Test.cpp.s
+cryptographyTest.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.s
+.PHONY : cryptographyTest.cpp.s
 
 tests.o: tests.cpp.o
 
@@ -298,9 +298,9 @@ help:
 	@echo "... blockchainTest.o"
 	@echo "... blockchainTest.i"
 	@echo "... blockchainTest.s"
-	@echo "... sha256Test.o"
-	@echo "... sha256Test.i"
-	@echo "... sha256Test.s"
+	@echo "... cryptographyTest.o"
+	@echo "... cryptographyTest.i"
+	@echo "... cryptographyTest.s"
 	@echo "... tests.o"
 	@echo "... tests.i"
 	@echo "... tests.s"

@@ -96,25 +96,25 @@ test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/blockchainTest.cpp.s"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp -o CMakeFiles/tests.dir/blockchainTest.cpp.s
 
-test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
-test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o: ../test/tests/sha256Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/sha256Test.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256Test.cpp
+test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
+test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o: ../test/tests/cryptographyTest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/cryptographyTest.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp
 
-test/tests/CMakeFiles/tests.dir/sha256Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/sha256Test.cpp.i"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256Test.cpp > CMakeFiles/tests.dir/sha256Test.cpp.i
+test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/cryptographyTest.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp > CMakeFiles/tests.dir/cryptographyTest.cpp.i
 
-test/tests/CMakeFiles/tests.dir/sha256Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/sha256Test.cpp.s"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/sha256Test.cpp -o CMakeFiles/tests.dir/sha256Test.cpp.s
+test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/cryptographyTest.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp -o CMakeFiles/tests.dir/cryptographyTest.cpp.s
 
 # Object files for target tests
 tests_OBJECTS = \
 "CMakeFiles/tests.dir/tests.cpp.o" \
 "CMakeFiles/tests.dir/blockTest.cpp.o" \
 "CMakeFiles/tests.dir/blockchainTest.cpp.o" \
-"CMakeFiles/tests.dir/sha256Test.cpp.o"
+"CMakeFiles/tests.dir/cryptographyTest.cpp.o"
 
 # External object files for target tests
 tests_EXTERNAL_OBJECTS =
@@ -122,7 +122,7 @@ tests_EXTERNAL_OBJECTS =
 test/tests/tests: test/tests/CMakeFiles/tests.dir/tests.cpp.o
 test/tests/tests: test/tests/CMakeFiles/tests.dir/blockTest.cpp.o
 test/tests/tests: test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.o
-test/tests/tests: test/tests/CMakeFiles/tests.dir/sha256Test.cpp.o
+test/tests/tests: test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o
 test/tests/tests: test/tests/CMakeFiles/tests.dir/build.make
 test/tests/tests: lib/libgtestd.a
 test/tests/tests: lib/libgtest_maind.a

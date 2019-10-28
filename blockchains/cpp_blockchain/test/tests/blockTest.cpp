@@ -13,7 +13,7 @@ protected:
     std::string timestamp = "1";
     std::string lastHash = "1";
     std::string hash = "1";
-    BlockData data = BlockData{"Some data"};
+    std::string data = "Some data";
     Block block = Block(timestamp, lastHash, hash, data);
 };
 
