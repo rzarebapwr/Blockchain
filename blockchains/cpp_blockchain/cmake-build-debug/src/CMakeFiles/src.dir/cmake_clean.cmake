@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/src.dir/Block.cpp.o"
   "CMakeFiles/src.dir/Blockchain.cpp.o"
-  "CMakeFiles/src.dir/sha256.cpp.o"
+  "CMakeFiles/src.dir/Transaction.cpp.o"
   "libsrc.pdb"
   "libsrc.a"
 )

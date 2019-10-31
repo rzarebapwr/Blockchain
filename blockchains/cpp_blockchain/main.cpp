@@ -7,6 +7,13 @@
 //
 //#include "Block.h"
 #include "cryptography.h"
+#include "lib/sha256/sha256.h"
+
+#include <ctime>
+
+
+//#include "lib/secp256k1/secp256k1.h"
+//#include "lib/secp256k1/secp256k1_preallocated.h"
 
 
 //std::tuple<int, std::string, float> getTuple() {
@@ -24,49 +31,36 @@
 template <typename ... Ts>
 std::vector<std::string> toString(const Ts& ... args) {
 
-    const auto toStringImpl = [](const auto &p){
-        std::stringstream ss;
-        ss << p;
-        return ss.str();
-    };
+  const auto toStringImpl = [](const auto &p){
+      std::stringstream ss;
+      ss << p;
+      return ss.str();
+  };
 
-    return {toStringImpl(args)...};
+  return {toStringImpl(args)...};
 }
 
 
 template <typename ... Ts>
 std::string hash(const Ts& ... args) {
 
-    const auto toString = [](const auto &p){
-        std::stringstream ss;
-        ss << p;
-        return ss.str();
-    };
+  const auto toString = [](const auto &p){
+      std::stringstream ss;
+      ss << p;
+      return ss.str();
+  };
 
-    std::vector<std::string> v {toString(args)...};
-    std::sort(v.begin(), v.end());
+  std::vector<std::string> v {toString(args)...};
+  std::sort(v.begin(), v.end());
 
-    std::string s;
-    for (const auto &i : v)
-        s += i;
+  std::string s;
+  for (const auto &i : v)
+      s += i;
 
-    return s;
+  return s;
 }
 
 
-template<typename... Ts>
-std::enable_if<std::conjunction_v<std::is_convertible<Ts, std::string>...>>
-func(const Ts& ...) {
-    std::cout << "all types in pack are strings\n";
-}
-
-template <typename T, typename ... Ts, typename = std::enable_if_t<(... && std::is_convertible_v<Ts, std::string>)>>
-std::string foo_x(const T& head, const Ts& ... args) {
-
-    return "Hello";
-
-
-}
 
 
 //foo_x(x, x, y, d, z);    // OK
@@ -88,6 +82,7 @@ std::string foo_x(const T& head, const Ts& ... args) {
 
 
 int main() {
+
 
 //    std::vector<std::string> sortedToHash = {"foo1", "foo2", "foo3"};
 //    std::vector<std::string> unsortedToHash = {"foo2", "foo3", "foo1"};
@@ -130,8 +125,15 @@ int main() {
 //    std::cout << func1(s);
 //    f("1", "2", 1);
 //    func("Hello");
-    std::string s = hash(1, 3, 5, "Hello", "Hello3", "Hello2", "Hello223");
-    std::cout << s;
+    std::string s = hash(1, 3, "Hello", "Hello3", "Hello2", "Hello223");
+    std::cout << s << '\n';
+
+    std::string s2 = sha256(s);
+    std::cout << s2;
+
+
+
+
 
 //    for(const auto &i : v) {
 //        std::cout << i << '\n';
@@ -142,6 +144,15 @@ int main() {
 //    for(const auto &i : v) {
 //        std::cout << i << '\n';
 //    }
+
+//      unsigned int now = std::time(nullptr);
+//
+//      std::cout << now;
+//
+
+//    uint8_t x;
+//
+//    std::cout << sizeof(x);
 
 
 

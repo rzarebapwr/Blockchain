@@ -278,13 +278,16 @@
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/lib/googletest-master/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockTest.cpp">
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockTests.cpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp">
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockchainTests.cpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp">
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/TransactionTests.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTests.cpp">
 			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/tests.cpp">

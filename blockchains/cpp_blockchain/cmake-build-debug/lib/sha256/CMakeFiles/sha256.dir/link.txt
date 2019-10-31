@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libsha256.a  CMakeFiles/sha256.dir/sha256.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libsha256.a

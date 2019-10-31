@@ -83,31 +83,31 @@ src/CMakeFiles/src.dir/Blockchain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/Blockchain.cpp.s"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Blockchain.cpp -o CMakeFiles/src.dir/Blockchain.cpp.s
 
-src/CMakeFiles/src.dir/sha256.cpp.o: src/CMakeFiles/src.dir/flags.make
-src/CMakeFiles/src.dir/sha256.cpp.o: ../src/sha256.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/src.dir/sha256.cpp.o"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/src.dir/sha256.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.cpp
+src/CMakeFiles/src.dir/Transaction.cpp.o: src/CMakeFiles/src.dir/flags.make
+src/CMakeFiles/src.dir/Transaction.cpp.o: ../src/Transaction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/src.dir/Transaction.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/src.dir/Transaction.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transaction.cpp
 
-src/CMakeFiles/src.dir/sha256.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/sha256.cpp.i"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.cpp > CMakeFiles/src.dir/sha256.cpp.i
+src/CMakeFiles/src.dir/Transaction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/Transaction.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transaction.cpp > CMakeFiles/src.dir/Transaction.cpp.i
 
-src/CMakeFiles/src.dir/sha256.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/sha256.cpp.s"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/sha256.cpp -o CMakeFiles/src.dir/sha256.cpp.s
+src/CMakeFiles/src.dir/Transaction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/Transaction.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transaction.cpp -o CMakeFiles/src.dir/Transaction.cpp.s
 
 # Object files for target src
 src_OBJECTS = \
 "CMakeFiles/src.dir/Block.cpp.o" \
 "CMakeFiles/src.dir/Blockchain.cpp.o" \
-"CMakeFiles/src.dir/sha256.cpp.o"
+"CMakeFiles/src.dir/Transaction.cpp.o"
 
 # External object files for target src
 src_EXTERNAL_OBJECTS =
 
 src/libsrc.a: src/CMakeFiles/src.dir/Block.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Blockchain.cpp.o
-src/libsrc.a: src/CMakeFiles/src.dir/sha256.cpp.o
+src/libsrc.a: src/CMakeFiles/src.dir/Transaction.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/build.make
 src/libsrc.a: src/CMakeFiles/src.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libsrc.a"

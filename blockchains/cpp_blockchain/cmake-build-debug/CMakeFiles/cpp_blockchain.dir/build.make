@@ -79,7 +79,9 @@ cpp_blockchain_EXTERNAL_OBJECTS =
 
 cpp_blockchain: CMakeFiles/cpp_blockchain.dir/main.cpp.o
 cpp_blockchain: CMakeFiles/cpp_blockchain.dir/build.make
+cpp_blockchain: /usr/local/lib/libsecp256k1.dylib
 cpp_blockchain: src/libsrc.a
+cpp_blockchain: src/libsha256.a
 cpp_blockchain: CMakeFiles/cpp_blockchain.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable cpp_blockchain"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cpp_blockchain.dir/link.txt --verbose=$(VERBOSE)

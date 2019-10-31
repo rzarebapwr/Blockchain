@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/cpp_blockchain.dir/main.cpp.o  -o cpp_blockchain src/libsrc.a 
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/cpp_blockchain.dir/main.cpp.o  -o cpp_blockchain /usr/local/lib/libsecp256k1.dylib src/libsrc.a src/libsha256.a 

@@ -70,66 +70,82 @@ test/tests/CMakeFiles/tests.dir/tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/tests.cpp.s"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/tests.cpp -o CMakeFiles/tests.dir/tests.cpp.s
 
-test/tests/CMakeFiles/tests.dir/blockTest.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
-test/tests/CMakeFiles/tests.dir/blockTest.cpp.o: ../test/tests/blockTest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object test/tests/CMakeFiles/tests.dir/blockTest.cpp.o"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/blockTest.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockTest.cpp
+test/tests/CMakeFiles/tests.dir/BlockTests.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
+test/tests/CMakeFiles/tests.dir/BlockTests.cpp.o: ../test/tests/BlockTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object test/tests/CMakeFiles/tests.dir/BlockTests.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/BlockTests.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockTests.cpp
 
-test/tests/CMakeFiles/tests.dir/blockTest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/blockTest.cpp.i"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockTest.cpp > CMakeFiles/tests.dir/blockTest.cpp.i
+test/tests/CMakeFiles/tests.dir/BlockTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/BlockTests.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockTests.cpp > CMakeFiles/tests.dir/BlockTests.cpp.i
 
-test/tests/CMakeFiles/tests.dir/blockTest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/blockTest.cpp.s"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockTest.cpp -o CMakeFiles/tests.dir/blockTest.cpp.s
+test/tests/CMakeFiles/tests.dir/BlockTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/BlockTests.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockTests.cpp -o CMakeFiles/tests.dir/BlockTests.cpp.s
 
-test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
-test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.o: ../test/tests/blockchainTest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.o"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/blockchainTest.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp
+test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
+test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.o: ../test/tests/BlockchainTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/BlockchainTests.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockchainTests.cpp
 
-test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/blockchainTest.cpp.i"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp > CMakeFiles/tests.dir/blockchainTest.cpp.i
+test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/BlockchainTests.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockchainTests.cpp > CMakeFiles/tests.dir/BlockchainTests.cpp.i
 
-test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/blockchainTest.cpp.s"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/blockchainTest.cpp -o CMakeFiles/tests.dir/blockchainTest.cpp.s
+test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/BlockchainTests.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockchainTests.cpp -o CMakeFiles/tests.dir/BlockchainTests.cpp.s
 
-test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
-test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o: ../test/tests/cryptographyTest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/cryptographyTest.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../test/tests/cryptographyTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/cryptographyTests.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTests.cpp
 
-test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/cryptographyTest.cpp.i"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp > CMakeFiles/tests.dir/cryptographyTest.cpp.i
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/cryptographyTests.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTests.cpp > CMakeFiles/tests.dir/cryptographyTests.cpp.i
 
-test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/cryptographyTest.cpp.s"
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTest.cpp -o CMakeFiles/tests.dir/cryptographyTest.cpp.s
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/cryptographyTests.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTests.cpp -o CMakeFiles/tests.dir/cryptographyTests.cpp.s
+
+test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.o: test/tests/CMakeFiles/tests.dir/flags.make
+test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.o: ../test/tests/TransactionTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/TransactionTests.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/TransactionTests.cpp
+
+test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/TransactionTests.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/TransactionTests.cpp > CMakeFiles/tests.dir/TransactionTests.cpp.i
+
+test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/TransactionTests.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/TransactionTests.cpp -o CMakeFiles/tests.dir/TransactionTests.cpp.s
 
 # Object files for target tests
 tests_OBJECTS = \
 "CMakeFiles/tests.dir/tests.cpp.o" \
-"CMakeFiles/tests.dir/blockTest.cpp.o" \
-"CMakeFiles/tests.dir/blockchainTest.cpp.o" \
-"CMakeFiles/tests.dir/cryptographyTest.cpp.o"
+"CMakeFiles/tests.dir/BlockTests.cpp.o" \
+"CMakeFiles/tests.dir/BlockchainTests.cpp.o" \
+"CMakeFiles/tests.dir/cryptographyTests.cpp.o" \
+"CMakeFiles/tests.dir/TransactionTests.cpp.o"
 
 # External object files for target tests
 tests_EXTERNAL_OBJECTS =
 
 test/tests/tests: test/tests/CMakeFiles/tests.dir/tests.cpp.o
-test/tests/tests: test/tests/CMakeFiles/tests.dir/blockTest.cpp.o
-test/tests/tests: test/tests/CMakeFiles/tests.dir/blockchainTest.cpp.o
-test/tests/tests: test/tests/CMakeFiles/tests.dir/cryptographyTest.cpp.o
+test/tests/tests: test/tests/CMakeFiles/tests.dir/BlockTests.cpp.o
+test/tests/tests: test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.o
+test/tests/tests: test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o
+test/tests/tests: test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.o
 test/tests/tests: test/tests/CMakeFiles/tests.dir/build.make
 test/tests/tests: lib/libgtestd.a
 test/tests/tests: lib/libgtest_maind.a
 test/tests/tests: src/libsrc.a
 test/tests/tests: lib/libgtestd.a
+test/tests/tests: src/libsha256.a
 test/tests/tests: test/tests/CMakeFiles/tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable tests"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/test/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

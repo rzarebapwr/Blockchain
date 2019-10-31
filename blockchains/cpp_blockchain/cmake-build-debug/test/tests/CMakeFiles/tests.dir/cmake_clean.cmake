@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tests.dir/tests.cpp.o"
-  "CMakeFiles/tests.dir/blockTest.cpp.o"
-  "CMakeFiles/tests.dir/blockchainTest.cpp.o"
-  "CMakeFiles/tests.dir/cryptographyTest.cpp.o"
+  "CMakeFiles/tests.dir/BlockTests.cpp.o"
+  "CMakeFiles/tests.dir/BlockchainTests.cpp.o"
+  "CMakeFiles/tests.dir/cryptographyTests.cpp.o"
+  "CMakeFiles/tests.dir/TransactionTests.cpp.o"
   "tests.pdb"
   "tests"
 )

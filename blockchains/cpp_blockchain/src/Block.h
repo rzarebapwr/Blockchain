@@ -7,23 +7,34 @@
 
 #include <string>
 #include <utility>
+#include <vector>
+
+
+#include "Transaction.h"
 
 
 class Block {
 public:
-    Block(std::string timestamp, std::string lastHash, std::string hash, std::string data);
-    std::string getTimestamp() const;
-    [[nodiscard]] std::string getLastHash() const;
-    std::string getHash() const;
-    std::string getData() const;
+    Block(const std::string &prevBlockHash, const std::vector<Transaction> &transactions, uint32_t difficulty);
+    std::string mineBlock();
 
     static Block getGenesisBlock();
+    static bool validateBlock(Block& block);
 
 private:
-    std::string timestamp;
-    std::string lastHash;
-    std::string hash;
-    std::string data;
+    // Block Header
+    int32_t version_ = 1;
+    const std::string prevBlockHash_;
+    const std::string merkleRootHash_;
+    uint32_t timestamp_;
+    uint32_t difficulty_; //TODO make binary (?)
+    uint32_t nonce_;
+
+    uint32_t blockSize;
+    std::vector<Transaction> transactions_;
+    uint32_t nTransactions_;
+
+    std::string generateMerkleRoot();
 
 };
 

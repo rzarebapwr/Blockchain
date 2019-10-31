@@ -8,20 +8,20 @@
 #include <string>
 #include <vector>
 
-#include "sha256.h"
+#include "../lib/sha256/sha256.h"
 
 
 namespace cryptography {
 
-
     template <typename ... Ts>
     std::string hash(const Ts& ... args) {
 
-        const auto toString = [](const auto &p){
+        // TODO Consider refactor
+        const auto toString = [](const auto &p) {
             std::stringstream ss;
             ss << p;
             return ss.str();
-        };
+            };
 
         std::vector<std::string> v {toString(args)...};
         std::sort(v.begin(), v.end());
@@ -32,7 +32,6 @@ namespace cryptography {
 
         return sha256(s);
     }
-
 
 }
 

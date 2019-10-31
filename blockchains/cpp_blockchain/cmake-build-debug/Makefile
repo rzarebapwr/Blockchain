@@ -170,6 +170,19 @@ cpp_blockchain/fast:
 .PHONY : cpp_blockchain/fast
 
 #=============================================================================
+# Target rules for targets named sha256
+
+# Build rule for target.
+sha256: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sha256
+.PHONY : sha256
+
+# fast build rule for target.
+sha256/fast:
+	$(MAKE) -f src/CMakeFiles/sha256.dir/build.make src/CMakeFiles/sha256.dir/build
+.PHONY : sha256/fast
+
+#=============================================================================
 # Target rules for targets named src
 
 # Build rule for target.
@@ -287,6 +300,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cpp_blockchain"
+	@echo "... sha256"
 	@echo "... src"
 	@echo "... gmock"
 	@echo "... gmock_main"
