@@ -225,32 +225,32 @@ BlockchainTests.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.s
 .PHONY : BlockchainTests.cpp.s
 
-TransactionTests.o: TransactionTests.cpp.o
+TransactionsTests.o: TransactionsTests.cpp.o
 
-.PHONY : TransactionTests.o
+.PHONY : TransactionsTests.o
 
 # target to build an object file
-TransactionTests.cpp.o:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.o
-.PHONY : TransactionTests.cpp.o
+TransactionsTests.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/TransactionsTests.cpp.o
+.PHONY : TransactionsTests.cpp.o
 
-TransactionTests.i: TransactionTests.cpp.i
+TransactionsTests.i: TransactionsTests.cpp.i
 
-.PHONY : TransactionTests.i
+.PHONY : TransactionsTests.i
 
 # target to preprocess a source file
-TransactionTests.cpp.i:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.i
-.PHONY : TransactionTests.cpp.i
+TransactionsTests.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/TransactionsTests.cpp.i
+.PHONY : TransactionsTests.cpp.i
 
-TransactionTests.s: TransactionTests.cpp.s
+TransactionsTests.s: TransactionsTests.cpp.s
 
-.PHONY : TransactionTests.s
+.PHONY : TransactionsTests.s
 
 # target to generate assembly for a file
-TransactionTests.cpp.s:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/TransactionTests.cpp.s
-.PHONY : TransactionTests.cpp.s
+TransactionsTests.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/TransactionsTests.cpp.s
+.PHONY : TransactionsTests.cpp.s
 
 cryptographyTests.o: cryptographyTests.cpp.o
 
@@ -325,9 +325,9 @@ help:
 	@echo "... BlockchainTests.o"
 	@echo "... BlockchainTests.i"
 	@echo "... BlockchainTests.s"
-	@echo "... TransactionTests.o"
-	@echo "... TransactionTests.i"
-	@echo "... TransactionTests.s"
+	@echo "... TransactionsTests.o"
+	@echo "... TransactionsTests.i"
+	@echo "... TransactionsTests.s"
 	@echo "... cryptographyTests.o"
 	@echo "... cryptographyTests.i"
 	@echo "... cryptographyTests.s"

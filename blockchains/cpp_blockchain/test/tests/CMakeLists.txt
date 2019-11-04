@@ -5,7 +5,7 @@ add_executable(tests
         BlockTests.cpp
         BlockchainTests.cpp
         cryptographyTests.cpp
-        TransactionTests.cpp
+        TransactionsTests.cpp
         )
 
 target_link_libraries(tests gtest gtest_main)

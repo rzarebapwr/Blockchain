@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tests.dir/BlockTests.cpp.o"
   "CMakeFiles/tests.dir/BlockchainTests.cpp.o"
   "CMakeFiles/tests.dir/cryptographyTests.cpp.o"
-  "CMakeFiles/tests.dir/TransactionTests.cpp.o"
+  "CMakeFiles/tests.dir/TransactionsTests.cpp.o"
   "tests.pdb"
   "tests"
 )

@@ -170,6 +170,19 @@ cpp_blockchain/fast:
 .PHONY : cpp_blockchain/fast
 
 #=============================================================================
+# Target rules for targets named cryptoLib
+
+# Build rule for target.
+cryptoLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cryptoLib
+.PHONY : cryptoLib
+
+# fast build rule for target.
+cryptoLib/fast:
+	$(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/build
+.PHONY : cryptoLib/fast
+
+#=============================================================================
 # Target rules for targets named sha256
 
 # Build rule for target.
@@ -300,6 +313,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cpp_blockchain"
+	@echo "... cryptoLib"
 	@echo "... sha256"
 	@echo "... src"
 	@echo "... gmock"

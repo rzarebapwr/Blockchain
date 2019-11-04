@@ -157,6 +157,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+src/CMakeFiles/cryptoLib.dir/rule:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/cryptoLib.dir/rule
+.PHONY : src/CMakeFiles/cryptoLib.dir/rule
+
+# Convenience name for target.
+cryptoLib: src/CMakeFiles/cryptoLib.dir/rule
+
+.PHONY : cryptoLib
+
+# fast build rule for target.
+cryptoLib/fast:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/build
+.PHONY : cryptoLib/fast
+
+# Convenience name for target.
 src/CMakeFiles/sha256.dir/rule:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/sha256.dir/rule
 .PHONY : src/CMakeFiles/sha256.dir/rule
@@ -240,32 +255,140 @@ Blockchain.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Blockchain.cpp.s
 .PHONY : Blockchain.cpp.s
 
-Transaction.o: Transaction.cpp.o
+Transactions.o: Transactions.cpp.o
 
-.PHONY : Transaction.o
+.PHONY : Transactions.o
 
 # target to build an object file
-Transaction.cpp.o:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transaction.cpp.o
-.PHONY : Transaction.cpp.o
+Transactions.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transactions.cpp.o
+.PHONY : Transactions.cpp.o
 
-Transaction.i: Transaction.cpp.i
+Transactions.i: Transactions.cpp.i
 
-.PHONY : Transaction.i
+.PHONY : Transactions.i
 
 # target to preprocess a source file
-Transaction.cpp.i:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transaction.cpp.i
-.PHONY : Transaction.cpp.i
+Transactions.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transactions.cpp.i
+.PHONY : Transactions.cpp.i
 
-Transaction.s: Transaction.cpp.s
+Transactions.s: Transactions.cpp.s
 
-.PHONY : Transaction.s
+.PHONY : Transactions.s
 
 # target to generate assembly for a file
-Transaction.cpp.s:
-	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transaction.cpp.s
-.PHONY : Transaction.cpp.s
+Transactions.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transactions.cpp.s
+.PHONY : Transactions.cpp.s
+
+__/lib/cryptoLib/Sha256.o: __/lib/cryptoLib/Sha256.cpp.o
+
+.PHONY : __/lib/cryptoLib/Sha256.o
+
+# target to build an object file
+__/lib/cryptoLib/Sha256.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256.cpp.o
+.PHONY : __/lib/cryptoLib/Sha256.cpp.o
+
+__/lib/cryptoLib/Sha256.i: __/lib/cryptoLib/Sha256.cpp.i
+
+.PHONY : __/lib/cryptoLib/Sha256.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/Sha256.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256.cpp.i
+.PHONY : __/lib/cryptoLib/Sha256.cpp.i
+
+__/lib/cryptoLib/Sha256.s: __/lib/cryptoLib/Sha256.cpp.s
+
+.PHONY : __/lib/cryptoLib/Sha256.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/Sha256.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256.cpp.s
+.PHONY : __/lib/cryptoLib/Sha256.cpp.s
+
+__/lib/cryptoLib/Sha256Hash.o: __/lib/cryptoLib/Sha256Hash.cpp.o
+
+.PHONY : __/lib/cryptoLib/Sha256Hash.o
+
+# target to build an object file
+__/lib/cryptoLib/Sha256Hash.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256Hash.cpp.o
+.PHONY : __/lib/cryptoLib/Sha256Hash.cpp.o
+
+__/lib/cryptoLib/Sha256Hash.i: __/lib/cryptoLib/Sha256Hash.cpp.i
+
+.PHONY : __/lib/cryptoLib/Sha256Hash.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/Sha256Hash.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256Hash.cpp.i
+.PHONY : __/lib/cryptoLib/Sha256Hash.cpp.i
+
+__/lib/cryptoLib/Sha256Hash.s: __/lib/cryptoLib/Sha256Hash.cpp.s
+
+.PHONY : __/lib/cryptoLib/Sha256Hash.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/Sha256Hash.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256Hash.cpp.s
+.PHONY : __/lib/cryptoLib/Sha256Hash.cpp.s
+
+__/lib/cryptoLib/Uint256.o: __/lib/cryptoLib/Uint256.cpp.o
+
+.PHONY : __/lib/cryptoLib/Uint256.o
+
+# target to build an object file
+__/lib/cryptoLib/Uint256.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Uint256.cpp.o
+.PHONY : __/lib/cryptoLib/Uint256.cpp.o
+
+__/lib/cryptoLib/Uint256.i: __/lib/cryptoLib/Uint256.cpp.i
+
+.PHONY : __/lib/cryptoLib/Uint256.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/Uint256.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Uint256.cpp.i
+.PHONY : __/lib/cryptoLib/Uint256.cpp.i
+
+__/lib/cryptoLib/Uint256.s: __/lib/cryptoLib/Uint256.cpp.s
+
+.PHONY : __/lib/cryptoLib/Uint256.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/Uint256.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Uint256.cpp.s
+.PHONY : __/lib/cryptoLib/Uint256.cpp.s
+
+__/lib/cryptoLib/Utils.o: __/lib/cryptoLib/Utils.cpp.o
+
+.PHONY : __/lib/cryptoLib/Utils.o
+
+# target to build an object file
+__/lib/cryptoLib/Utils.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Utils.cpp.o
+.PHONY : __/lib/cryptoLib/Utils.cpp.o
+
+__/lib/cryptoLib/Utils.i: __/lib/cryptoLib/Utils.cpp.i
+
+.PHONY : __/lib/cryptoLib/Utils.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/Utils.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Utils.cpp.i
+.PHONY : __/lib/cryptoLib/Utils.cpp.i
+
+__/lib/cryptoLib/Utils.s: __/lib/cryptoLib/Utils.cpp.s
+
+.PHONY : __/lib/cryptoLib/Utils.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/Utils.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Utils.cpp.s
+.PHONY : __/lib/cryptoLib/Utils.cpp.s
 
 __/lib/sha256/sha256.o: __/lib/sha256/sha256.cpp.o
 
@@ -306,6 +429,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... cryptoLib"
 	@echo "... sha256"
 	@echo "... src"
 	@echo "... Block.o"
@@ -314,9 +438,21 @@ help:
 	@echo "... Blockchain.o"
 	@echo "... Blockchain.i"
 	@echo "... Blockchain.s"
-	@echo "... Transaction.o"
-	@echo "... Transaction.i"
-	@echo "... Transaction.s"
+	@echo "... Transactions.o"
+	@echo "... Transactions.i"
+	@echo "... Transactions.s"
+	@echo "... __/lib/cryptoLib/Sha256.o"
+	@echo "... __/lib/cryptoLib/Sha256.i"
+	@echo "... __/lib/cryptoLib/Sha256.s"
+	@echo "... __/lib/cryptoLib/Sha256Hash.o"
+	@echo "... __/lib/cryptoLib/Sha256Hash.i"
+	@echo "... __/lib/cryptoLib/Sha256Hash.s"
+	@echo "... __/lib/cryptoLib/Uint256.o"
+	@echo "... __/lib/cryptoLib/Uint256.i"
+	@echo "... __/lib/cryptoLib/Uint256.s"
+	@echo "... __/lib/cryptoLib/Utils.o"
+	@echo "... __/lib/cryptoLib/Utils.i"
+	@echo "... __/lib/cryptoLib/Utils.s"
 	@echo "... __/lib/sha256/sha256.o"
 	@echo "... __/lib/sha256/sha256.i"
 	@echo "... __/lib/sha256/sha256.s"

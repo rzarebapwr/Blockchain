@@ -3,11 +3,11 @@
 
 src/CMakeFiles/src.dir/Block.cpp.o: ../src/Block.cpp
 src/CMakeFiles/src.dir/Block.cpp.o: ../src/Block.h
-src/CMakeFiles/src.dir/Block.cpp.o: ../src/Transaction.h
+src/CMakeFiles/src.dir/Block.cpp.o: ../src/Transactions.h
 
 src/CMakeFiles/src.dir/Blockchain.cpp.o: ../src/Blockchain.cpp
 src/CMakeFiles/src.dir/Blockchain.cpp.o: ../src/Blockchain.h
 
-src/CMakeFiles/src.dir/Transaction.cpp.o: ../src/Transaction.cpp
-src/CMakeFiles/src.dir/Transaction.cpp.o: ../src/Transaction.h
+src/CMakeFiles/src.dir/Transactions.cpp.o: ../src/Transactions.cpp
+src/CMakeFiles/src.dir/Transactions.cpp.o: ../src/Transactions.h
 

@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libcrypto_lib.a  CMakeFiles/crypto_lib.dir/__/lib/sha256/sha256.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libcrypto_lib.a

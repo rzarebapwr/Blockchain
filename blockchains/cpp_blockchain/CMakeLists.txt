@@ -11,8 +11,8 @@ include_directories(src)
 add_subdirectory(src)
 add_subdirectory(test)
 
-find_library(SECP256K1 secp256k1)
-target_link_libraries(cpp_blockchain ${SECP256K1})
+#find_library(SECP256K1 secp256k1)
+#target_link_libraries(cpp_blockchain ${SECP256K1})
 
 
 target_link_libraries(cpp_blockchain src)
