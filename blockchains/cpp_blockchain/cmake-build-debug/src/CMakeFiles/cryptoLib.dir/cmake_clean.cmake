@@ -3,6 +3,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Uint256.cpp.o"
   "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256.cpp.o"
   "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256Hash.cpp.o"
+  "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/CurvePoint.cpp.o"
+  "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ecdsa.cpp.o"
+  "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.o"
   "libcryptoLib.pdb"
   "libcryptoLib.a"
 )

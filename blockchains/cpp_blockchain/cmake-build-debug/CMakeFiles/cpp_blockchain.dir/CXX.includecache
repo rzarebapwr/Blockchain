@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+../lib/cryptoLib/CurvePoint.hpp
+cstdint
+-
+FieldInt.hpp
+../lib/cryptoLib/FieldInt.hpp
+Uint256.hpp
+../lib/cryptoLib/Uint256.hpp
+
+../lib/cryptoLib/Ecdsa.hpp
+CurvePoint.hpp
+../lib/cryptoLib/CurvePoint.hpp
+Sha256Hash.hpp
+../lib/cryptoLib/Sha256Hash.hpp
+Uint256.hpp
+../lib/cryptoLib/Uint256.hpp
+
 ../lib/cryptoLib/Sha256.hpp
 cstddef
 -
@@ -27,10 +43,32 @@ vector
 -
 iomanip
 -
+random
+-
 ../lib/cryptoLib/Sha256.hpp
 ../lib/cryptoLib/Sha256.hpp
 ../lib/cryptoLib/Uint256.hpp
 ../lib/cryptoLib/Uint256.hpp
+../lib/cryptoLib/CurvePoint.hpp
+../lib/cryptoLib/CurvePoint.hpp
+../lib/cryptoLib/Ecdsa.hpp
+../lib/cryptoLib/Ecdsa.hpp
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/CurvePoint.hpp
+cstdint
+-
+FieldInt.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp
+Uint256.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.hpp
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ecdsa.hpp
+CurvePoint.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/CurvePoint.hpp
+Sha256Hash.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha256Hash.hpp
+Uint256.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.hpp
 
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp
 cstdint
@@ -77,8 +115,10 @@ lib/cryptoLib/Sha256Hash.hpp
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha256Hash.hpp
 lib/cryptoLib/Uint256.hpp
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.hpp
+lib/cryptoLib/Ecdsa.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ecdsa.hpp
+lib/cryptoLib/CurvePoint.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/CurvePoint.hpp
 ctime
--
-random
 -
 

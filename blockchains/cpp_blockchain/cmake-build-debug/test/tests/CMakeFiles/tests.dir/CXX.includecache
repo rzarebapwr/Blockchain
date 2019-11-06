@@ -32,18 +32,6 @@ cstdint
 FieldInt.hpp
 ../lib/cryptoLib/FieldInt.hpp
 
-../src/Block.h
-string
--
-utility
--
-vector
--
-Transactions.h
-../src/Transactions.h
-
-../src/Transactions.h
-
 ../src/cryptography.h
 string
 -
@@ -349,18 +337,6 @@ cxxabi.h
 -
 acxx_demangle.h
 -
-
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockTests.cpp
-iostream
--
-gtest/gtest.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/gtest/gtest.h
-Block.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/Block.h
-
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/BlockchainTests.cpp
-
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/TransactionsTests.cpp
 
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/tests/cryptographyTests.cpp
 gtest/gtest.h

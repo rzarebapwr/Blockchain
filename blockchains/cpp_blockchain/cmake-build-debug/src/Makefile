@@ -282,6 +282,87 @@ Transactions.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transactions.cpp.s
 .PHONY : Transactions.cpp.s
 
+__/lib/cryptoLib/CurvePoint.o: __/lib/cryptoLib/CurvePoint.cpp.o
+
+.PHONY : __/lib/cryptoLib/CurvePoint.o
+
+# target to build an object file
+__/lib/cryptoLib/CurvePoint.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/CurvePoint.cpp.o
+.PHONY : __/lib/cryptoLib/CurvePoint.cpp.o
+
+__/lib/cryptoLib/CurvePoint.i: __/lib/cryptoLib/CurvePoint.cpp.i
+
+.PHONY : __/lib/cryptoLib/CurvePoint.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/CurvePoint.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/CurvePoint.cpp.i
+.PHONY : __/lib/cryptoLib/CurvePoint.cpp.i
+
+__/lib/cryptoLib/CurvePoint.s: __/lib/cryptoLib/CurvePoint.cpp.s
+
+.PHONY : __/lib/cryptoLib/CurvePoint.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/CurvePoint.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/CurvePoint.cpp.s
+.PHONY : __/lib/cryptoLib/CurvePoint.cpp.s
+
+__/lib/cryptoLib/Ecdsa.o: __/lib/cryptoLib/Ecdsa.cpp.o
+
+.PHONY : __/lib/cryptoLib/Ecdsa.o
+
+# target to build an object file
+__/lib/cryptoLib/Ecdsa.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ecdsa.cpp.o
+.PHONY : __/lib/cryptoLib/Ecdsa.cpp.o
+
+__/lib/cryptoLib/Ecdsa.i: __/lib/cryptoLib/Ecdsa.cpp.i
+
+.PHONY : __/lib/cryptoLib/Ecdsa.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/Ecdsa.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ecdsa.cpp.i
+.PHONY : __/lib/cryptoLib/Ecdsa.cpp.i
+
+__/lib/cryptoLib/Ecdsa.s: __/lib/cryptoLib/Ecdsa.cpp.s
+
+.PHONY : __/lib/cryptoLib/Ecdsa.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/Ecdsa.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ecdsa.cpp.s
+.PHONY : __/lib/cryptoLib/Ecdsa.cpp.s
+
+__/lib/cryptoLib/FieldInt.o: __/lib/cryptoLib/FieldInt.cpp.o
+
+.PHONY : __/lib/cryptoLib/FieldInt.o
+
+# target to build an object file
+__/lib/cryptoLib/FieldInt.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.o
+.PHONY : __/lib/cryptoLib/FieldInt.cpp.o
+
+__/lib/cryptoLib/FieldInt.i: __/lib/cryptoLib/FieldInt.cpp.i
+
+.PHONY : __/lib/cryptoLib/FieldInt.i
+
+# target to preprocess a source file
+__/lib/cryptoLib/FieldInt.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.i
+.PHONY : __/lib/cryptoLib/FieldInt.cpp.i
+
+__/lib/cryptoLib/FieldInt.s: __/lib/cryptoLib/FieldInt.cpp.s
+
+.PHONY : __/lib/cryptoLib/FieldInt.s
+
+# target to generate assembly for a file
+__/lib/cryptoLib/FieldInt.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/cryptoLib.dir/build.make src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.s
+.PHONY : __/lib/cryptoLib/FieldInt.cpp.s
+
 __/lib/cryptoLib/Sha256.o: __/lib/cryptoLib/Sha256.cpp.o
 
 .PHONY : __/lib/cryptoLib/Sha256.o
@@ -441,6 +522,15 @@ help:
 	@echo "... Transactions.o"
 	@echo "... Transactions.i"
 	@echo "... Transactions.s"
+	@echo "... __/lib/cryptoLib/CurvePoint.o"
+	@echo "... __/lib/cryptoLib/CurvePoint.i"
+	@echo "... __/lib/cryptoLib/CurvePoint.s"
+	@echo "... __/lib/cryptoLib/Ecdsa.o"
+	@echo "... __/lib/cryptoLib/Ecdsa.i"
+	@echo "... __/lib/cryptoLib/Ecdsa.s"
+	@echo "... __/lib/cryptoLib/FieldInt.o"
+	@echo "... __/lib/cryptoLib/FieldInt.i"
+	@echo "... __/lib/cryptoLib/FieldInt.s"
 	@echo "... __/lib/cryptoLib/Sha256.o"
 	@echo "... __/lib/cryptoLib/Sha256.i"
 	@echo "... __/lib/cryptoLib/Sha256.s"

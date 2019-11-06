@@ -11,10 +11,11 @@
 #include "lib/cryptoLib/Sha256.hpp"
 #include "lib/cryptoLib/Sha256Hash.hpp"
 #include "lib/cryptoLib/Uint256.hpp"
-
+#include "lib/cryptoLib/Ecdsa.hpp"
+#include "lib/cryptoLib/CurvePoint.hpp"
 
 #include <ctime>
-#include <random>
+
 
 
 
@@ -78,23 +79,52 @@ uint32_t changeEndianness(uint32_t value)
 }
 
 
-std::string random_string(std::size_t length)
-{
-    const std::string characters = "0123456789abcdef";
+bool checkPrivateKeyStr(const std::string &privateKey) {
+
+    const uint8_t desiredLength = 64;
+    std::string maxF(32, 'f');
+
+    return !(privateKey.length() != desiredLength || privateKey.rfind(maxF, 0) == 0);
+}
+
+
+std::string generatePrivateKeyStr() {
+
+    const uint8_t desiredLendth = 64;
+    const std::string availableChars = "0123456789abcdef";
 
     std::random_device random_device;
     std::mt19937 generator(random_device());
-    std::uniform_int_distribution<> distribution(0, characters.size() - 1);
+    std::uniform_int_distribution<> distribution(0, availableChars.size() - 1);
 
-    std::string random_string;
+    while(true) {
+        std::string privateKey;
 
-    for (std::size_t i = 0; i < length; ++i)
-    {
-        random_string += characters[distribution(generator)];
+        for (std::size_t i = 0; i < desiredLendth; ++i)
+            privateKey += availableChars[distribution(generator)];
+
+        if (checkPrivateKeyStr(privateKey))
+            return privateKey;
     }
-
-    return random_string;
 }
+
+
+Uint256 generatePrivateKey() {
+    const std::string privateKeyStr = generatePrivateKeyStr();
+    return Uint256(privateKeyStr.data());
+}
+
+Uint256 generatePrivateKey(const std::string &privateKeyStr) {
+    if (!checkPrivateKeyStr(privateKeyStr))
+        throw std::invalid_argument("Received string is not correct for private key");
+
+    return Uint256(privateKeyStr.data());
+}
+
+CurvePoint generatePublicKey(const Uint256 &privateKey) {
+    return CurvePoint::privateExponentToPublicPoint(privateKey);
+}
+
 
 
 //foo_x(x, x, y, d, z);    // OK
@@ -167,28 +197,25 @@ int main() {
 
     std::string s = "Hello ASASDASD";
 
-    Sha256Hash hash = cryptography::sha256(s);
+    const Sha256Hash hash = cryptography::sha256(s);
     std::string stringifiedHash = cryptography::sha256HashToString(hash);
     std::cout << "\nHash of " << s << " ---> " << stringifiedHash << '\n';
 
 
-    std::string privateKey = random_string(64);
-    std::cout << "Private key: " << privateKey;
+    std::string privateKeyStr = generatePrivateKeyStr();
+    std::cout << "Private key: " << privateKeyStr;
 
-    if (privateKey.rfind("aa", 0) == 0) {
-        std::cout << "Private key starts with a !";
-    }
 
-    std::string a(5, 'a');
+    // Signing data
+    const Sha256Hash dataHash = cryptography::sha256("Some Data", 1, 2, 3);
 
-    std::cout << a;
-
-    // TODO create private/public keys function
-    // todo create validate private key functions
+    Uint256 privateKey = generatePrivateKey();
+    CurvePoint publicKey = generatePublicKey(privateKey);
 
 
 
-    Uint256 privKey(privateKey.data());
+
+
 
 
 

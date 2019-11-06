@@ -8,18 +8,18 @@
 #include "Block.h"
 
 
-class BlockTests : public testing::Test {
-protected:
-    std::string timestamp = "1";
-    std::string lastHash = "1";
-    std::string hash = "1";
-    std::string data = "Some data";
-    Block block = Block(timestamp, lastHash, hash, data);
-};
-
-TEST_F(BlockTests, ReturnsProperGenesisBlock) {
-    Block genesisBlock = Block::getGenesisBlock();
-    std::string timestamp = genesisBlock.getTimestamp();
-
-    ASSERT_STREQ("1", timestamp.c_str());
-}
+//class BlockTests : public testing::Test {
+//protected:
+//    std::string timestamp = "1";
+//    std::string lastHash = "1";
+//    std::string hash = "1";
+//    std::string data = "Some data";
+//    Block block = Block(timestamp, lastHash, hash, data);
+//};
+//
+//TEST_F(BlockTests, ReturnsProperGenesisBlock) {
+//    Block genesisBlock = Block::getGenesisBlock();
+//    std::string timestamp = genesisBlock.getTimestamp();
+//
+//    ASSERT_STREQ("1", timestamp.c_str());
+//}

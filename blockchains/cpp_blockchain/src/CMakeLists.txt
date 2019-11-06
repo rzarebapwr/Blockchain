@@ -43,6 +43,17 @@ add_library(
         ../lib/cryptoLib/Sha256Hash.hpp
         ../lib/cryptoLib/Sha256Hash.cpp
 
+        ../lib/cryptoLib/CurvePoint.hpp
+        ../lib/cryptoLib/CurvePoint.cpp
+
+        ../lib/cryptoLib/Ecdsa.hpp
+        ../lib/cryptoLib/Ecdsa.cpp
+
+        ../lib/cryptoLib/FieldInt.hpp
+        ../lib/cryptoLib/FieldInt.cpp
+
+        ../lib/cryptoLib/CountOps.hpp
+
 )
 
 target_link_libraries(src PRIVATE cryptoLib)

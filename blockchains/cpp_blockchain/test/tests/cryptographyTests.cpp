@@ -7,16 +7,29 @@
 
 
 TEST(Sha256, Hashes_Properly) {
-    std::string fooHash = "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae";
-    std::string hashedFoo = cryptography::hash("foo");
+    std::string properFooHash = "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae";
 
-    ASSERT_STREQ(fooHash.c_str(), hashedFoo.c_str());
+    Sha256Hash fooHash = cryptography::sha256("foo");
+    std::string fooHashed = cryptography::sha256HashToString(fooHash);
+
+    ASSERT_STREQ(properFooHash.c_str(), fooHashed.c_str());
 }
 
-TEST(Sha256, Generates_Same_Hash_For_Same_Components) {
+TEST(Sha256, Generates_Same_Hash_For_Different_Order) {
 
-    std::string hash1 = cryptography::hash("Hello1", "Hello2", 1, 2);
-    std::string hash2 = cryptography::hash("Hello2", 2, 1, "Hello1");
+    Sha256Hash hash1 = cryptography::sha256("Hello1", "Hello2", 1, 2);
+    Sha256Hash hash2 = cryptography::sha256("Hello2", 2, 1, "Hello1");
 
-    ASSERT_STREQ(hash1.c_str(), hash2.c_str());
+    std::string hash1str = cryptography::sha256HashToString(hash1);
+    std::string hash2str = cryptography::sha256HashToString(hash2);
+
+    ASSERT_STREQ(hash1str.c_str(), hash2str.c_str());
+}
+
+TEST(PrivateKey, Generates_Proper_PrivateKey) {
+
+    std::string privateKey = cryptography::generatePrivateKeyString();
+
+    EXPECT_EQ(privateKey.length(), 64);
+
 }
