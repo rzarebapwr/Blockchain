@@ -54,6 +54,18 @@ add_library(
 
         ../lib/cryptoLib/CountOps.hpp
 
+        ../lib/cryptoLib/Base58Check.hpp
+        ../lib/cryptoLib/Base58Check.cpp
+
+        ../lib/cryptoLib/Ripemd160.hpp
+        ../lib/cryptoLib/Ripemd160.cpp
+
+        ../lib/cryptoLib/ExtendedPrivateKey.hpp
+        ../lib/cryptoLib/ExtendedPrivateKey.cpp
+
+        ../lib/cryptoLib/Sha512.hpp
+        ../lib/cryptoLib/Sha512.cpp
+
 )
 
 target_link_libraries(src PRIVATE cryptoLib)

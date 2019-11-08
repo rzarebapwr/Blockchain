@@ -4,15 +4,22 @@
 #include <sstream>
 #include <type_traits>
 #include <algorithm>
-//
+#include <tuple>
+
 //#include "Block.h"
 #include "cryptography.h"
 
-#include "lib/cryptoLib/Sha256.hpp"
-#include "lib/cryptoLib/Sha256Hash.hpp"
-#include "lib/cryptoLib/Uint256.hpp"
-#include "lib/cryptoLib/Ecdsa.hpp"
-#include "lib/cryptoLib/CurvePoint.hpp"
+#include "../lib/cryptoLib/Sha256.hpp"
+#include "../lib/cryptoLib/Uint256.hpp"
+#include "../lib/cryptoLib/CurvePoint.hpp"
+#include "../lib/cryptoLib/Ecdsa.hpp"
+#include "../lib/cryptoLib/Ripemd160.hpp"
+#include "../lib/cryptoLib/FieldInt.hpp"
+#include "../lib/cryptoLib/Base58Check.hpp"
+#include "../lib/cryptoLib/ExtendedPrivateKey.hpp"
+
+
+
 
 #include <ctime>
 
@@ -34,40 +41,6 @@
 //}
 
 
-
-template <typename ... Ts>
-std::vector<std::string> toString(const Ts& ... args) {
-
-  const auto toStringImpl = [](const auto &p){
-      std::stringstream ss;
-      ss << p;
-      return ss.str();
-  };
-
-  return {toStringImpl(args)...};
-}
-
-
-template <typename ... Ts>
-std::string hash(const Ts& ... args) {
-
-  const auto toString = [](const auto &p){
-      std::stringstream ss;
-      ss << p;
-      return ss.str();
-  };
-
-  std::vector<std::string> v {toString(args)...};
-  std::sort(v.begin(), v.end());
-
-  std::string s;
-  for (const auto &i : v)
-      s += i;
-
-  return s;
-}
-
-
 uint32_t changeEndianness(uint32_t value)
 {
     uint32_t result = 0;
@@ -79,51 +52,8 @@ uint32_t changeEndianness(uint32_t value)
 }
 
 
-bool checkPrivateKeyStr(const std::string &privateKey) {
-
-    const uint8_t desiredLength = 64;
-    std::string maxF(32, 'f');
-
-    return !(privateKey.length() != desiredLength || privateKey.rfind(maxF, 0) == 0);
-}
 
 
-std::string generatePrivateKeyStr() {
-
-    const uint8_t desiredLendth = 64;
-    const std::string availableChars = "0123456789abcdef";
-
-    std::random_device random_device;
-    std::mt19937 generator(random_device());
-    std::uniform_int_distribution<> distribution(0, availableChars.size() - 1);
-
-    while(true) {
-        std::string privateKey;
-
-        for (std::size_t i = 0; i < desiredLendth; ++i)
-            privateKey += availableChars[distribution(generator)];
-
-        if (checkPrivateKeyStr(privateKey))
-            return privateKey;
-    }
-}
-
-
-Uint256 generatePrivateKey() {
-    const std::string privateKeyStr = generatePrivateKeyStr();
-    return Uint256(privateKeyStr.data());
-}
-
-Uint256 generatePrivateKey(const std::string &privateKeyStr) {
-    if (!checkPrivateKeyStr(privateKeyStr))
-        throw std::invalid_argument("Received string is not correct for private key");
-
-    return Uint256(privateKeyStr.data());
-}
-
-CurvePoint generatePublicKey(const Uint256 &privateKey) {
-    return CurvePoint::privateExponentToPublicPoint(privateKey);
-}
 
 
 
@@ -145,7 +75,9 @@ CurvePoint generatePublicKey(const Uint256 &privateKey) {
 // func is enabled if all Ts... have the same type as T
 
 
+
 int main() {
+
 
 
 //    std::vector<std::string> sortedToHash = {"foo1", "foo2", "foo3"};
@@ -195,22 +127,65 @@ int main() {
 //    std::cout << s << '\n';
 //
 
-    std::string s = "Hello ASASDASD";
+    std::string someData = "Hello ASASDASD";
 
-    const Sha256Hash hash = cryptography::sha256(s);
+    const Sha256Hash hash = cryptography::sha256(someData);
     std::string stringifiedHash = cryptography::sha256HashToString(hash);
-    std::cout << "\nHash of " << s << " ---> " << stringifiedHash << '\n';
+    std::cout << "\nHash of " << someData << " ---> " << stringifiedHash << '\n';
 
 
-    std::string privateKeyStr = generatePrivateKeyStr();
+    std::string privateKeyStr = cryptography::generateRandomHashStr();
     std::cout << "Private key: " << privateKeyStr;
 
 
     // Signing data
     const Sha256Hash dataHash = cryptography::sha256("Some Data", 1, 2, 3);
 
-    Uint256 privateKey = generatePrivateKey();
-    CurvePoint publicKey = generatePublicKey(privateKey);
+    const Uint256 privateKey = cryptography::generateRandomUint256();
+    const CurvePoint publicKey = cryptography::generatePublicKey(privateKey);
+    const Uint256 nonce = cryptography::generateRandomUint256();
+    Uint256 r, s;
+
+
+    bool dataSigned = Ecdsa::sign(privateKey, dataHash, nonce, r, s);
+    std::cout << "\nData Signed: " << std::boolalpha << dataSigned;
+
+    // Verify signature
+    const Sha256Hash fakeHash = cryptography::sha256("Some Data", 2, 2, 3);
+    bool verified = Ecdsa::verify(publicKey, fakeHash, r, s);
+
+    std::cout << "\nSignature Verification: " << std::boolalpha << verified;
+
+
+    // Generating Base58 adress from PublicKey
+    uint8_t compressedPublicKey[33];
+    publicKey.toCompressedPoint(compressedPublicKey);
+
+    Sha256Hash publicKeyHash = Sha256::getHash(compressedPublicKey, 33);
+
+    uint8_t publicKey160Hash[Ripemd160::HASH_LEN];
+    Ripemd160::getHash(publicKeyHash.value, std::size(publicKeyHash.value), publicKey160Hash);
+
+    char address[36];
+    Base58Check::pubkeyHashToBase58Check(publicKey160Hash, 0x00, address);
+
+
+
+
+
+
+
+
+
+
+
+     // Generating Adress
+
+
+
+
+
+
 
 
 

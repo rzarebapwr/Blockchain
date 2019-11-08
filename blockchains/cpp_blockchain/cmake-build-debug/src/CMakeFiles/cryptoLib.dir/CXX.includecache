@@ -6,33 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/AsmX8664.hpp
-cstdint
--
-
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/CountOps.hpp
-
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.cpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.cpp
 cassert
 -
-cstring
--
-AsmX8664.hpp
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/AsmX8664.hpp
-CountOps.hpp
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/CountOps.hpp
-FieldInt.hpp
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp
+Sha512.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.hpp
+Utils.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Utils.hpp
 
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.hpp
+cstddef
+-
 cstdint
 -
-Uint256.hpp
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.hpp
 
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.hpp
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Utils.hpp
+cstddef
+-
 cstdint
 -
-FieldInt.hpp
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp
 

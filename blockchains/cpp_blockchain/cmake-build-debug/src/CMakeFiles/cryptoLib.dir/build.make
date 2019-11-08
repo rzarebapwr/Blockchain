@@ -148,6 +148,58 @@ src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.s"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.cpp -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.s
 
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.o: src/CMakeFiles/cryptoLib.dir/flags.make
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.o: ../lib/cryptoLib/Base58Check.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Base58Check.cpp
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Base58Check.cpp > CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.i
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Base58Check.cpp -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.s
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.o: src/CMakeFiles/cryptoLib.dir/flags.make
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.o: ../lib/cryptoLib/Ripemd160.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ripemd160.cpp
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ripemd160.cpp > CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.i
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ripemd160.cpp -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.s
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.o: src/CMakeFiles/cryptoLib.dir/flags.make
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.o: ../lib/cryptoLib/ExtendedPrivateKey.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/ExtendedPrivateKey.cpp
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/ExtendedPrivateKey.cpp > CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.i
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/ExtendedPrivateKey.cpp -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.s
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.o: src/CMakeFiles/cryptoLib.dir/flags.make
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.o: ../lib/cryptoLib/Sha512.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.cpp
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.cpp > CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.i
+
+src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.cpp -o CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.s
+
 # Object files for target cryptoLib
 cryptoLib_OBJECTS = \
 "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Utils.cpp.o" \
@@ -156,7 +208,11 @@ cryptoLib_OBJECTS = \
 "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256Hash.cpp.o" \
 "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/CurvePoint.cpp.o" \
 "CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ecdsa.cpp.o" \
-"CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.o"
+"CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.o" \
+"CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.o" \
+"CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.o" \
+"CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.o" \
+"CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.o"
 
 # External object files for target cryptoLib
 cryptoLib_EXTERNAL_OBJECTS =
@@ -168,9 +224,13 @@ src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha256Hash.cpp
 src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/CurvePoint.cpp.o
 src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ecdsa.cpp.o
 src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/FieldInt.cpp.o
+src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Base58Check.cpp.o
+src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Ripemd160.cpp.o
+src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/ExtendedPrivateKey.cpp.o
+src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/__/lib/cryptoLib/Sha512.cpp.o
 src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/build.make
 src/libcryptoLib.a: src/CMakeFiles/cryptoLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libcryptoLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library libcryptoLib.a"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && $(CMAKE_COMMAND) -P CMakeFiles/cryptoLib.dir/cmake_clean_target.cmake
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cryptoLib.dir/link.txt --verbose=$(VERBOSE)
 

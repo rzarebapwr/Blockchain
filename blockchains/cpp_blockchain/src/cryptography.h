@@ -9,11 +9,15 @@
 #include <vector>
 #include <iomanip>
 #include <random>
+#include <tuple>
 
 #include "../lib/cryptoLib/Sha256.hpp"
 #include "../lib/cryptoLib/Uint256.hpp"
 #include "../lib/cryptoLib/CurvePoint.hpp"
 #include "../lib/cryptoLib/Ecdsa.hpp"
+#include "../lib/cryptoLib/Ripemd160.hpp"
+#include "../lib/cryptoLib/FieldInt.hpp"
+#include "../lib/cryptoLib/Base58Check.hpp"
 
 
 namespace cryptography {
@@ -75,18 +79,18 @@ namespace cryptography {
         return ss.str();
     }
 
-    bool checkPrivateKeyStr(const std::string &privateKey) {
+    bool checkHashStr(const std::string &hashStr) {
 
         const uint8_t desiredLength = 64;
-        const std::string maxF(32, 'f');
+        std::string maxF(32, 'f');
 
-        return !(privateKey.length() != desiredLength || privateKey.rfind(maxF, 0) == 0);
+        return !(hashStr.length() != desiredLength || hashStr.rfind(maxF, 0) == 0);
     }
 
 
-    std::string generatePrivateKeyStr() {
+    std::string generateRandomHashStr() {
 
-        const uint8_t desiredLendth = 64;
+        const uint8_t desiredLength = 64;
         const std::string availableChars = "0123456789abcdef";
 
         std::random_device random_device;
@@ -94,24 +98,46 @@ namespace cryptography {
         std::uniform_int_distribution<> distribution(0, availableChars.size() - 1);
 
         while(true) {
-            std::string privateKey;
+            std::string hashString;
 
-            for (std::size_t i = 0; i < desiredLendth; ++i)
-                privateKey += availableChars[distribution(generator)];
+            for (std::size_t i = 0; i < desiredLength; ++i)
+                hashString += availableChars[distribution(generator)];
 
-            if (checkPrivateKeyStr(privateKey))
-                return privateKey;
+            if (checkHashStr(hashString))
+                return hashString;
         }
     }
 
-    Uint256 generatePrivateKey() {
-        const std::string privateKeyStr = generatePrivateKeyStr();
-        return Uint256(privateKeyStr.data());
+
+    Uint256 generateRandomUint256() {
+        const std::string randomHashStr = generateRandomHashStr();
+        return Uint256(randomHashStr.data());
     }
 
-//    CurvePoint generatePublicKey(const Uint256 &privateKey) {
-//        return CurvePoint::privateExponentToPublicPoint(privateKey);
-//    }
+    Uint256 generateRandomUint256(const std::string &randomHashStr) {
+        if (!checkHashStr(randomHashStr))
+            throw std::invalid_argument("Received string is not correct for random 256 bit number!");
+
+        return Uint256(randomHashStr.data());
+    }
+
+    CurvePoint generatePublicKey(const Uint256 &privateKey) {
+        return CurvePoint::privateExponentToPublicPoint(privateKey);
+    }
+
+    std::tuple<Uint256, CurvePoint> generateKeys() {
+        const Uint256 privateKey = generateRandomUint256();
+        const CurvePoint publicKey = generatePublicKey(privateKey);
+
+        return {privateKey, publicKey};
+
+    }
+
+
+
+
+
+
 
 
 

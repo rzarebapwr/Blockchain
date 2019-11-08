@@ -502,6 +502,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Base58Check.cpp">
+			<Option target="cryptoLib"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Base58Check.hpp">
+			<Option target="cryptoLib"/>
+		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/CountOps.hpp">
 			<Option target="cryptoLib"/>
 		</Unit>
@@ -517,10 +523,22 @@
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ecdsa.hpp">
 			<Option target="cryptoLib"/>
 		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/ExtendedPrivateKey.cpp">
+			<Option target="cryptoLib"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/ExtendedPrivateKey.hpp">
+			<Option target="cryptoLib"/>
+		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.cpp">
 			<Option target="cryptoLib"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp">
+			<Option target="cryptoLib"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ripemd160.cpp">
+			<Option target="cryptoLib"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Ripemd160.hpp">
 			<Option target="cryptoLib"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha256.cpp">
@@ -533,6 +551,12 @@
 			<Option target="cryptoLib"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha256Hash.hpp">
+			<Option target="cryptoLib"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.cpp">
+			<Option target="cryptoLib"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha512.hpp">
 			<Option target="cryptoLib"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.cpp">
