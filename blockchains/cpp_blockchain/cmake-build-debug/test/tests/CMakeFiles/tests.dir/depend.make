@@ -29,7 +29,12 @@ test/tests/CMakeFiles/tests.dir/BlockchainTests.cpp.o: ../test/tests/BlockchainT
 
 test/tests/CMakeFiles/tests.dir/TransactionsTests.cpp.o: ../test/tests/TransactionsTests.cpp
 
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/Base58Check.hpp
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/CurvePoint.hpp
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/Ecdsa.hpp
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/ExtendedPrivateKey.hpp
 test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/FieldInt.hpp
+test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/Ripemd160.hpp
 test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/Sha256.hpp
 test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/Sha256Hash.hpp
 test/tests/CMakeFiles/tests.dir/cryptographyTests.cpp.o: ../lib/cryptoLib/Uint256.hpp
