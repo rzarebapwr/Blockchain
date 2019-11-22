@@ -6,6 +6,7 @@
 #define CPP_BLOCKCHAIN_CRYPTOGRAPHY_H
 
 #include <string>
+#include <sstream>
 #include <vector>
 #include <iomanip>
 #include <random>
@@ -183,6 +184,13 @@ namespace cryptography {
         char address[36];
         Base58Check::pubkeyHashToBase58Check(pubKeyRipemd160, 0x00, address);
         return {address};
+    }
+
+
+    std::string generateAddress(const CurvePoint &publicKey) {
+        uint8_t pubKeyRipemd160[Ripemd160::HASH_LEN];
+        generatePubKeyRipemd160(publicKey, pubKeyRipemd160);
+        return getAddress(pubKeyRipemd160);
     }
 
 

@@ -99,6 +99,8 @@ cryptography.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h
 string
 -
+sstream
+-
 vector
 -
 iomanip
