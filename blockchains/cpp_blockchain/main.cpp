@@ -36,7 +36,8 @@ std::string func() {
 int main() {
 
     TestClass c(func(), func());
-    // TODO make perfect forwarding in cryptography!
+
+    Sha256Hash hashed = cryptography::sha256("ASD");
 //    auto [privateKey, publiKey] = cryptography::generateKeys();
 //    auto [privateKey2, publiKey2] = cryptography::generateKeys();
 //

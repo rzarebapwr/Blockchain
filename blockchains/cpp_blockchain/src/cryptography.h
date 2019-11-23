@@ -41,9 +41,8 @@ namespace cryptography {
 
 
     template <typename ... Ts>
-    std::vector<uint8_t> vectorizeArgs(const Ts& ... args) {
+    std::vector<uint8_t> vectorizeArgs(Ts&& ... args) {
 
-        // TODO Consider refactor
         const auto toString = [](const auto &p) {
             std::stringstream ss;
             ss << p;
@@ -65,17 +64,15 @@ namespace cryptography {
 
 
     template <typename ... Ts>
-    Sha256Hash sha256(const Ts& ... args) {
-
-        std::vector<uint8_t> bytes = vectorizeArgs(args...);
+    Sha256Hash sha256(Ts&& ... args) {
+        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Ts ...>(args...));
         return Sha256::getHash(bytes.data(), bytes.size());
     }
 
 
     template <typename ... Ts>
-    Sha256Hash doubleSha256(const Ts& ... args) {
-
-        std::vector<uint8_t> bytes = vectorizeArgs(args...);
+    Sha256Hash doubleSha256(Ts&& ... args) {
+        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Ts ...>(args...));
         return Sha256::getDoubleHash(bytes.data(), bytes.size());
     }
 
@@ -83,7 +80,6 @@ namespace cryptography {
 
 
     std::string sha256HashToString(const Sha256Hash &hash) {
-
         Uint256 hashValue(hash.value);
         std::stringstream ss;
 
@@ -97,7 +93,6 @@ namespace cryptography {
 
 
     bool checkHashStr(const std::string &hashStr) {
-
         const uint8_t desiredLength = 64;
         std::string maxF(32, 'f');
 
