@@ -472,7 +472,7 @@ py_test(
         "//conditions:default": ["--no_stacktrace_support"],
     }),
     data = [
-        # We invoke gtest_no_test_unittest to verify the JSON output
+        # We invoke gtest_no_test_unittest to verifySignature the JSON output
         # when the test program contains no test definition.
         ":gtest_no_test_unittest",
         ":gtest_xml_output_unittest_",

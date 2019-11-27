@@ -11,7 +11,7 @@ TEST(Sha256, Hashes_Properly) {
     std::string properFooHash = "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae";
 
     const Sha256Hash fooHash = cryptography::sha256("foo");
-    std::string fooHashed = cryptography::sha256HashToString(fooHash);
+    std::string fooHashed = cryptography::sha256HashToStr(fooHash);
 
     ASSERT_STREQ(properFooHash.c_str(), fooHashed.c_str());
 }
@@ -21,8 +21,8 @@ TEST(Sha256, Generates_Same_Hash_For_Different_Order) {
     const Sha256Hash hash1 = cryptography::sha256("Hello1", "Hello2", 1, 2, 0x22, 'a');
     const Sha256Hash hash2 = cryptography::sha256("Hello2", 2, 0x22, 1, 'a', "Hello1");
 
-    std::string hash1str = cryptography::sha256HashToString(hash1);
-    std::string hash2str = cryptography::sha256HashToString(hash2);
+    std::string hash1str = cryptography::sha256HashToStr(hash1);
+    std::string hash2str = cryptography::sha256HashToStr(hash2);
 
     ASSERT_STREQ(hash1str.c_str(), hash2str.c_str());
 }
@@ -33,13 +33,13 @@ TEST(Ecdsa, Sign_And_Verify_Message) {
     const auto [privateKey, publicKey] = cryptography::generateKeys();
 
     const auto signature = cryptography::sign(privateKey, messageHash);
-    bool verified = cryptography::verify(publicKey, messageHash, signature);
+    bool verified = cryptography::verifySignature(publicKey, messageHash, signature);
 
     const Sha256Hash fakeHash = cryptography::sha256("Hello2", 2);
-    bool fakeDataVerified = cryptography::verify(publicKey, fakeHash, signature);
+    bool fakeDataVerified = cryptography::verifySignature(publicKey, fakeHash, signature);
 
     const auto [privateKey2, publicKey2] = cryptography::generateKeys();
-    bool fakePubKeyVerified = cryptography::verify(publicKey2, messageHash, signature);
+    bool fakePubKeyVerified = cryptography::verifySignature(publicKey2, messageHash, signature);
 
     EXPECT_EQ(verified, true);
     EXPECT_EQ(fakeDataVerified, false);

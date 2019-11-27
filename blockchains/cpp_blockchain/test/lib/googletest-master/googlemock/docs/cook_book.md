@@ -1521,7 +1521,7 @@ So use `ON_CALL` by default, and only use `EXPECT_CALL` when you actually intend
 to verify that the call is made. For example, you may have a bunch of `ON_CALL`s
 in your test fixture to set the common mock behavior shared by all tests in the
 same group, and write (scarcely) different `EXPECT_CALL`s in different `TEST_F`s
-to verify different aspects of the code's behavior. Compared with the style
+to verifySignature different aspects of the code's behavior. Compared with the style
 where each `TEST` has many `EXPECT_CALL`s, this leads to tests that are more
 resilient to implementational changes (and thus less likely to require
 maintenance) and makes the intent of the tests more obvious (so they are easier

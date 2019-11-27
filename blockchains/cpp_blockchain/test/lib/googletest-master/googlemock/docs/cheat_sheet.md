@@ -735,7 +735,7 @@ The name `seq` is irrelevant.
 
 ### Verifying and Resetting a Mock
 
-gMock will verify the expectations on a mock object when it is destructed, or
+gMock will verifySignature the expectations on a mock object when it is destructed, or
 you can do it earlier:
 
 ```cpp

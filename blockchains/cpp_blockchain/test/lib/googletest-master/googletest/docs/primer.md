@@ -85,7 +85,7 @@ that check whether a condition is true. An assertion's result can be *success*,
 *nonfatal failure*, or *fatal failure*. If a fatal failure occurs, it aborts the
 current function; otherwise the program continues normally.
 
-*Tests* use assertions to verify the tested code's behavior. If a test crashes
+*Tests* use assertions to verifySignature the tested code's behavior. If a test crashes
 or has a failed assertion, then it *fails*; otherwise it *succeeds*.
 
 A *test suite* contains one or many tests. You should group your tests into test

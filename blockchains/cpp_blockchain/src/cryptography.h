@@ -42,7 +42,6 @@ namespace cryptography {
 
     template <typename ... Ts>
     std::vector<uint8_t> vectorizeArgs(Ts&& ... args) {
-
         const auto toString = [](const auto &p) {
             std::stringstream ss;
             ss << p;
@@ -75,20 +74,20 @@ namespace cryptography {
         std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Ts ...>(args...));
         return Sha256::getDoubleHash(bytes.data(), bytes.size());
     }
+    
 
-
-
-
-    std::string sha256HashToString(const Sha256Hash &hash) {
-        Uint256 hashValue(hash.value);
+    std::string Uint256ToStr(const Uint256 &x) {
         std::stringstream ss;
-
-        int size = std::size(hashValue.value);
+        int size = std::size(x.value);
 
         for (int i=size - 1; i>=0; --i)
-            ss << std::setfill('0') << std::hex << std::setw(8) << hashValue.value[i];
+            ss << std::setfill('0') << std::hex << std::setw(8) << x.value[i];
 
         return ss.str();
+    }
+
+    std::string sha256HashToStr(const Sha256Hash &hash) {
+        return Uint256ToStr(Uint256{hash.value});
     }
 
 
@@ -101,7 +100,6 @@ namespace cryptography {
 
 
     std::string generateRandomHashStr() {
-
         const uint8_t desiredLength = 64;
         const std::string availableChars = "0123456789abcdef";
 
@@ -162,7 +160,7 @@ namespace cryptography {
     }
 
 
-    bool verify(const CurvePoint &publicKey, const Sha256Hash &messageHash, const Signature &signature) {
+    bool verifySignature(const CurvePoint &publicKey, const Sha256Hash &messageHash, const Signature &signature) {
         return Ecdsa::verify(publicKey, messageHash, signature.r, signature.s);
     }
 

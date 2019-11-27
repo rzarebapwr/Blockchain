@@ -522,7 +522,7 @@ class ReturnAction {
   // used in ANY function that returns x's type.
   template <typename F>
   operator Action<F>() const {  // NOLINT
-    // Assert statement belongs here because this is the best place to verify
+    // Assert statement belongs here because this is the best place to verifySignature
     // conditions on F. It produces the clearest error messages
     // in most compilers.
     // Impl really belongs in this scope as a local class but can't
@@ -831,7 +831,7 @@ class IgnoreResultAction {
 
   template <typename F>
   operator Action<F>() const {
-    // Assert statement belongs here because this is the best place to verify
+    // Assert statement belongs here because this is the best place to verifySignature
     // conditions on F. It produces the clearest error messages
     // in most compilers.
     // Impl really belongs in this scope as a local class but can't

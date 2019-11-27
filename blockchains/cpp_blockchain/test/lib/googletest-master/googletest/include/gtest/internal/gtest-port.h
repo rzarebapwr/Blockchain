@@ -842,9 +842,9 @@ namespace internal {
 // Secret object, which is what we want.
 class Secret;
 
-// The GTEST_COMPILE_ASSERT_ is a legacy macro used to verify that a compile
+// The GTEST_COMPILE_ASSERT_ is a legacy macro used to verifySignature that a compile
 // time expression is true (in new code, use static_assert instead). For
-// example, you could use it to verify the size of a static array:
+// example, you could use it to verifySignature the size of a static array:
 //
 //   GTEST_COMPILE_ASSERT_(GTEST_ARRAY_SIZE_(names) == NUM_NAMES,
 //                         names_incorrect_size);
@@ -1004,7 +1004,7 @@ inline void FlushInfoLog() { fflush(nullptr); }
       GTEST_LOG_(FATAL) << "Condition " #condition " failed. "
 #endif  // !defined(GTEST_CHECK_)
 
-// An all-mode assert to verify that the given POSIX-style function
+// An all-mode assert to verifySignature that the given POSIX-style function
 // call returns 0 (indicating success).  Known limitation: this
 // doesn't expand to a balanced 'if' statement, so enclose the macro
 // in {} if you need to use it as the only statement in an 'if'

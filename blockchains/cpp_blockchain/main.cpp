@@ -62,15 +62,46 @@ private:
     uint16_t nInputs;
     uint16_t nOutputs;
     uint32_t lockTime;
-    uint32_t size;
     std::vector<Input> inputs;
     std::vector<Output> outputs;
 
-//    std::string getData() {
-//        std::string s;
-//
-//        s += static_cast<char>(version);
-//    }
+
+    void countInOuts() {
+        nInputs = inputs.size();
+        nOutputs = outputs.size();
+    };
+
+    std::string getData() {
+        std::stringstream s;
+        s << version << nInputs << nOutputs << lockTime;
+
+        for (const auto &i : inputs) {
+            s << cryptography::sha256HashToStr(i.prevOutputHash);
+            s << i.outputIndex;
+
+        }
+
+        return "asd";
+    };
+
+};
+
+
+
+class TestClass {
+public:
+    TestClass(int x, int y) : x(x), y(y) {};
+
+    int getX() {
+        return x;
+    }
+
+private:
+    int x;
+    int y;
+    void someFunc(int x) {
+        this->x += x;
+    }
 
 };
 
@@ -96,9 +127,12 @@ int main() {
 
     uint32_t lockTime = 100;
 
-    std::string s;
-    s += static_cast<char>(2);
-    std::cout << '\n' << s;
+    std::stringstream s;
+    s << 2;
+    std::cout << '\n' << s.str();
+
+    TestClass t(1, 2);
+    std::cout << "\nSize of object: " << sizeof(t);
 
 
 

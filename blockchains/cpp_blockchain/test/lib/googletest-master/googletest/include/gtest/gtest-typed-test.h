@@ -111,9 +111,9 @@ TYPED_TEST(FooTest, HasPropertyA) { ... }
 // units.
 //
 // If you are designing an interface or concept, you can define a
-// suite of type-parameterized tests to verify properties that any
+// suite of type-parameterized tests to verifySignature properties that any
 // valid implementation of the interface/concept should have.  Then,
-// each implementation can easily instantiate the test suite to verify
+// each implementation can easily instantiate the test suite to verifySignature
 // that it conforms to the requirements, without having to write
 // similar tests repeatedly.  Here's an example:
 

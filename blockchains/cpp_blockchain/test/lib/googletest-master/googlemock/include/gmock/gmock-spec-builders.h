@@ -1793,14 +1793,14 @@ void ReportUninterestingCall(CallReaction reaction, const std::string& msg);
 
 // A MockFunction<F> class has one mock method whose type is F.  It is
 // useful when you just want your test code to emit some messages and
-// have Google Mock verify the right messages are sent (and perhaps at
+// have Google Mock verifySignature the right messages are sent (and perhaps at
 // the right times).  For example, if you are exercising code:
 //
 //   Foo(1);
 //   Foo(2);
 //   Foo(3);
 //
-// and want to verify that Foo(1) and Foo(3) both invoke
+// and want to verifySignature that Foo(1) and Foo(3) both invoke
 // mock.Bar("a"), but Foo(2) doesn't invoke anything, you can write:
 //
 // TEST(FooTest, InvokesBarCorrectly) {

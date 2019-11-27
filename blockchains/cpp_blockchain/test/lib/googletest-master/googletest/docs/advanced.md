@@ -1756,7 +1756,7 @@ To test them, we use the following special techniques:
 If you are building a testing utility on top of googletest, you'll want to test
 your utility. What framework would you use to test it? googletest, of course.
 
-The challenge is to verify that your testing utility reports failures correctly.
+The challenge is to verifySignature that your testing utility reports failures correctly.
 In frameworks that report a failure by throwing an exception, you could catch
 the exception and assert on it. But googletest doesn't use exceptions, so how do
 we test that a piece of code generates an expected failure?

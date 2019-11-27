@@ -5,7 +5,7 @@
 #if defined(__clang__)
 #define GMOCK_PP_INTERNAL_USE_MSVC 0
 #elif defined(_MSC_VER)
-// TODO(iserna): Also verify tradional versus comformant preprocessor.
+// TODO(iserna): Also verifySignature tradional versus comformant preprocessor.
 static_assert(
     _MSC_VER >= 1900,
     "MSVC version not supported. There is support for MSVC 14.0 and above.");

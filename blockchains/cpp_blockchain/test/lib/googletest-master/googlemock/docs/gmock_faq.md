@@ -335,7 +335,7 @@ it returns the correct value or that the system is in an expected state. This is
 sometimes called "state-based testing".
 
 Mocks are great for what some call "interaction-based" testing: instead of
-checking the system state at the very end, mock objects verify that they are
+checking the system state at the very end, mock objects verifySignature that they are
 invoked the right way and report an error as soon as it arises, giving you a
 handle on the precise context in which the error was triggered. This is often
 more effective and economical to do than state-based testing.
