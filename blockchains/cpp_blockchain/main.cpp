@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <type_traits>
 
 //#include "Block.h"
 
@@ -105,34 +106,64 @@ private:
 
 };
 
+
+
+//template <typename... Args>
+//std::string myfunc(Args&& ... args) {
+//    const auto toString = [](const auto &p) {
+//        std::stringstream ss;
+//        ss << p;
+//        return ss.str();
+//    };
+//
+//    if constexpr ((std::is_same_v<Args, std::string> || ...)) {
+//
+//    }
+//
+//    std::vector<std::string> v{toString(args)...};
+//    std::sort(v.begin(), v.end());
+//
+//    std::string s;
+//    for (const auto &i : v)
+//        s += i;
+//
+//    return s;
+//}
+
+
+template <typename... Args,
+        typename=std::enable_if_t<(... && std::is_convertible_v<Args, std::string>)>>
+auto foo_x(Args... args) {}
+
 int main() {
 
 
-    auto [privateKey, publicKey] = cryptography::generateKeys();
-
-//    auto [privateKey2, publiKey2] = cryptography::generateKeys();
+//    auto [privateKey, publicKey] = cryptography::generateKeys();
 //
-    std::string minerAddress = cryptography::generateAddress(publicKey);
-    std::cout << "Miner Address : " << minerAddress;
+////    auto [privateKey2, publiKey2] = cryptography::generateKeys();
+////
+//    std::string minerAddress = cryptography::generateAddress(publicKey);
+//    std::cout << "Miner Address : " << minerAddress;
+//
+//    // Generate Coinbase transaction - supply specific miner
+//    ScriptPubKey scriptPubKey1(minerAddress);
+//    Output output1{50, scriptPubKey1};
+//
+//    // Generate fake input - doesn't matter for coinbase transaction
+//    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
+//    Sha256Hash fakeHash = cryptography::sha256(0);
+//    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
+//    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
+//
+//    uint32_t lockTime = 100;
+//
+//    std::stringstream s;
+//    s << 2;
+//    std::cout << '\n' << s.str();
+//
+//    TestClass t(1, 2);
+//    std::cout << "\nSize of object: " << sizeof(t);
 
-    // Generate Coinbase transaction - supply specific miner
-    ScriptPubKey scriptPubKey1(minerAddress);
-    Output output1{50, scriptPubKey1};
-
-    // Generate fake input - doesn't matter for coinbase transaction
-    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
-    Sha256Hash fakeHash = cryptography::sha256(0);
-    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
-    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
-
-    uint32_t lockTime = 100;
-
-    std::stringstream s;
-    s << 2;
-    std::cout << '\n' << s.str();
-
-    TestClass t(1, 2);
-    std::cout << "\nSize of object: " << sizeof(t);
 
 
 

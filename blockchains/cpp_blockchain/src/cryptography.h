@@ -12,6 +12,7 @@
 #include <random>
 #include <tuple>
 #include <stdexcept>
+#include <type_traits>
 
 #include "../lib/cryptoLib/Sha256.hpp"
 #include "../lib/cryptoLib/Uint256.hpp"
@@ -39,9 +40,12 @@ namespace cryptography {
         Uint256 s;
     };
 
+    template<typename... Ts>
+    using AllStrings = typename std::enable_if<std::conjunction<std::is_convertible<Ts, std::string>...>::value>::type;
 
-    template <typename ... Ts>
-    std::vector<uint8_t> vectorizeArgs(Ts&& ... args) {
+
+    template <typename ... Args, typename=AllStrings<Args...>>
+    std::vector<uint8_t> vectorizeArgs(Args&& ... args) {
         const auto toString = [](const auto &p) {
             std::stringstream ss;
             ss << p;
@@ -62,19 +66,19 @@ namespace cryptography {
     }
 
 
-    template <typename ... Ts>
-    Sha256Hash sha256(Ts&& ... args) {
-        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Ts ...>(args...));
+    template <typename ... Args>
+    Sha256Hash sha256(Args&& ... args) {
+        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args ...>(args...));
         return Sha256::getHash(bytes.data(), bytes.size());
     }
 
 
-    template <typename ... Ts>
-    Sha256Hash doubleSha256(Ts&& ... args) {
-        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Ts ...>(args...));
+    template <typename ... Args>
+    Sha256Hash doubleSha256(Args&& ... args) {
+        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args ...>(args...));
         return Sha256::getDoubleHash(bytes.data(), bytes.size());
     }
-    
+
 
     std::string Uint256ToStr(const Uint256 &x) {
         std::stringstream ss;
