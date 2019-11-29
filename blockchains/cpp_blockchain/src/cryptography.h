@@ -40,11 +40,28 @@ namespace cryptography {
         Uint256 s;
     };
 
-    template<typename... Ts>
-    using AllStrings = typename std::enable_if<std::conjunction<std::is_convertible<Ts, std::string>...>::value>::type;
+//    template<typename... Ts>
+//    using AllStrings = typename std::enable_if<std::conjunction<std::is_convertible<Ts, std::string>...>::value>::type;
+//
 
+//    template <typename... Args,
+//            typename=std::enable_if_t<(... && std::is_convertible_v<Args, std::string>)>>
+//    auto foo_x(Args... args) {}
+//
+//    template <typename... Args>
+//    std::string foo_x2(Args&& ... args) {
+//
+//        // Compile time checking ! - very efficient
+//        static_assert(std::is_convertible<std::string, Args...>::value,
+//                      "Message");
+//
+//        static_assert(std::is_constructible<std::string, Args...>::value,
+//                      "Message");
+//
+//        return "ASD";
+//    }
 
-    template <typename ... Args, typename=AllStrings<Args...>>
+    template <typename ... Args>
     std::vector<uint8_t> vectorizeArgs(Args&& ... args) {
         const auto toString = [](const auto &p) {
             std::stringstream ss;
@@ -68,14 +85,14 @@ namespace cryptography {
 
     template <typename ... Args>
     Sha256Hash sha256(Args&& ... args) {
-        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args ...>(args...));
+        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args>(args)...);
         return Sha256::getHash(bytes.data(), bytes.size());
     }
 
 
     template <typename ... Args>
     Sha256Hash doubleSha256(Args&& ... args) {
-        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args ...>(args...));
+        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args>(args)...);
         return Sha256::getDoubleHash(bytes.data(), bytes.size());
     }
 

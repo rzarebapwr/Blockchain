@@ -111,6 +111,8 @@ tuple
 -
 stdexcept
 -
+type_traits
+-
 ../lib/cryptoLib/Sha256.hpp
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha256.hpp
 ../lib/cryptoLib/Uint256.hpp

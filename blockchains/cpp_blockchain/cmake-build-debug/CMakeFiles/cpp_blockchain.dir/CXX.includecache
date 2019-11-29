@@ -93,6 +93,8 @@ tuple
 -
 stdexcept
 -
+type_traits
+-
 ../lib/cryptoLib/Sha256.hpp
 ../lib/cryptoLib/Sha256.hpp
 ../lib/cryptoLib/Uint256.hpp
@@ -118,6 +120,8 @@ vector
 sstream
 -
 algorithm
+-
+type_traits
 -
 Transactions.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Transactions.h
