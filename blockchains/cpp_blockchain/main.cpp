@@ -8,91 +8,12 @@
 
 //#include "Block.h"
 
-#include "Transactions.h"
 #include "cryptography.h"
+#include "Transactions.h"
 
-#include "../lib/cryptoLib/Sha256.hpp"
 
 
 #include <ctime>
-
-
-struct ScriptSig {
-    // Used to unlock previous output
-    cryptography::Signature signature;
-    CurvePoint publicKey;
-};
-
-
-class ScriptPubKey {
-    // Used to lock output
-public:
-    explicit ScriptPubKey(std::string address)
-    :address(std::move(address)){
-    }
-    bool execute(const ScriptSig &scriptSig) {
-        std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey);
-        return address == generatedAddress;
-    }
-
-private:
-    const std::string address;
-};
-
-class Input {
-public:
-    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig)
-    : prevOutputHash(prevOutputHash), outputIndex(outputIndex), scriptSig(scriptsig){}
-
-    std::string getStringRepr();
-private:
-    Sha256Hash prevOutputHash;
-    uint16_t outputIndex;
-    ScriptSig scriptSig;
-};
-
-
-struct Output {
-    uint64_t value{};
-    ScriptPubKey scriptPubKey;
-};
-
-
-class Transaction {
-public:
-    Transaction(const std::vector<Input> &inputs, const std::vector<Output> &outputs, uint32_t lockTime, int32_t version);
-
-
-private:
-    Sha256Hash hash;
-    int32_t version;
-    uint16_t nInputs;
-    uint16_t nOutputs;
-    uint32_t lockTime;
-    std::vector<Input> inputs;
-    std::vector<Output> outputs;
-
-
-    void countInOuts() {
-        nInputs = inputs.size();
-        nOutputs = outputs.size();
-    };
-
-    std::string getData() {
-        std::stringstream s;
-        s << version << nInputs << nOutputs << lockTime;
-
-        for (const auto &i : inputs) {
-            s << cryptography::sha256HashToStr(i.prevOutputHash);
-            s << i.outputIndex;
-
-        }
-
-        return "asd";
-    };
-
-};
-
 
 
 class TestClass {
@@ -125,22 +46,21 @@ int main() {
 
     // Generate Coinbase transaction - supply specific miner
     ScriptPubKey scriptPubKey1(minerAddress);
-    Output output1{50, scriptPubKey1};
+//    Output output1{50, scriptPubKey1};
 
     // Generate fake input - doesn't matter for coinbase transaction
-    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
-    Sha256Hash fakeHash = cryptography::sha256(0);
-    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
-    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
+//    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
+//    Sha256Hash fakeHash = cryptography::sha256(0);
+//    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
+//    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
+//
+//    uint32_t lockTime = 100;
 
-    uint32_t lockTime = 100;
+//    Transaction coinBaseTransaction({fakeInput}, {output1}, lockTime, 0);
 
-    std::string pubKeyStr = cryptography::Uint256ToStr(Uint256{fakePublicKey.x});
-    std::cout << '\n' << pubKeyStr;
 
-    std::stringstream s;
-    s << cryptography::sha256HashToStr(fakeInput.prevOutputHash);
-    s << fakeInput.outputIndex;
+
+
 
 
 

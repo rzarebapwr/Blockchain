@@ -31,3 +31,5 @@ src/CMakeFiles/src.dir/Transactions.cpp.o: ../src/Transactions.cpp
 src/CMakeFiles/src.dir/Transactions.cpp.o: ../src/Transactions.h
 src/CMakeFiles/src.dir/Transactions.cpp.o: ../src/cryptography.h
 
+src/CMakeFiles/src.dir/cryptography.cpp.o: ../src/cryptography.cpp
+

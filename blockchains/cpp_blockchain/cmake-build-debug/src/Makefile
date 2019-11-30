@@ -606,6 +606,33 @@ __/lib/sha256/sha256.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/sha256.dir/build.make src/CMakeFiles/sha256.dir/__/lib/sha256/sha256.cpp.s
 .PHONY : __/lib/sha256/sha256.cpp.s
 
+cryptography.o: cryptography.cpp.o
+
+.PHONY : cryptography.o
+
+# target to build an object file
+cryptography.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/cryptography.cpp.o
+.PHONY : cryptography.cpp.o
+
+cryptography.i: cryptography.cpp.i
+
+.PHONY : cryptography.i
+
+# target to preprocess a source file
+cryptography.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/cryptography.cpp.i
+.PHONY : cryptography.cpp.i
+
+cryptography.s: cryptography.cpp.s
+
+.PHONY : cryptography.s
+
+# target to generate assembly for a file
+cryptography.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/cryptography.cpp.s
+.PHONY : cryptography.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -666,6 +693,9 @@ help:
 	@echo "... __/lib/sha256/sha256.o"
 	@echo "... __/lib/sha256/sha256.i"
 	@echo "... __/lib/sha256/sha256.s"
+	@echo "... cryptography.o"
+	@echo "... cryptography.i"
+	@echo "... cryptography.s"
 .PHONY : help
 
 

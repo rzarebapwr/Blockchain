@@ -11,10 +11,8 @@ set(HEADER_FILES
 set(SOURCE_FILES
         Block.cpp
         Blockchain.cpp
-        cryptography.h
         Transactions.cpp
-        Transactions.h
-        )
+        cryptography.cpp)
 
 add_library(src STATIC ${SOURCE_FILES} ${HEADER_FILES})
 

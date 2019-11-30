@@ -123,12 +123,10 @@ algorithm
 -
 type_traits
 -
-Transactions.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Transactions.h
 cryptography.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cryptography.h
-../lib/cryptoLib/Sha256.hpp
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/lib/cryptoLib/Sha256.hpp
+Transactions.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Transactions.h
 ctime
 -
 
