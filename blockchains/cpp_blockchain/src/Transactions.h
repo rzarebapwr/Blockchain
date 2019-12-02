@@ -6,6 +6,16 @@
 #define CPP_BLOCKCHAIN_TRANSACTIONS_H
 
 #include "cryptography.h"
+//#include "cryptography.ipp"
+
+#include <string>
+#include <sstream>
+#include <vector>
+#include <iomanip>
+#include <random>
+#include <tuple>
+#include <stdexcept>
+#include <type_traits>
 
 struct ScriptSig {
     // Used to unlock previous output (specific ScriptPubKey)

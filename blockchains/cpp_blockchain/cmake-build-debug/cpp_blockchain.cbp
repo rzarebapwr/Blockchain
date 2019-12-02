@@ -598,10 +598,10 @@
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h">
 			<Option target="src"/>
 		</Unit>
-		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.cpp">
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h">
 			<Option target="src"/>
 		</Unit>
-		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h">
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.ipp">
 			<Option target="src"/>
 		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/test/lib/googletest-master/googlemock/src/gmock-all.cc">

@@ -68,9 +68,9 @@ CMAKE_BINARY_DIR = /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_bl
 # Target rules for target CMakeFiles/cpp_blockchain.dir
 
 # All Build rule for target.
+CMakeFiles/cpp_blockchain.dir/all: src/CMakeFiles/src.dir/all
 CMakeFiles/cpp_blockchain.dir/all: src/CMakeFiles/cryptoLib.dir/all
 CMakeFiles/cpp_blockchain.dir/all: src/CMakeFiles/sha256.dir/all
-CMakeFiles/cpp_blockchain.dir/all: src/CMakeFiles/src.dir/all
 	$(MAKE) -f CMakeFiles/cpp_blockchain.dir/build.make CMakeFiles/cpp_blockchain.dir/depend
 	$(MAKE) -f CMakeFiles/cpp_blockchain.dir/build.make CMakeFiles/cpp_blockchain.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target cpp_blockchain"
@@ -83,7 +83,7 @@ all: CMakeFiles/cpp_blockchain.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cpp_blockchain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 20
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/cpp_blockchain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/cpp_blockchain.dir/rule
@@ -207,7 +207,7 @@ src/CMakeFiles/src.dir/all: src/CMakeFiles/cryptoLib.dir/all
 src/CMakeFiles/src.dir/all: src/CMakeFiles/sha256.dir/all
 	$(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/depend
 	$(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=25,26,27,28,29 "Built target src"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=25,26,27,28 "Built target src"
 .PHONY : src/CMakeFiles/src.dir/all
 
 # Include target in all.
@@ -217,7 +217,7 @@ all: src/CMakeFiles/src.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/src.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 18
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/src.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 0
 .PHONY : src/CMakeFiles/src.dir/rule
@@ -489,14 +489,14 @@ test/tests/preinstall:
 # Target rules for target test/tests/CMakeFiles/tests.dir
 
 # All Build rule for target.
+test/tests/CMakeFiles/tests.dir/all: src/CMakeFiles/src.dir/all
 test/tests/CMakeFiles/tests.dir/all: src/CMakeFiles/cryptoLib.dir/all
 test/tests/CMakeFiles/tests.dir/all: src/CMakeFiles/sha256.dir/all
-test/tests/CMakeFiles/tests.dir/all: src/CMakeFiles/src.dir/all
 test/tests/CMakeFiles/tests.dir/all: test/lib/googletest-master/googletest/CMakeFiles/gtest_main.dir/all
 test/tests/CMakeFiles/tests.dir/all: test/lib/googletest-master/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/depend
 	$(MAKE) -f test/tests/CMakeFiles/tests.dir/build.make test/tests/CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=30,31,32,33,34,35 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=29,30,31,32,33,34 "Built target tests"
 .PHONY : test/tests/CMakeFiles/tests.dir/all
 
 # Include target in all.
@@ -506,7 +506,7 @@ all: test/tests/CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 test/tests/CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 28
 	$(MAKE) -f CMakeFiles/Makefile2 test/tests/CMakeFiles/tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles 0
 .PHONY : test/tests/CMakeFiles/tests.dir/rule

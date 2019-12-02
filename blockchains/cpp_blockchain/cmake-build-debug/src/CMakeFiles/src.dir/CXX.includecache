@@ -95,8 +95,22 @@ Transactions.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
 cryptography.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h
-
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.cpp
+string
+-
+sstream
+-
+vector
+-
+iomanip
+-
+random
+-
+tuple
+-
+stdexcept
+-
+type_traits
+-
 
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h
 string

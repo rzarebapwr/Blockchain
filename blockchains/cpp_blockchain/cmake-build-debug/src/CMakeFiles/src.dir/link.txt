@@ -1,2 +1,2 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libsrc.a  CMakeFiles/src.dir/Block.cpp.o CMakeFiles/src.dir/Blockchain.cpp.o CMakeFiles/src.dir/Transactions.cpp.o CMakeFiles/src.dir/cryptography.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ar qc libsrc.a  CMakeFiles/src.dir/Block.cpp.o CMakeFiles/src.dir/Blockchain.cpp.o CMakeFiles/src.dir/Transactions.cpp.o
 /Library/Developer/CommandLineTools/usr/bin/ranlib libsrc.a

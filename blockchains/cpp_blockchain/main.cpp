@@ -46,17 +46,17 @@ int main() {
 
     // Generate Coinbase transaction - supply specific miner
     ScriptPubKey scriptPubKey1(minerAddress);
-//    Output output1{50, scriptPubKey1};
+    Output output1{50, scriptPubKey1};
 
     // Generate fake input - doesn't matter for coinbase transaction
-//    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
-//    Sha256Hash fakeHash = cryptography::sha256(0);
-//    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
-//    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
-//
-//    uint32_t lockTime = 100;
+    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
+    Sha256Hash fakeHash = cryptography::sha256(0);
+    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
+    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
 
-//    Transaction coinBaseTransaction({fakeInput}, {output1}, lockTime, 0);
+    uint32_t lockTime = 100;
+
+    Transaction coinBaseTransaction({fakeInput}, {output1}, lockTime, 0);
 
 
 

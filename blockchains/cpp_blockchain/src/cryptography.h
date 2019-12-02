@@ -25,6 +25,47 @@
 
 namespace cryptography {
 
+    struct Signature {
+        Uint256 r;
+        Uint256 s;
+    };
+
+
+//    template <typename ... Args>
+//    std::vector<uint8_t> serializeArgs(Args&& ... args);
+//
+//    template <typename ... Args>
+//    Sha256Hash sha256(Args&& ... args);
+//
+//    template <typename ... Args>
+//    Sha256Hash doubleSha256(Args&& ... args);
+//
+//    std::string Uint256ToStr(const Uint256 &x);
+//
+//    std::string sha256HashToStr(const Sha256Hash &hash);
+//
+//    bool checkHashStr(const std::string &hashStr);
+//
+//    std::string generateRandomHashStr();
+//
+//    Uint256 generateRandomUint256();
+//
+//    Uint256 generateRandomUint256(const std::string &randomHashStr);
+//
+//    CurvePoint generatePublicKey(const Uint256 &privateKey);
+//
+//    std::tuple<Uint256, CurvePoint> generateKeys();
+//
+//    Signature sign(const Uint256 &privateKey, const Sha256Hash &messageHash);
+//
+//    bool verifySignature(const CurvePoint &publicKey, const Sha256Hash &messageHash, const Signature &signature);
+//
+//    void generatePubKeyRipemd160(const CurvePoint &publicKey, uint8_t pubKeyRipemd160[Ripemd160::HASH_LEN]);
+//
+//    std::string getAddressFromRipemd160(const uint8_t *pubKeyRipemd160);
+//
+//    std::string generateAddress(const CurvePoint &publicKey);
+
 //    uint32_t changeEndianness(uint32_t value) {
 //        uint32_t result = 0;
 //        result |= (value & 0x000000FF) << 24;
@@ -34,11 +75,6 @@ namespace cryptography {
 //        return result;
 //    }
 
-
-    struct Signature {
-        Uint256 r;
-        Uint256 s;
-    };
 
 //    template<typename... Ts>
 //    using AllStrings = typename std::enable_if<std::conjunction<std::is_convertible<Ts, std::string>...>::value>::type;
@@ -62,7 +98,7 @@ namespace cryptography {
 //    }
 
     template <typename ... Args>
-    std::vector<uint8_t> vectorizeArgs(Args&& ... args) {
+    inline std::vector<uint8_t> serializeArgs(Args &&... args) {
         const auto toString = [](const auto &p) {
             std::stringstream ss;
             ss << p;
@@ -84,20 +120,19 @@ namespace cryptography {
 
 
     template <typename ... Args>
-    Sha256Hash sha256(Args&& ... args) {
-        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args>(args)...);
+    inline Sha256Hash sha256(Args&& ... args) {
+        std::vector<uint8_t> bytes = serializeArgs(std::forward<Args>(args)...);
         return Sha256::getHash(bytes.data(), bytes.size());
     }
 
 
     template <typename ... Args>
-    Sha256Hash doubleSha256(Args&& ... args) {
-        std::vector<uint8_t> bytes = vectorizeArgs(std::forward<Args>(args)...);
+    inline Sha256Hash doubleSha256(Args&& ... args) {
+        std::vector<uint8_t> bytes = serializeArgs(std::forward<Args>(args)...);
         return Sha256::getDoubleHash(bytes.data(), bytes.size());
     }
 
-
-    std::string Uint256ToStr(const Uint256 &x) {
+    inline std::string Uint256ToStr(const Uint256 &x) {
         std::stringstream ss;
         int size = std::size(x.value);
 
@@ -107,12 +142,12 @@ namespace cryptography {
         return ss.str();
     }
 
-    std::string sha256HashToStr(const Sha256Hash &hash) {
+    inline std::string sha256HashToStr(const Sha256Hash &hash) {
         return Uint256ToStr(Uint256{hash.value});
     }
 
 
-    bool checkHashStr(const std::string &hashStr) {
+    inline bool checkHashStr(const std::string &hashStr) {
         const uint8_t desiredLength = 64;
         std::string maxF(32, 'f');
 
@@ -120,7 +155,7 @@ namespace cryptography {
     }
 
 
-    std::string generateRandomHashStr() {
+    inline std::string generateRandomHashStr() {
         const uint8_t desiredLength = 64;
         const std::string availableChars = "0123456789abcdef";
 
@@ -139,14 +174,13 @@ namespace cryptography {
         }
     }
 
-
-    Uint256 generateRandomUint256() {
+    inline Uint256 generateRandomUint256() {
         const std::string randomHashStr = generateRandomHashStr();
         return Uint256(randomHashStr.data());
     }
 
 
-    Uint256 generateRandomUint256(const std::string &randomHashStr) {
+    inline Uint256 generateRandomUint256(const std::string &randomHashStr) {
         if (!checkHashStr(randomHashStr))
             throw std::invalid_argument("Received string is not correct for random 256 bit number!");
 
@@ -154,22 +188,21 @@ namespace cryptography {
     }
 
 
-    CurvePoint generatePublicKey(const Uint256 &privateKey) {
+    inline CurvePoint generatePublicKey(const Uint256 &privateKey) {
         return CurvePoint::privateExponentToPublicPoint(privateKey);
     }
 
 
-    std::tuple<Uint256, CurvePoint> generateKeys() {
+    inline std::tuple<Uint256, CurvePoint> generateKeys() {
         const Uint256 privateKey = generateRandomUint256();
         const CurvePoint publicKey = generatePublicKey(privateKey);
 
         return {privateKey, publicKey};
-
     }
 
 
-    Signature sign(const Uint256 &privateKey, const Sha256Hash &messageHash) {
-        const Uint256 nonce = cryptography::generateRandomUint256();
+    inline Signature sign(const Uint256 &privateKey, const Sha256Hash &messageHash) {
+        const Uint256 nonce = generateRandomUint256();
         Uint256 r, s;
 
         bool signedProperly = Ecdsa::sign(privateKey, messageHash, nonce, r, s);
@@ -181,12 +214,12 @@ namespace cryptography {
     }
 
 
-    bool verifySignature(const CurvePoint &publicKey, const Sha256Hash &messageHash, const Signature &signature) {
+    inline bool verifySignature(const CurvePoint &publicKey, const Sha256Hash &messageHash, const Signature &signature) {
         return Ecdsa::verify(publicKey, messageHash, signature.r, signature.s);
     }
 
 
-    void generatePubKeyRipemd160(const CurvePoint &publicKey, uint8_t pubKeyRipemd160[Ripemd160::HASH_LEN]) {
+    inline void generatePubKeyRipemd160(const CurvePoint &publicKey, uint8_t pubKeyRipemd160[Ripemd160::HASH_LEN]) {
         uint8_t compressedPublicKey[33];
         publicKey.toCompressedPoint(compressedPublicKey);
         Sha256Hash publicKeyHash = Sha256::getHash(compressedPublicKey, 33);
@@ -194,21 +227,22 @@ namespace cryptography {
     }
 
 
-    std::string getAddress(const uint8_t pubKeyRipemd160[Ripemd160::HASH_LEN]) {
+    inline std::string getAddressFromRipemd160(const uint8_t *pubKeyRipemd160) {
         char address[36];
         Base58Check::pubkeyHashToBase58Check(pubKeyRipemd160, 0x00, address);
         return {address};
     }
 
 
-    std::string generateAddress(const CurvePoint &publicKey) {
+    inline std::string generateAddress(const CurvePoint &publicKey) {
         uint8_t pubKeyRipemd160[Ripemd160::HASH_LEN];
         generatePubKeyRipemd160(publicKey, pubKeyRipemd160);
-        return getAddress(pubKeyRipemd160);
+        return getAddressFromRipemd160(pubKeyRipemd160);
     }
 
-
 }
+
+
 
 
 #endif //CPP_BLOCKCHAIN_CRYPTOGRAPHY_H

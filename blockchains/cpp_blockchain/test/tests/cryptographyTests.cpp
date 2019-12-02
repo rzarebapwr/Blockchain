@@ -52,7 +52,7 @@ TEST(Ecdsa, Generates_Address) {
 
     uint8_t publicKeyRipemd160[Ripemd160::HASH_LEN];
     cryptography::generatePubKeyRipemd160(publicKey, publicKeyRipemd160);
-    std::string address = cryptography::getAddress(publicKeyRipemd160);
+    std::string address = cryptography::getAddressFromRipemd160(publicKeyRipemd160);
 
     bool inheritedProperly = Base58Check::pubkeyHashFromBase58Check(address.data(),
             publicKeyRipemd160, nullptr);

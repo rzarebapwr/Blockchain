@@ -77,6 +77,22 @@ FieldInt.hpp
 ../src/Transactions.h
 cryptography.h
 ../src/cryptography.h
+string
+-
+sstream
+-
+vector
+-
+iomanip
+-
+random
+-
+tuple
+-
+stdexcept
+-
+type_traits
+-
 
 ../src/cryptography.h
 string
