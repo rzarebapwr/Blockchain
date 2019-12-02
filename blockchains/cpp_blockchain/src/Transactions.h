@@ -32,6 +32,8 @@ public:
     [[nodiscard]] std::string getAddress() const;
 private:
     const std::string address;
+    Sha256Hash transactionHash;
+    // TODO Consider refactor (pointer?)
 };
 
 class Input {
@@ -63,7 +65,7 @@ public:
     [[nodiscard]] Sha256Hash getHash() const;
 
 private:
-    Sha256Hash hash{nullptr, 0};
+    Sha256Hash hash = cryptography::sha256(0);
     int32_t version;
     uint16_t nInputs;
     uint16_t nOutputs;

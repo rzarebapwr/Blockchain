@@ -57,7 +57,8 @@ int main() {
     uint32_t lockTime = 100;
 
     Transaction coinBaseTransaction({fakeInput}, {output1}, lockTime, 0);
-
+    Sha256Hash transactionHash = coinBaseTransaction.getHash();
+    std::cout << '\n' << cryptography::sha256HashToStr(transactionHash);
 
 
 
