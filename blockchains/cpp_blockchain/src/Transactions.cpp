@@ -11,9 +11,15 @@ ScriptPubKey::ScriptPubKey(std::string address)
 : address(std::move(address)){}
 
 
-bool ScriptPubKey::execute(const ScriptSig &scriptSig) {
-    std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey);
-    return address == generatedAddress;
+bool ScriptPubKey::execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) {
+    /*
+     * Pseudo Script executing
+     */
+    CurvePoint publicKey = scriptSig.publicKey; // OP DUP
+    std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey); // OP_HASH160
+    bool opEqualVerify = (address == generatedAddress); // OP_EQUALVERIFY
+    bool opCheckSig = cryptography::verifySignature(publicKey, transactionHash, scriptSig.signature); // OP_CHECKSIG
+    return opEqualVerify && opCheckSig;
 }
 
 

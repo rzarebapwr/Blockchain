@@ -6,16 +6,7 @@
 #define CPP_BLOCKCHAIN_TRANSACTIONS_H
 
 #include "cryptography.h"
-//#include "cryptography.ipp"
 
-#include <string>
-#include <sstream>
-#include <vector>
-#include <iomanip>
-#include <random>
-#include <tuple>
-#include <stdexcept>
-#include <type_traits>
 
 struct ScriptSig {
     // Used to unlock previous output (specific ScriptPubKey)
@@ -28,13 +19,12 @@ class ScriptPubKey {
     // Used to lock output
 public:
     explicit ScriptPubKey(std::string address);
-    bool execute(const ScriptSig &scriptSig);
+    bool execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash);
     [[nodiscard]] std::string getAddress() const;
 private:
     const std::string address;
-    Sha256Hash transactionHash;
-    // TODO Consider refactor (pointer?)
 };
+
 
 class Input {
 public:

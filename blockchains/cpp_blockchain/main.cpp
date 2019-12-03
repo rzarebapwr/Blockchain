@@ -60,6 +60,11 @@ int main() {
     Sha256Hash transactionHash = coinBaseTransaction.getHash();
     std::cout << '\n' << cryptography::sha256HashToStr(transactionHash);
 
+    cryptography::Signature sig = cryptography::sign(privateKey, coinBaseTransaction.getHash());
+    // TODO transaction.scriptPubKeyverify(index, scriptSig) - transaction hash can be shared!
+
+
+
 
 
 
