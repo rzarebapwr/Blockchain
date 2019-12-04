@@ -7,6 +7,9 @@
 
 #include "cryptography.h"
 
+static const uint32_t COINBASE_LOCK_TIME = 100;
+static const uint32_t BITCOIN_FACTOR = 100000000;  // Satoshis
+
 
 struct ScriptSig {
     // Used to unlock previous output (specific ScriptPubKey)
@@ -42,6 +45,8 @@ class Output {
 public:
     Output(uint64_t value, ScriptPubKey scriptPubKey);
     [[nodiscard]] std::string getStringRepr() const;
+    [[nodiscard]] uint64_t getValue() const;
+    [[nodiscard]] ScriptPubKey getScriptPubKey() const;
 
 private:
     uint64_t value{};
@@ -53,6 +58,9 @@ class Transaction {
 public:
     Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version);
     [[nodiscard]] Sha256Hash getHash() const;
+    bool scriptPubKeyExecute(int index, ScriptSig scriptSig);
+
+    static Transaction generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress);
 
 private:
     Sha256Hash hash = cryptography::sha256(0);

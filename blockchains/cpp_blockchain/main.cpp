@@ -20,8 +20,12 @@ class TestClass {
 public:
     TestClass(int x, int y) : x(x), y(y) {};
 
-    int getX() {
+    [[nodiscard]] int getX() const {
         return x;
+    }
+
+    [[nodiscard]] int getY() const {
+        return y;
     }
 
 private:
@@ -44,75 +48,24 @@ int main() {
     std::string minerAddress = cryptography::generateAddress(publicKey);
     std::cout << "Miner Address : " << minerAddress;
 
-    // Generate Coinbase transaction - supply specific miner
-    ScriptPubKey scriptPubKey1(minerAddress);
-    Output output1{50, scriptPubKey1};
+    Transaction coinBaseTransaction = Transaction::generateCoinBase(100, minerAddress);
 
-    // Generate fake input - doesn't matter for coinbase transaction
-    auto [fakePrivateKey, fakePublicKey] = cryptography::generateKeys();
-    Sha256Hash fakeHash = cryptography::sha256(0);
-    cryptography::Signature signature = cryptography::sign(fakePrivateKey, fakeHash);
-    Input fakeInput{cryptography::sha256(0), 0, ScriptSig{signature, fakePublicKey}};
-
-    uint32_t lockTime = 100;
-
-    Transaction coinBaseTransaction({fakeInput}, {output1}, lockTime, 0);
     Sha256Hash transactionHash = coinBaseTransaction.getHash();
     std::cout << '\n' << cryptography::sha256HashToStr(transactionHash);
 
+
+
+
     cryptography::Signature sig = cryptography::sign(privateKey, coinBaseTransaction.getHash());
-    // TODO transaction.scriptPubKeyverify(index, scriptSig) - transaction hash can be shared!
+    cryptography::Signature sig2 = cryptography::sign(privateKey, cryptography::sha256(0));
+    ScriptSig s{sig, publicKey};
+    ScriptSig s2{sig2, publicKey};
 
+    bool isSpendable = coinBaseTransaction.scriptPubKeyExecute(0, s);
 
+    std::cout << "Is spendable: " << isSpendable;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    std::cout << COINBASE_LOCK_TIME;
 
 
 

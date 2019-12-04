@@ -1,8 +1,10 @@
 //
 // Created by KQ794TB on 28/10/2019.
 //
+#include <iostream>
 
 #include "Transactions.h"
+
 
 /*
  * ScriptPubKey
@@ -59,6 +61,14 @@ std::string Output::getStringRepr() const {
     return scriptPubKey.getAddress();
 }
 
+uint64_t Output::getValue() const {
+    return value;
+}
+
+ScriptPubKey Output::getScriptPubKey() const {
+    return scriptPubKey;
+}
+
 
 /*
  * Transaction
@@ -87,6 +97,32 @@ std::string Transaction::getStringRepr() {
         s << o.getStringRepr();
 
     return s.str();
+}
+
+
+bool Transaction::scriptPubKeyExecute(int index, ScriptSig scriptSig) {
+    try {
+        Output output = outputs.at(index);
+        return output.getScriptPubKey().execute(scriptSig, hash);
+    } catch (const std::out_of_range &error) {
+        std::cout << "Output index out of range";
+        return false;
+    }
+}
+
+Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
+
+    // Generate Coinbase transaction - supply specific miner
+    ScriptPubKey scriptPubKey(minerAddress);
+    Output output{nSatoshis, scriptPubKey};
+
+    // Generate fake input - doesn't matter for coinbase transaction
+    auto [privateKey, publicKey] = cryptography::generateKeys();
+    Sha256Hash prevHash = cryptography::sha256(0);
+    cryptography::Signature signature = cryptography::sign(privateKey, prevHash);
+    Input fakeInput{prevHash, 0, ScriptSig{signature, publicKey}};
+
+    return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
 }
 
 
