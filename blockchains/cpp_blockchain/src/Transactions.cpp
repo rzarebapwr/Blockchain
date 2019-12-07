@@ -49,6 +49,12 @@ std::string Input::getStringRepr() const {
     return ss.str();
 }
 
+template <typename Container>
+bool Input::isSpendable(Container &&transactions) {
+    Transaction transaction = transactions[cryptography::sha256HashToStr(prevOutputHash)];
+    return transaction.scriptPubKeyExecute(outputIndex, scriptSig);
+}
+
 
 /*
  * Output
@@ -105,7 +111,7 @@ bool Transaction::scriptPubKeyExecute(int index, ScriptSig scriptSig) {
         Output output = outputs.at(index);
         return output.getScriptPubKey().execute(scriptSig, hash);
     } catch (const std::out_of_range &error) {
-        std::cout << "Output index out of range";
+        std::cout << "Output number " << index << " of " << cryptography::sha256HashToStr(hash) <<  " does not exist!";
         return false;
     }
 }
@@ -123,6 +129,18 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
     Input fakeInput{prevHash, 0, ScriptSig{signature, publicKey}};
 
     return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
+}
+
+template <typename T, typename Container>
+bool Transaction::verify(T currentBlockHeight, Container &&transactions) {
+    if (lockTime > currentBlockHeight)
+        return false;
+
+    // TODO Consider performance refactor
+    for (const auto &i : inputs) {
+        if (!i.isSpendable(std::forward<Container>(transactions)))
+            return false;
+    }
 }
 
 
