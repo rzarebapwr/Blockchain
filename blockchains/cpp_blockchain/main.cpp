@@ -20,6 +20,7 @@
 class TestClass {
 public:
     TestClass(int x, int y) : x(x), y(y) {};
+//    TestClass() = default;
 
     [[nodiscard]] int getX() const {
         return x;
@@ -43,7 +44,7 @@ int main() {
 
     // Simulation of transactions
 
-    std::map<std::string, Transaction> transactions;
+    std::map<std::string, Transaction> utxoMap;
 
 
     auto [minerPrivateKey, minerPublicKey] = cryptography::generateKeys();
@@ -57,10 +58,15 @@ int main() {
 
     Transaction coinBaseTransaction = Transaction::generateCoinBase(100, minerAddress);
     std::string coinbaseHashStr = cryptography::sha256HashToStr(coinBaseTransaction.getHash());
+//
+//    transactions[coinbaseHashStr] = coinBaseTransaction;
+    utxoMap.try_emplace(coinbaseHashStr, coinBaseTransaction);
 
-    transactions[coinbaseHashStr] = coinBaseTransaction;
 
-    // Miner Creates Output to user2 - sends 50 satoshis
+//     Transaction needs to have default constructor !
+
+
+//     Miner Creates Output to user2 - sends 50 satoshis
     ScriptPubKey scriptPubKey{address2};
     Output output{50, scriptPubKey};
 
@@ -71,8 +77,10 @@ int main() {
     Transaction transaction{{input}, {output}, 0, 0};
 
 
-    // Check if miner is able to spend that output
-    bool isSpendable = coinBaseTransaction.scriptPubKeyExecute(0, scriptSig);
+//     Check if miner is able to spend that output
+    bool isSpendable = transaction.verify(0, utxoMap);
+
+
 
 
 

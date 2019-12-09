@@ -49,11 +49,7 @@ std::string Input::getStringRepr() const {
     return ss.str();
 }
 
-template <typename Container>
-bool Input::isSpendable(Container &&transactions) {
-    Transaction transaction = transactions[cryptography::sha256HashToStr(prevOutputHash)];
-    return transaction.scriptPubKeyExecute(outputIndex, scriptSig);
-}
+
 
 
 /*
@@ -92,7 +88,7 @@ Sha256Hash Transaction::getHash() const {
 }
 
 
-std::string Transaction::getStringRepr() {
+std::string Transaction::getStringRepr() const {
     std::stringstream s;
     s << version << nInputs << nOutputs << lockTime;
 
@@ -106,15 +102,25 @@ std::string Transaction::getStringRepr() {
 }
 
 
-bool Transaction::scriptPubKeyExecute(int index, ScriptSig scriptSig) {
+Output Transaction::getOutput(int index) const {
     try {
         Output output = outputs.at(index);
-        return output.getScriptPubKey().execute(scriptSig, hash);
+        return output;
     } catch (const std::out_of_range &error) {
-        std::cout << "Output number " << index << " of " << cryptography::sha256HashToStr(hash) <<  " does not exist!";
-        return false;
+        throw std::invalid_argument("Output index out of range!");
     }
 }
+
+
+//bool Transaction::scriptPubKeyExecute(int index, ScriptSig scriptSig) const {
+//    try {
+//        Output output = outputs.at(index);
+//        return output.getScriptPubKey().execute(scriptSig, hash);
+//    } catch (const std::out_of_range &error) {
+//        std::cout << "Output number " << index << " of " << cryptography::sha256HashToStr(hash) <<  " does not exist!";
+//        return false;
+//    }
+//}
 
 Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
 
@@ -130,18 +136,3 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
 
     return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
 }
-
-template <typename T, typename Container>
-bool Transaction::verify(T currentBlockHeight, Container &&transactions) {
-    if (lockTime > currentBlockHeight)
-        return false;
-
-    // TODO Consider performance refactor
-    for (const auto &i : inputs) {
-        if (!i.isSpendable(std::forward<Container>(transactions)))
-            return false;
-    }
-}
-
-
-

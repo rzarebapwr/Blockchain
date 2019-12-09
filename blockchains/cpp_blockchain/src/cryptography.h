@@ -209,7 +209,6 @@ namespace cryptography {
 
         if (!signedProperly)
             throw std::invalid_argument("Could not sign received message !");
-
         return {r, s};
     }
 

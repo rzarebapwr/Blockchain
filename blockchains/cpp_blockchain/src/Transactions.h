@@ -7,12 +7,11 @@
 
 #include "cryptography.h"
 #include <map>
+#include <iostream>
 
 static const uint32_t COINBASE_LOCK_TIME = 100;
 static const uint32_t BITCOIN_FACTOR = 100000000;  // Satoshis
 
-
-class Transaction; // Declaration for Input isSpendable method
 
 struct ScriptSig {
     // Used to unlock previous output (specific ScriptPubKey)
@@ -37,8 +36,8 @@ public:
     Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
     [[nodiscard]] std::string getStringRepr() const;
 
-    template <typename Container>
-    bool isSpendable(Container &&transactions);
+    template <typename UtxoSet>
+    bool isSpendable(UtxoSet &&transactions);
 
 private:
     Sha256Hash prevOutputHash;
@@ -65,11 +64,14 @@ class Transaction {
 public:
     Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version);
     [[nodiscard]] Sha256Hash getHash() const;
-    bool scriptPubKeyExecute(int index, ScriptSig scriptSig);
+    [[nodiscard]] Output getOutput(int index) const;
 
-    template <typename T, typename Container>
-    bool verify(T currentBlockHeight, Container &&transactions);
 
+    template <typename T, typename UtxoSet>
+    bool verify(T currentBlockHeight, UtxoSet &&transactions);
+
+
+//    [[nodiscard]] bool scriptPubKeyExecute(int index, ScriptSig scriptSig) const;
     static Transaction generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress);
 
 private:
@@ -81,10 +83,45 @@ private:
     std::vector<Input> inputs;
     std::vector<Output> outputs;
 
-    std::string getStringRepr();
-
-
+    [[nodiscard]] std::string getStringRepr() const;
 };
 
-//#include "Transactions.cpp" // To avoid linking errors with template methods
+
+
+template <typename UtxoSet>
+bool Input::isSpendable(UtxoSet &&transactions) {
+    try {
+        Transaction previousTransaction = transactions.at(cryptography::sha256HashToStr(prevOutputHash));
+        Output output = previousTransaction.getOutput(outputIndex);
+        return output.getScriptPubKey().execute(scriptSig, prevOutputHash);
+    } catch (const std::out_of_range &error) {
+        std::cout << "Transaction " << cryptography::sha256HashToStr(prevOutputHash) << " not found in UTXO set!";
+        return false;
+    }
+}
+
+
+template <typename T, typename UtxoSet>
+bool Transaction::verify(T currentBlockHeight, UtxoSet &&transactions) {
+
+    // 1. If transaction is locked until some point in time
+    if (lockTime > currentBlockHeight)
+        return false;
+
+    uint64_t totalInputsSatoshis = 0;
+
+    // TODO Consider performance refactor,
+    // TODO check total satoshis !
+    for (auto &i : inputs) {
+//        bool isSpendable = i.isSpendable(transactions);
+//        if (!isSpendable)
+        if (!i.isSpendable(std::forward<UtxoSet>(transactions)))
+            return false;
+
+    }
+    return true;
+}
+
+
+//#include "Transactions.tpp" // To avoid linking errors with template methods
 #endif //CPP_BLOCKCHAIN_TRANSACTIONS_H
