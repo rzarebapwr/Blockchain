@@ -24,25 +24,10 @@ class ScriptPubKey {
     // Used to lock output
 public:
     explicit ScriptPubKey(std::string address);
-    bool execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash);
+    [[nodiscard]] bool execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const;
     [[nodiscard]] std::string getAddress() const;
 private:
     const std::string address;
-};
-
-
-class Input {
-public:
-    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
-    [[nodiscard]] std::string getStringRepr() const;
-
-    template <typename UtxoSet>
-    bool isSpendable(UtxoSet &&transactions);
-
-private:
-    Sha256Hash prevOutputHash;
-    uint16_t outputIndex;
-    ScriptSig scriptSig;
 };
 
 
@@ -57,6 +42,24 @@ public:
 private:
     uint64_t value;
     ScriptPubKey scriptPubKey;
+};
+
+
+class Input {
+public:
+    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
+    [[nodiscard]] std::string getStringRepr() const;
+
+    template <typename UtxoSet>
+    Output getUsedOutput(UtxoSet &&transactions) const;
+
+    template <typename UtxoSet>
+    bool isSpendable(UtxoSet &&transactions) const;
+
+private:
+    Sha256Hash prevOutputHash;
+    uint16_t outputIndex;
+    ScriptSig scriptSig;
 };
 
 
@@ -87,9 +90,20 @@ private:
 };
 
 
+template <typename UtxoSet>
+Output Input::getUsedOutput(UtxoSet &&transactions) const {
+    try {
+        Transaction previousTransaction = transactions.at(cryptography::sha256HashToStr(prevOutputHash));
+        return previousTransaction.getOutput(outputIndex);
+    } catch (const std::out_of_range &error) {
+        throw std::invalid_argument("Output index out of range!");
+    }
+
+}
+
 
 template <typename UtxoSet>
-bool Input::isSpendable(UtxoSet &&transactions) {
+bool Input::isSpendable(UtxoSet &&transactions) const {
     try {
         Transaction previousTransaction = transactions.at(cryptography::sha256HashToStr(prevOutputHash));
         Output output = previousTransaction.getOutput(outputIndex);
@@ -101,25 +115,37 @@ bool Input::isSpendable(UtxoSet &&transactions) {
 }
 
 
+
 template <typename T, typename UtxoSet>
 bool Transaction::verify(T currentBlockHeight, UtxoSet &&transactions) {
 
-    // 1. If transaction is locked until some point in time
+    // 1. If transaction is locked until some point in time.
     if (lockTime > currentBlockHeight)
         return false;
 
-    uint64_t totalInputsSatoshis = 0;
+    // 2. If there is lack of input or output
+    if (inputs.empty() || outputs.empty())
+        return false;
 
-    // TODO Consider performance refactor,
-    // TODO check total satoshis !
+    // 3. If any scriptSig in inputs does not executes with assiociated output.
+    // 4. If total amount of inputs satoshis is less than outputs to spend.
+
+    uint64_t totalInputsSatoshis = 0;
+    uint64_t totalOutputsSatoshis = 0;
+
     for (auto &i : inputs) {
-//        bool isSpendable = i.isSpendable(transactions);
-//        if (!isSpendable)
+        // TODO Simplify this!
         if (!i.isSpendable(std::forward<UtxoSet>(transactions)))
             return false;
 
+        Output output = i.getUsedOutput(std::forward<UtxoSet>(transactions));
+        totalInputsSatoshis += output.getValue();
     }
-    return true;
+
+    for (auto &o : outputs)
+        totalOutputsSatoshis += o.getValue();
+
+    return totalInputsSatoshis >= totalOutputsSatoshis;
 }
 
 

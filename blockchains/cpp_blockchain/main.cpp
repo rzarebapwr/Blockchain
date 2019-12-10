@@ -58,7 +58,7 @@ int main() {
 
     Transaction coinBaseTransaction = Transaction::generateCoinBase(100, minerAddress);
     std::string coinbaseHashStr = cryptography::sha256HashToStr(coinBaseTransaction.getHash());
-//
+
 //    transactions[coinbaseHashStr] = coinBaseTransaction;
     utxoMap.try_emplace(coinbaseHashStr, coinBaseTransaction);
 
@@ -68,7 +68,7 @@ int main() {
 
 //     Miner Creates Output to user2 - sends 50 satoshis
     ScriptPubKey scriptPubKey{address2};
-    Output output{50, scriptPubKey};
+    Output output{100, scriptPubKey};
 
     Sha256Hash prevHash = coinBaseTransaction.getHash();
     cryptography::Signature sig = cryptography::sign(minerPrivateKey, prevHash);
@@ -79,6 +79,7 @@ int main() {
 
 //     Check if miner is able to spend that output
     bool isSpendable = transaction.verify(0, utxoMap);
+    std::cout << "Is spendable: " << isSpendable;
 
 
 
@@ -95,7 +96,7 @@ int main() {
 //
 //    bool isSpendable = coinBaseTransaction.scriptPubKeyExecute(0, s);
 
-    std::cout << "Is spendable: " << isSpendable;
+
 
 //    std::cout << COINBASE_LOCK_TIME;
 

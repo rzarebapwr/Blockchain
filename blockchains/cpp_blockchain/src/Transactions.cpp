@@ -13,7 +13,7 @@ ScriptPubKey::ScriptPubKey(std::string address)
 : address(std::move(address)){}
 
 
-bool ScriptPubKey::execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) {
+bool ScriptPubKey::execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const {
     /*
      * Pseudo Script executing
      */

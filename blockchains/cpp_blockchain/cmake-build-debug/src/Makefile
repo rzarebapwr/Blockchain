@@ -282,6 +282,33 @@ Transactions.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transactions.cpp.s
 .PHONY : Transactions.cpp.s
 
+Wallet.o: Wallet.cpp.o
+
+.PHONY : Wallet.o
+
+# target to build an object file
+Wallet.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Wallet.cpp.o
+.PHONY : Wallet.cpp.o
+
+Wallet.i: Wallet.cpp.i
+
+.PHONY : Wallet.i
+
+# target to preprocess a source file
+Wallet.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Wallet.cpp.i
+.PHONY : Wallet.cpp.i
+
+Wallet.s: Wallet.cpp.s
+
+.PHONY : Wallet.s
+
+# target to generate assembly for a file
+Wallet.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Wallet.cpp.s
+.PHONY : Wallet.cpp.s
+
 __/lib/cryptoLib/Base58Check.o: __/lib/cryptoLib/Base58Check.cpp.o
 
 .PHONY : __/lib/cryptoLib/Base58Check.o
@@ -630,6 +657,9 @@ help:
 	@echo "... Transactions.o"
 	@echo "... Transactions.i"
 	@echo "... Transactions.s"
+	@echo "... Wallet.o"
+	@echo "... Wallet.i"
+	@echo "... Wallet.s"
 	@echo "... __/lib/cryptoLib/Base58Check.o"
 	@echo "... __/lib/cryptoLib/Base58Check.i"
 	@echo "... __/lib/cryptoLib/Base58Check.s"
