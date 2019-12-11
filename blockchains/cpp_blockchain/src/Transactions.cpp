@@ -112,16 +112,6 @@ Output Transaction::getOutput(int index) const {
 }
 
 
-//bool Transaction::scriptPubKeyExecute(int index, ScriptSig scriptSig) const {
-//    try {
-//        Output output = outputs.at(index);
-//        return output.getScriptPubKey().execute(scriptSig, hash);
-//    } catch (const std::out_of_range &error) {
-//        std::cout << "Output number " << index << " of " << cryptography::sha256HashToStr(hash) <<  " does not exist!";
-//        return false;
-//    }
-//}
-
 Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
 
     // Generate Coinbase transaction - supply specific miner
@@ -136,3 +126,88 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
 
     return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
 }
+
+
+Output Input::getUsedOutput(const UtxoSet &utxoSet) const {
+
+    // TODO try statement on UtxoSet site! remove from here!
+    try {
+        Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
+        return previousTransaction.getOutput(outputIndex);
+    } catch (const std::out_of_range &error) {
+        throw std::invalid_argument("Output index out of range!");
+    }
+
+}
+
+
+bool Input::isSpendable(const UtxoSet &utxoSet) const {
+    try {
+        Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
+        Output output = previousTransaction.getOutput(outputIndex);
+        return output.getScriptPubKey().execute(scriptSig, prevOutputHash);
+    } catch (const std::out_of_range &error) {
+        std::cout << "Transaction " << cryptography::sha256HashToStr(prevOutputHash) << " not found in UTXO set!";
+        return false;
+    }
+}
+
+
+bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
+
+    // 1. If transaction is locked until some point in time.
+    if (lockTime > currentBlockHeight)
+        return false;
+
+    // 2. If there is lack of input or output
+    if (inputs.empty() || outputs.empty())
+        return false;
+
+    // 3. If any scriptSig in inputs does not executes with assiociated output.
+    // 4. If total amount of inputs satoshis is less than outputs to spend.
+
+    uint64_t totalInputsSatoshis = 0;
+    uint64_t totalOutputsSatoshis = 0;
+
+    for (auto &i : inputs) {
+        // TODO Simplify this!
+        if (!i.isSpendable(utxoSet))
+            return false;
+
+        // TODO std::forward R value reference
+        Output output = i.getUsedOutput(utxoSet);
+        totalInputsSatoshis += output.getValue();
+    }
+
+    for (auto &o : outputs)
+        totalOutputsSatoshis += o.getValue();
+
+    return totalInputsSatoshis >= totalOutputsSatoshis;
+}
+
+
+UtxoSet::UtxoSet()
+: container(std::map<std::string, Transaction>()) {
+}
+
+//Transaction UtxoSet::getTransactionByHash(const std::string &hash) const {
+//    return Transaction(__1::vector(), __1::vector(), 0, 0);
+//}
+
+bool UtxoSet::insertTransaction(const Transaction &transaction) {
+    return false;
+}
+
+bool UtxoSet::removeTransaction(const std::string &hash) {
+    return false;
+}
+
+int UtxoSet::getSize() const {
+    return 0;
+}
+
+
+
+
+
+

@@ -10,7 +10,7 @@
 //#include "Block.h"
 
 #include "cryptography.h"
-#include "Transactions.h"
+//#include "Transactions.h"
 
 
 
@@ -44,7 +44,9 @@ int main() {
 
     // Simulation of transactions
 
-    std::map<std::string, Transaction> utxoMap;
+//    std::map<std::string, Transaction> utxoMap;
+
+    std::map<std::string, int> myMap;
 
 
     auto [minerPrivateKey, minerPublicKey] = cryptography::generateKeys();
@@ -56,30 +58,36 @@ int main() {
     std::string address2 = cryptography::generateAddress(publiKey2);
     std::string address3 = cryptography::generateAddress(publiKey3);
 
-    Transaction coinBaseTransaction = Transaction::generateCoinBase(100, minerAddress);
-    std::string coinbaseHashStr = cryptography::sha256HashToStr(coinBaseTransaction.getHash());
-
-//    transactions[coinbaseHashStr] = coinBaseTransaction;
-    utxoMap.try_emplace(coinbaseHashStr, coinBaseTransaction);
-
-
-//     Transaction needs to have default constructor !
-
-
-//     Miner Creates Output to user2 - sends 50 satoshis
-    ScriptPubKey scriptPubKey{address2};
-    Output output{100, scriptPubKey};
-
-    Sha256Hash prevHash = coinBaseTransaction.getHash();
-    cryptography::Signature sig = cryptography::sign(minerPrivateKey, prevHash);
-    ScriptSig scriptSig{sig, minerPublicKey};
-    Input input{prevHash, 0, scriptSig};
-    Transaction transaction{{input}, {output}, 0, 0};
+//    Transaction coinBaseTransaction = Transaction::generateCoinBase(100, minerAddress);
+//    std::string coinbaseHashStr = cryptography::sha256HashToStr(coinBaseTransaction.getHash());
+//
+////    transactions[coinbaseHashStr] = coinBaseTransaction;
+//    utxoMap.try_emplace(coinbaseHashStr, coinBaseTransaction);
+//
+//
+////     Transaction needs to have default constructor !
+//
+//
+////     Miner Creates Output to user2 - sends 50 satoshis
+//    ScriptPubKey scriptPubKey{address2};
+//    Output output{100, scriptPubKey};
+//
+//    Sha256Hash prevHash = coinBaseTransaction.getHash();
+//    cryptography::Signature sig = cryptography::sign(minerPrivateKey, prevHash);
+//    ScriptSig scriptSig{sig, minerPublicKey};
+//    Input input{prevHash, 0, scriptSig};
+//    Transaction transaction{{input}, {output}, 0, 0};
 
 
 //     Check if miner is able to spend that output
-    bool isSpendable = transaction.verify(0, utxoMap);
-    std::cout << "Is spendable: " << isSpendable;
+//    bool isSpendable = transaction.verify(0, utxoMap);
+//    std::cout << "Is spendable: " << isSpendable;
+
+
+    myMap.try_emplace("Hello", 2);
+    int x = myMap.at("Hello2");
+
+
 
 
 
