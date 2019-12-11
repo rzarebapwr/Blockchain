@@ -84,8 +84,8 @@ int main() {
 //    std::cout << "Is spendable: " << isSpendable;
 
 
-    myMap.try_emplace("Hello", 2);
-    int x = myMap.at("Hello2");
+    myMap.try_emplace("Hello", 2); // TODO get exception when inserting to utxoset!
+    int x = myMap.at("Hello2"); // TODO get exception when getting from utxoset!
 
 
 
