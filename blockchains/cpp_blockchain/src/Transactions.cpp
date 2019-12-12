@@ -129,27 +129,15 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
 
 
 Output Input::getUsedOutput(const UtxoSet &utxoSet) const {
-
-    // TODO try statement on UtxoSet site! remove from here!
-    try {
-        Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
-        return previousTransaction.getOutput(outputIndex);
-    } catch (const std::out_of_range &error) {
-        throw std::invalid_argument("Output index out of range!");
-    }
-
+    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
+    return previousTransaction.getOutput(outputIndex);
 }
 
 
 bool Input::isSpendable(const UtxoSet &utxoSet) const {
-    try {
-        Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
-        Output output = previousTransaction.getOutput(outputIndex);
-        return output.getScriptPubKey().execute(scriptSig, prevOutputHash);
-    } catch (const std::out_of_range &error) {
-        std::cout << "Transaction " << cryptography::sha256HashToStr(prevOutputHash) << " not found in UTXO set!";
-        return false;
-    }
+    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
+    Output output = previousTransaction.getOutput(outputIndex);
+
 }
 
 
