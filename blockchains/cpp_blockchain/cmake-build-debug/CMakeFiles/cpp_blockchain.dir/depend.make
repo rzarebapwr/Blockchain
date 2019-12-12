@@ -10,6 +10,7 @@ CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../lib/cryptoLib/Ripemd160.hpp
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../lib/cryptoLib/Sha256.hpp
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../lib/cryptoLib/Sha256Hash.hpp
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../lib/cryptoLib/Uint256.hpp
+CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../src/Transactions.h
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../src/cryptography.h
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../main.cpp
 

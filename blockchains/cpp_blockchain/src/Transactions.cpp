@@ -174,7 +174,7 @@ bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
         if (!i.isSpendable(utxoSet))
             return false;
 
-        // TODO std::forward R value reference
+        // TODO std::forward rvalue reference
         Output output = i.getUsedOutput(utxoSet);
         totalInputsSatoshis += output.getValue();
     }
@@ -190,20 +190,28 @@ UtxoSet::UtxoSet()
 : container(std::map<std::string, Transaction>()) {
 }
 
-//Transaction UtxoSet::getTransactionByHash(const std::string &hash) const {
-//    return Transaction(__1::vector(), __1::vector(), 0, 0);
-//}
+Transaction UtxoSet::getTransactionByHash(const std::string &hash) const {
+    return container.at(hash);
+}
 
 bool UtxoSet::insertTransaction(const Transaction &transaction) {
-    return false;
+    std::string hashStrRepr = cryptography::sha256HashToStr(transaction.getHash());
+    auto [it, result] = container.try_emplace(hashStrRepr, transaction);
+
+    return result == 1;
 }
 
 bool UtxoSet::removeTransaction(const std::string &hash) {
+    auto it = container.find(hash);
+    if (it != container.end()) {
+        container.erase(it);
+        return true;
+    }
     return false;
 }
 
 int UtxoSet::getSize() const {
-    return 0;
+    return container.size();
 }
 
 
