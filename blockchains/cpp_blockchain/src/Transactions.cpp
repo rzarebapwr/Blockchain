@@ -7,30 +7,6 @@
 
 
 /*
- * ScriptPubKey
- */
-ScriptPubKey::ScriptPubKey(std::string address)
-: address(std::move(address)){}
-
-
-bool ScriptPubKey::execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const {
-    /*
-     * Pseudo Script executing
-     */
-    CurvePoint publicKey = scriptSig.publicKey; // OP DUP
-    std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey); // OP_HASH160
-    bool opEqualVerify = (address == generatedAddress); // OP_EQUALVERIFY
-    bool opCheckSig = cryptography::verifySignature(publicKey, transactionHash, scriptSig.signature); // OP_CHECKSIG
-    return opEqualVerify && opCheckSig;
-}
-
-
-std::string ScriptPubKey::getAddress() const {
-    return address;
-}
-
-
-/*
  * Input
  */
 Input::Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig)
@@ -50,84 +26,6 @@ std::string Input::getStringRepr() const {
 }
 
 
-
-
-/*
- * Output
- */
-Output::Output(uint64_t value, ScriptPubKey scriptPubKey)
-: value(value), scriptPubKey(std::move(scriptPubKey)){}
-
-
-std::string Output::getStringRepr() const {
-    return scriptPubKey.getAddress();
-}
-
-uint64_t Output::getValue() const {
-    return value;
-}
-
-ScriptPubKey Output::getScriptPubKey() const {
-    return scriptPubKey;
-}
-
-
-/*
- * Transaction
- */
-Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version)
-                         : inputs(std::move(inputs)), outputs(std::move(outputs)), lockTime(lockTime), version(version) {
-    nInputs = inputs.size();
-    nOutputs = outputs.size();
-    hash = cryptography::doubleSha256(getStringRepr());
-}
-
-
-Sha256Hash Transaction::getHash() const {
-    return hash;
-}
-
-
-std::string Transaction::getStringRepr() const {
-    std::stringstream s;
-    s << version << nInputs << nOutputs << lockTime;
-
-    for (const auto &i : inputs)
-        s << i.getStringRepr();
-
-    for (const auto &o: outputs)
-        s << o.getStringRepr();
-
-    return s.str();
-}
-
-
-Output Transaction::getOutput(int index) const {
-    try {
-        Output output = outputs.at(index);
-        return output;
-    } catch (const std::out_of_range &error) {
-        throw std::invalid_argument("Output index out of range!");
-    }
-}
-
-
-Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
-
-    // Generate Coinbase transaction - supply specific miner
-    ScriptPubKey scriptPubKey(minerAddress);
-    Output output{nSatoshis, scriptPubKey};
-
-    // Generate fake input - doesn't matter for coinbase transaction
-    auto [privateKey, publicKey] = cryptography::generateKeys();
-    Sha256Hash prevHash = cryptography::sha256(0);
-    cryptography::Signature signature = cryptography::sign(privateKey, prevHash);
-    Input fakeInput{prevHash, 0, ScriptSig{signature, publicKey}};
-
-    return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
-}
-
-
 Output Input::getUsedOutput(const UtxoSet &utxoSet) const {
     Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
     return previousTransaction.getOutput(outputIndex);
@@ -138,6 +36,49 @@ bool Input::isSpendable(const UtxoSet &utxoSet) const {
     Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
     Output output = previousTransaction.getOutput(outputIndex);
 
+}
+
+
+/*
+ * Output
+ */
+Output::Output(uint64_t value, std::string address)
+: value(value), address(std::move(address)){}
+
+
+bool Output::executeScriptPubKey(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const {
+    /*
+     * Pseudo Bitcoin Script executing
+     */
+    CurvePoint publicKey = scriptSig.publicKey; // OP DUP
+    std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey); // OP_HASH160
+    bool opEqualVerify = (address == generatedAddress); // OP_EQUALVERIFY
+    bool opCheckSig = cryptography::verifySignature(publicKey, transactionHash, scriptSig.signature); // OP_CHECKSIG
+    return opEqualVerify && opCheckSig;
+}
+
+
+uint64_t Output::getValue() const {
+    return value;
+}
+
+
+std::string Output::getAddress() const {
+    return address;
+}
+
+
+
+
+
+/*
+ * Transaction
+ */
+Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version)
+                         : inputs(std::move(inputs)), outputs(std::move(outputs)), lockTime(lockTime), version(version) {
+    nInputs = inputs.size();
+    nOutputs = outputs.size();
+    hash = cryptography::doubleSha256(getStringRepr());
 }
 
 
@@ -173,30 +114,101 @@ bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
     return totalInputsSatoshis >= totalOutputsSatoshis;
 }
 
-
-UtxoSet::UtxoSet()
-: container(std::map<std::string, Transaction>()) {
+Sha256Hash Transaction::getHash() const {
+    return hash;
 }
 
-Transaction UtxoSet::getTransactionByHash(const std::string &hash) const {
-    return container.at(hash);
-}
 
-bool UtxoSet::insertTransaction(const Transaction &transaction) {
-    std::string hashStrRepr = cryptography::sha256HashToStr(transaction.getHash());
-    auto [it, result] = container.try_emplace(hashStrRepr, transaction);
-
-    return result == 1;
-}
-
-bool UtxoSet::removeTransaction(const std::string &hash) {
-    auto it = container.find(hash);
-    if (it != container.end()) {
-        container.erase(it);
-        return true;
+Output Transaction::getOutput(int index) const {
+    try {
+        Output output = outputs.at(index);
+        return output;
+    } catch (const std::out_of_range &error) {
+        throw std::invalid_argument("Output index out of range!");
     }
-    return false;
 }
+
+std::vector<Output> Transaction::getOutputs() const {
+    return outputs;
+}
+
+
+std::string Transaction::getStringRepr() const {
+    std::stringstream s;
+    s << version << nInputs << nOutputs << lockTime;
+
+    for (const auto &i : inputs)
+        s << i.getStringRepr();
+
+    for (const auto &o: outputs)
+        s << o.getAddress();
+
+    return s.str();
+}
+
+
+
+
+
+Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
+
+    // Generate Coinbase transaction - supply specific miner
+    Output output{nSatoshis, minerAddress};
+
+    // Generate fake input - doesn't matter for coinbase transaction
+    auto [privateKey, publicKey] = cryptography::generateKeys();
+    Sha256Hash prevHash = cryptography::sha256(0);
+    cryptography::Signature signature = cryptography::sign(privateKey, prevHash);
+    Input fakeInput{prevHash, 0, ScriptSig{signature, publicKey}};
+
+    return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
+}
+
+
+
+/*
+ * UtxoSet
+ */
+UtxoSet::UtxoSet()
+: container(std::vector<Output>()) {
+}
+
+
+std::vector<Output> UtxoSet::getUtxosForAddress(const std::string &address) const {
+    std::vector<Output> outputs;
+
+    for (auto const& o: container) {
+        if (o.getAddress() == address)
+            outputs.emplace_back(o);
+    }
+    return outputs;
+}
+
+
+void UtxoSet::update(const Transaction &transaction) {
+
+
+
+
+
+    std::vector<Output> outputs = transaction.getOutputs();
+    container.insert(container.end(), outputs.begin(), outputs.end());
+}
+
+//bool UtxoSet::insertOutput(const Output &output) {
+//    auto [it, result] = container.try_emplace(output.getAddress(), output);
+//    return result == 1;
+//}
+//
+//
+//bool UtxoSet::removeTransaction(const std::string &hash) {
+//    auto it = container.find(hash);
+//    if (it != container.end()) {
+//        container.erase(it);
+//        return true;
+//    }
+//    return false;
+//}
 
 int UtxoSet::getSize() const {
     return container.size();

@@ -6,3 +6,19 @@
 
 #IncludeRegexTransform: 
 
+../src/Checkout.h
+string
+-
+map
+-
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_testy/main.cpp
+iostream
+-
+Checkout.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_testy/Checkout.h
+vector
+-
+set
+-
+

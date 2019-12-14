@@ -1,17 +1,40 @@
 #include <iostream>
 #include "Checkout.h"
 
+#include <vector>
+#include <set>
+
+
+
 
 int main() {
 
-    Checkout checkout{};
-    checkout.addItemPrice("Beer", 5.00);
-    checkout.addItemPrice("Milk", 2.50);
+//    Checkout checkout{};
+//    checkout.addItemPrice("Beer", 5.00);
+//    checkout.addItemPrice("Milk", 2.50);
+//
+//    checkout.addItem("Milk");
+//    checkout.addItem("Milk");
+//    checkout.addItem("Milk");
+//
+//    std::cout << checkout.calculateTotal();
 
-    checkout.addItem("Milk");
-    checkout.addItem("Milk");
-    checkout.addItem("Milk");
+    std::vector<int> v1{1, 2, 3};
+//    std::vector<int> v2{1, 2, 3};
+//
+//    auto x = v1.insert(v1.end(), v2.begin(), v2.end());
+//
+    for (const auto &i: v1) {
+        if (i == 3)
+            v1.erase(v1.begin() + i-1);
 
-    std::cout << checkout.calculateTotal();
+    }
+
+    for (const auto &i: v1) {
+        std::cout << i;
+
+    }
+
+
 
 }

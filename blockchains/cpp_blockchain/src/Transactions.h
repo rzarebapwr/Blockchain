@@ -6,7 +6,6 @@
 #define CPP_BLOCKCHAIN_TRANSACTIONS_H
 
 #include "cryptography.h"
-#include <map>
 #include <iostream>
 
 static const uint32_t COINBASE_LOCK_TIME = 100;
@@ -22,28 +21,15 @@ struct ScriptSig {
 };
 
 
-class ScriptPubKey {
-    // Used to lock output
-public:
-    explicit ScriptPubKey(std::string address);
-    [[nodiscard]] bool execute(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const;
-    [[nodiscard]] std::string getAddress() const;
-private:
-    const std::string address;
-};
-
-
-// TODO Consider changing to struct?
 class Output {
 public:
-    Output(uint64_t value, ScriptPubKey scriptPubKey);
-    [[nodiscard]] std::string getStringRepr() const;
+    Output(uint64_t value, std::string address);
+    [[nodiscard]] bool executeScriptPubKey(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const;
     [[nodiscard]] uint64_t getValue() const;
-    [[nodiscard]] ScriptPubKey getScriptPubKey() const;
-
+    [[nodiscard]] std::string getAddress() const;
 private:
     uint64_t value;
-    ScriptPubKey scriptPubKey;
+    std::string address;
 };
 
 
@@ -70,13 +56,13 @@ private:
 class Transaction {
 public:
     Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version);
+    [[nodiscard]] bool verify(int currentBlockHeight, const UtxoSet &utxoSet) const;
     [[nodiscard]] Sha256Hash getHash() const;
     [[nodiscard]] Output getOutput(int index) const;
-
+    [[nodiscard]] std::vector<Output> getOutputs() const;
 
 //    template <typename T, typename UtxoSet>
 //    bool verify(T currentBlockHeight, UtxoSet &&transactions);
-    [[nodiscard]] bool verify(int currentBlockHeight, const UtxoSet &utxoSet) const;
 
     static Transaction generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress);
 
@@ -96,13 +82,16 @@ private:
 class UtxoSet {
 public:
     UtxoSet();
-    [[nodiscard]] Transaction getTransactionByHash(const std::string &hash) const;
-    bool insertTransaction(const Transaction &transaction);
-    bool removeTransaction(const std::string &hash);
+    [[nodiscard]] std::vector<Output> getUtxosForAddress(const std::string &address) const;
     [[nodiscard]] int getSize() const;
+    void update(const Transaction &transaction);
 
 private:
-    std::map<std::string, Transaction> container;
+    std::vector<Output> container;
+
+    bool insertOutput(const Output &transaction);
+    bool removeOutput(const std::string &hash);
+
 };
 
 
