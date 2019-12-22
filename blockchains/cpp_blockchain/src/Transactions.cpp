@@ -4,6 +4,36 @@
 #include <iostream>
 
 #include "Transactions.h"
+#include "UtxoSet.h"
+
+
+/*
+ * Output
+ */
+Output::Output(uint64_t value, std::string address)
+        : value(value), address(std::move(address)){}
+
+
+bool Output::executeScriptPubKey(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const {
+    /*
+     * Pseudo Bitcoin Script stack execution
+     */
+    CurvePoint publicKey = scriptSig.publicKey; // OP DUP
+    std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey); // OP_HASH160
+    bool opEqualVerify = (address == generatedAddress); // OP_EQUALVERIFY
+    bool opCheckSig = cryptography::verifySignature(publicKey, transactionHash, scriptSig.signature); // OP_CHECKSIG
+    return opEqualVerify && opCheckSig;
+}
+
+
+uint64_t Output::getValue() const {
+    return value;
+}
+
+
+std::string Output::getAddress() const {
+    return address;
+}
 
 
 /*
@@ -26,49 +56,14 @@ std::string Input::getStringRepr() const {
 }
 
 
-//Output Input::getUsedOutput(const UtxoSet &utxoSet) const {
-//    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
-//    return previousTransaction.getOutput(outputIndex);
-//}
-//
-//
-//bool Input::isSpendable(const UtxoSet &utxoSet) const {
-//    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
-//    Output output = previousTransaction.getOutput(outputIndex);
-//
-//}
-
-
-/*
- * Output
- */
-Output::Output(uint64_t value, std::string address)
-: value(value), address(std::move(address)){}
-
-
-bool Output::executeScriptPubKey(const ScriptSig &scriptSig, const Sha256Hash &transactionHash) const {
-    /*
-     * Pseudo Bitcoin Script executing
-     */
-    CurvePoint publicKey = scriptSig.publicKey; // OP DUP
-    std::string generatedAddress = cryptography::generateAddress(scriptSig.publicKey); // OP_HASH160
-    bool opEqualVerify = (address == generatedAddress); // OP_EQUALVERIFY
-    bool opCheckSig = cryptography::verifySignature(publicKey, transactionHash, scriptSig.signature); // OP_CHECKSIG
-    return opEqualVerify && opCheckSig;
+Sha256Hash Input::getPrevHash() const {
+    return prevOutputHash;
 }
 
 
-uint64_t Output::getValue() const {
-    return value;
+uint16_t Input::getIndex() const {
+    return outputIndex;
 }
-
-
-std::string Output::getAddress() const {
-    return address;
-}
-
-
-
 
 
 /*
@@ -82,23 +77,26 @@ Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs,
 }
 
 
-//bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
-//
-//    // 1. If transaction is locked until some point in time.
-//    if (lockTime > currentBlockHeight)
-//        return false;
-//
-//    // 2. If there is lack of input or output
-//    if (inputs.empty() || outputs.empty())
-//        return false;
-//
-//    // 3. If any scriptSig in inputs does not executes with assiociated output.
-//    // 4. If total amount of inputs satoshis is less than outputs to spend.
-//
-//    uint64_t totalInputsSatoshis = 0;
-//    uint64_t totalOutputsSatoshis = 0;
-//
-//    for (auto &i : inputs) {
+bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
+
+    // 1. If transaction is locked until some point in time.
+    if (lockTime > currentBlockHeight)
+        return false;
+
+    // 2. If there is lack of input or output
+    if (inputs.empty() || outputs.empty())
+        return false;
+
+    // 3. If any scriptSig in inputs does not executes with assiociated output.
+    // 4. If total amount of inputs satoshis is less than outputs to spend.
+
+    uint64_t totalInputsSatoshis = 0;
+    uint64_t totalOutputsSatoshis = 0;
+
+    for (const auto &i : inputs) {
+        if (!utxoSet.contains(i))
+            return false;
+
 //        // TODO Simplify this!
 //        if (!i.isSpendable(utxoSet))
 //            return false;
@@ -106,17 +104,24 @@ Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs,
 //        // TODO std::forward rvalue reference
 //        Output output = i.getUsedOutput(utxoSet);
 //        totalInputsSatoshis += output.getValue();
-//    }
-//
-//    for (auto &o : outputs)
-//        totalOutputsSatoshis += o.getValue();
-//
-//    return totalInputsSatoshis >= totalOutputsSatoshis;
-//}
+    }
+
+    for (auto &o : outputs)
+        totalOutputsSatoshis += o.getValue();
+
+    return totalInputsSatoshis >= totalOutputsSatoshis;
+}
+
 
 Sha256Hash Transaction::getHash() const {
     return hash;
 }
+
+
+std::vector<Input> Transaction::getInputs() const {
+    return inputs;
+}
+
 
 std::vector<Output> Transaction::getOutputs() const {
     return outputs;
@@ -155,57 +160,6 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
 }
 
 
-
-/*
- * UtxoSet
- */
-UtxoSet::UtxoSet()
-: container(std::map<std::string, Utxo>()) {
-}
-
-
-void UtxoSet::update(const Transaction &transaction) {
-    for (const auto &usedInput: transaction.getInputs())
-        removeUsedUtxo(usedInput);
-
-    for (const auto &output: transaction.getOutputs())
-        insertUtxo(output);
-}
-
-
-int UtxoSet::getSize() const {
-    return container.size();
-}
-
-
-uint64_t UtxoSet::getTotal() const {
-    uint64_t total = 0;
-
-    for (const auto &[key, val]: container)
-        total += val.value;
-    return total;
-}
-
-
-void UtxoSet::insertUtxo(const Output &output) {
-
-
-}
-
-
-void UtxoSet::removeUsedUtxo(const Input &usedInput) {
-    std::string hash = cryptography::sha256HashToStr(usedInput.getPrevHash());
-    uint16_t index = usedInput.getIndex();
-
-    std::stringstream s;
-    s << hash << '_' << index;
-    std::string utxoKey = s.str();
-
-
-
-
-
-}
 
 
 

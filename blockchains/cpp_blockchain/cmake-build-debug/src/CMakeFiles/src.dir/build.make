@@ -96,9 +96,22 @@ src/CMakeFiles/src.dir/Transactions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/Transactions.cpp.s"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.cpp -o CMakeFiles/src.dir/Transactions.cpp.s
 
+src/CMakeFiles/src.dir/UtxoSet.cpp.o: src/CMakeFiles/src.dir/flags.make
+src/CMakeFiles/src.dir/UtxoSet.cpp.o: ../src/UtxoSet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/src.dir/UtxoSet.cpp.o"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/src.dir/UtxoSet.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.cpp
+
+src/CMakeFiles/src.dir/UtxoSet.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/UtxoSet.cpp.i"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.cpp > CMakeFiles/src.dir/UtxoSet.cpp.i
+
+src/CMakeFiles/src.dir/UtxoSet.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/UtxoSet.cpp.s"
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.cpp -o CMakeFiles/src.dir/UtxoSet.cpp.s
+
 src/CMakeFiles/src.dir/Wallet.cpp.o: src/CMakeFiles/src.dir/flags.make
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../src/Wallet.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/src.dir/Wallet.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/src.dir/Wallet.cpp.o"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/src.dir/Wallet.cpp.o -c /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp
 
 src/CMakeFiles/src.dir/Wallet.cpp.i: cmake_force
@@ -114,6 +127,7 @@ src_OBJECTS = \
 "CMakeFiles/src.dir/Block.cpp.o" \
 "CMakeFiles/src.dir/Blockchain.cpp.o" \
 "CMakeFiles/src.dir/Transactions.cpp.o" \
+"CMakeFiles/src.dir/UtxoSet.cpp.o" \
 "CMakeFiles/src.dir/Wallet.cpp.o"
 
 # External object files for target src
@@ -122,10 +136,11 @@ src_EXTERNAL_OBJECTS =
 src/libsrc.a: src/CMakeFiles/src.dir/Block.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Blockchain.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Transactions.cpp.o
+src/libsrc.a: src/CMakeFiles/src.dir/UtxoSet.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Wallet.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/build.make
 src/libsrc.a: src/CMakeFiles/src.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libsrc.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libsrc.a"
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && $(CMAKE_COMMAND) -P CMakeFiles/src.dir/cmake_clean_target.cmake
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/src.dir/link.txt --verbose=$(VERBOSE)
 

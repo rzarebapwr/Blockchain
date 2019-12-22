@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Block.cpp" "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src/CMakeFiles/src.dir/Block.cpp.o"
   "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Blockchain.cpp" "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src/CMakeFiles/src.dir/Blockchain.cpp.o"
   "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.cpp" "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src/CMakeFiles/src.dir/Transactions.cpp.o"
+  "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.cpp" "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src/CMakeFiles/src.dir/UtxoSet.cpp.o"
   "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp" "/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug/src/CMakeFiles/src.dir/Wallet.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

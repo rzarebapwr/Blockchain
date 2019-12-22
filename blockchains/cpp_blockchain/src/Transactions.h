@@ -58,9 +58,6 @@ public:
     [[nodiscard]] std::vector<Input> getInputs() const;
     [[nodiscard]] std::vector<Output> getOutputs() const;
 
-//    template <typename T, typename UtxoSet>
-//    bool verify(T currentBlockHeight, UtxoSet &&transactions);
-
     static Transaction generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress);
 
 private:
@@ -76,89 +73,4 @@ private:
 };
 
 
-struct Utxo {
-    std::string address;
-    uint64_t value;
-};
-
-
-class UtxoSet {
-public:
-    UtxoSet();
-    void update(const Transaction &transaction);
-    [[nodiscard]] int getSize() const;
-    [[nodiscard]] uint64_t getTotal() const;
-
-private:
-    std::map<std::string, Utxo> container;
-
-    void insertUtxo(const Output &output);
-    void removeUsedUtxo(const Input &usedInput);
-
-};
-
-
-//template <typename UtxoSet>
-//Output Input::getUsedOutput(UtxoSet &&transactions) const {
-//    try {
-//        Transaction previousTransaction = transactions.at(cryptography::sha256HashToStr(prevOutputHash));
-//        return previousTransaction.getOutput(outputIndex);
-//    } catch (const std::out_of_range &error) {
-//        throw std::invalid_argument("Output index out of range!");
-//    }
-//
-//}
-
-//template <typename UtxoSet>
-//bool Input::isSpendable(UtxoSet &&transactions) const {
-//    try {
-//        Transaction previousTransaction = transactions.at(cryptography::sha256HashToStr(prevOutputHash));
-//        Output output = previousTransaction.getOutput(outputIndex);
-//        return output.getScriptPubKey().execute(scriptSig, prevOutputHash);
-//    } catch (const std::out_of_range &error) {
-//        std::cout << "Transaction " << cryptography::sha256HashToStr(prevOutputHash) << " not found in UTXO set!";
-//        return false;
-//    }
-//}
-
-
-
-
-
-//template <typename T, typename UtxoSet>
-//bool Transaction::verify(T currentBlockHeight, UtxoSet &&transactions) {
-//
-//    // 1. If transaction is locked until some point in time.
-//    if (lockTime > currentBlockHeight)
-//        return false;
-//
-//    // 2. If there is lack of input or output
-//    if (inputs.empty() || outputs.empty())
-//        return false;
-//
-//    // 3. If any scriptSig in inputs does not executes with assiociated output.
-//    // 4. If total amount of inputs satoshis is less than outputs to spend.
-//
-//    uint64_t totalInputsSatoshis = 0;
-//    uint64_t totalOutputsSatoshis = 0;
-//
-//    for (auto &i : inputs) {
-//        // TODO Simplify this!
-//        if (!i.isSpendable(std::forward<UtxoSet>(transactions)))
-//            return false;
-//
-//        Output output = i.getUsedOutput(std::forward<UtxoSet>(transactions));
-//        totalInputsSatoshis += output.getValue();
-//    }
-//
-//    for (auto &o : outputs)
-//        totalOutputsSatoshis += o.getValue();
-//
-//    return totalInputsSatoshis >= totalOutputsSatoshis;
-//}
-
-
-
-
-//#include "Transactions.tpp" // To avoid linking errors with template methods
 #endif //CPP_BLOCKCHAIN_TRANSACTIONS_H

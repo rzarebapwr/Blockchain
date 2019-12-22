@@ -47,6 +47,16 @@ int main() {
 
     }
 
+    auto iter = map.find("Hello");
+
+    if (iter != map.end())
+        map.erase("Hello");
+
+
+    for (const auto &[key, val]: map) {
+        std::cout << key << " --> " << val;
+
+    }
 
 
 

@@ -598,6 +598,12 @@
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h">
 			<Option target="src"/>
 		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.cpp">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.h">
+			<Option target="src"/>
+		</Unit>
 		<Unit filename="/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp">
 			<Option target="src"/>
 		</Unit>

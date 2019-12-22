@@ -11,6 +11,7 @@
 
 #include "cryptography.h"
 #include "Transactions.h"
+#include "UtxoSet.h"
 
 
 
@@ -64,7 +65,10 @@ int main() {
 //    transactions[coinbaseHashStr] = coinBaseTransaction;
 
     // Every transaction represents a state change in UTXO !
-//    utxoSet.update(coinBaseTransaction);
+    std::cout << utxoSet.getSize();
+    utxoSet.update(coinBaseTransaction);
+    std::cout << '\n' << utxoSet.getSize();
+    std::cout << "..." << utxoSet.getTotal();
 
 
 

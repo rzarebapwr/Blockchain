@@ -12,5 +12,6 @@ CMakeFiles/cpp_blockchain.dir/main.cpp.o
  ../lib/cryptoLib/Sha256Hash.hpp
  ../lib/cryptoLib/Uint256.hpp
  ../src/Transactions.h
+ ../src/UtxoSet.h
  ../src/cryptography.h
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/main.cpp

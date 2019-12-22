@@ -5,6 +5,7 @@ set(HEADER_FILES
         Blockchain.h
         cryptography.h
         Transactions.h
+        UtxoSet.h
         Wallet.h
         )
 
@@ -12,7 +13,9 @@ set(SOURCE_FILES
         Block.cpp
         Blockchain.cpp
         Transactions.cpp
-        Wallet.cpp)
+        UtxoSet.cpp
+        Wallet.cpp
+        )
 
 add_library(src STATIC ${SOURCE_FILES} ${HEADER_FILES})
 

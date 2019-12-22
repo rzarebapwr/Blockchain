@@ -82,6 +82,14 @@ iostream
 map
 -
 
+../src/UtxoSet.h
+iostream
+-
+map
+-
+Transactions.h
+../src/Transactions.h
+
 ../src/cryptography.h
 string
 -
@@ -133,6 +141,8 @@ cryptography.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cryptography.h
 Transactions.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Transactions.h
+UtxoSet.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/UtxoSet.h
 ctime
 -
 

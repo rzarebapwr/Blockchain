@@ -282,6 +282,33 @@ Transactions.cpp.s:
 	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Transactions.cpp.s
 .PHONY : Transactions.cpp.s
 
+UtxoSet.o: UtxoSet.cpp.o
+
+.PHONY : UtxoSet.o
+
+# target to build an object file
+UtxoSet.cpp.o:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/UtxoSet.cpp.o
+.PHONY : UtxoSet.cpp.o
+
+UtxoSet.i: UtxoSet.cpp.i
+
+.PHONY : UtxoSet.i
+
+# target to preprocess a source file
+UtxoSet.cpp.i:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/UtxoSet.cpp.i
+.PHONY : UtxoSet.cpp.i
+
+UtxoSet.s: UtxoSet.cpp.s
+
+.PHONY : UtxoSet.s
+
+# target to generate assembly for a file
+UtxoSet.cpp.s:
+	cd /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cmake-build-debug && $(MAKE) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/UtxoSet.cpp.s
+.PHONY : UtxoSet.cpp.s
+
 Wallet.o: Wallet.cpp.o
 
 .PHONY : Wallet.o
@@ -657,6 +684,9 @@ help:
 	@echo "... Transactions.o"
 	@echo "... Transactions.i"
 	@echo "... Transactions.s"
+	@echo "... UtxoSet.o"
+	@echo "... UtxoSet.i"
+	@echo "... UtxoSet.s"
 	@echo "... Wallet.o"
 	@echo "... Wallet.i"
 	@echo "... Wallet.s"
