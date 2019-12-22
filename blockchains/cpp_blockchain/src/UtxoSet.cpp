@@ -28,7 +28,8 @@ bool UtxoSet::contains(const Input &input) const {
 
 
 Output UtxoSet::getUsedOutput(const Input &input) const {
-
+    std::string key = getKey(input);
+    return container.at(key);
 }
 
 

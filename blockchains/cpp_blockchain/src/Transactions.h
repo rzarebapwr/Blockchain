@@ -42,6 +42,7 @@ public:
     [[nodiscard]] std::string getStringRepr() const;
     [[nodiscard]] Sha256Hash getPrevHash() const;
     [[nodiscard]] uint16_t getIndex() const;
+    [[nodiscard]] ScriptSig getScriptSig() const;
 
 private:
     Sha256Hash prevOutputHash;

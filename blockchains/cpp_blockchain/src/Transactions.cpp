@@ -66,6 +66,10 @@ uint16_t Input::getIndex() const {
 }
 
 
+ScriptSig Input::getScriptSig() const {
+    return scriptSig;
+}
+
 /*
  * Transaction
  */
@@ -96,6 +100,12 @@ bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
     for (const auto &i : inputs) {
         if (!utxoSet.contains(i))
             return false;
+
+        // TODO finish this
+        Output usedOutput = utxoSet.getUsedOutput(i);
+        if (!usedOutput.executeScriptPubKey(i.getScriptSig(), hash))
+            return false;
+
 
 //        // TODO Simplify this!
 //        if (!i.isSpendable(utxoSet))
