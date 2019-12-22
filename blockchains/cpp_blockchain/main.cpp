@@ -62,27 +62,31 @@ int main() {
     std::string coinbaseHashStr = cryptography::sha256HashToStr(coinBaseTransaction.getHash());
 
 //    transactions[coinbaseHashStr] = coinBaseTransaction;
-    utxoSet.update(coinBaseTransaction);
+
+    // Every transaction represents a state change in UTXO !
+//    utxoSet.update(coinBaseTransaction);
+
+
 
 
 //     Transaction needs to have default constructor !
 
 
 //     Miner Creates Output to user2 - sends 50 satoshis
-    Output output{50, address2};
-
-    Sha256Hash prevHash = coinBaseTransaction.getHash();
-    cryptography::Signature sig = cryptography::sign(minerPrivateKey, prevHash);
-    ScriptSig scriptSig{sig, minerPublicKey};
-    Input input{prevHash, 0, scriptSig};
-    Transaction transaction{{input}, {output}, 0, 0};
-
-
-//     Check if miner is able to spend that output
-    bool isSpendable = transaction.verify(0, utxoSet);
-    std::cout << "Is spendable: " << isSpendable;
-
-    utxoSet.update(transaction);
+//    Output output{50, address2};
+//
+//    Sha256Hash prevHash = coinBaseTransaction.getHash();
+//    cryptography::Signature sig = cryptography::sign(minerPrivateKey, prevHash);
+//    ScriptSig scriptSig{sig, minerPublicKey};
+//    Input input{prevHash, 0, scriptSig};
+//    Transaction transaction{{input}, {output}, 0, 0};
+//
+//
+////     Check if miner is able to spend that output
+//    bool isSpendable = transaction.verify(0, utxoSet);
+//    std::cout << "Is spendable: " << isSpendable;
+//
+//    utxoSet.update(transaction);
 
 
 

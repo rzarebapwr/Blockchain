@@ -21,4 +21,8 @@ vector
 -
 set
 -
+string
+-
+sstream
+-
 

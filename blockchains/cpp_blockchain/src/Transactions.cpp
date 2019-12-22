@@ -26,17 +26,17 @@ std::string Input::getStringRepr() const {
 }
 
 
-Output Input::getUsedOutput(const UtxoSet &utxoSet) const {
-    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
-    return previousTransaction.getOutput(outputIndex);
-}
-
-
-bool Input::isSpendable(const UtxoSet &utxoSet) const {
-    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
-    Output output = previousTransaction.getOutput(outputIndex);
-
-}
+//Output Input::getUsedOutput(const UtxoSet &utxoSet) const {
+//    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
+//    return previousTransaction.getOutput(outputIndex);
+//}
+//
+//
+//bool Input::isSpendable(const UtxoSet &utxoSet) const {
+//    Transaction previousTransaction = utxoSet.getTransactionByHash(cryptography::sha256HashToStr(prevOutputHash));
+//    Output output = previousTransaction.getOutput(outputIndex);
+//
+//}
 
 
 /*
@@ -82,50 +82,40 @@ Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs,
 }
 
 
-bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
-
-    // 1. If transaction is locked until some point in time.
-    if (lockTime > currentBlockHeight)
-        return false;
-
-    // 2. If there is lack of input or output
-    if (inputs.empty() || outputs.empty())
-        return false;
-
-    // 3. If any scriptSig in inputs does not executes with assiociated output.
-    // 4. If total amount of inputs satoshis is less than outputs to spend.
-
-    uint64_t totalInputsSatoshis = 0;
-    uint64_t totalOutputsSatoshis = 0;
-
-    for (auto &i : inputs) {
-        // TODO Simplify this!
-        if (!i.isSpendable(utxoSet))
-            return false;
-
-        // TODO std::forward rvalue reference
-        Output output = i.getUsedOutput(utxoSet);
-        totalInputsSatoshis += output.getValue();
-    }
-
-    for (auto &o : outputs)
-        totalOutputsSatoshis += o.getValue();
-
-    return totalInputsSatoshis >= totalOutputsSatoshis;
-}
+//bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
+//
+//    // 1. If transaction is locked until some point in time.
+//    if (lockTime > currentBlockHeight)
+//        return false;
+//
+//    // 2. If there is lack of input or output
+//    if (inputs.empty() || outputs.empty())
+//        return false;
+//
+//    // 3. If any scriptSig in inputs does not executes with assiociated output.
+//    // 4. If total amount of inputs satoshis is less than outputs to spend.
+//
+//    uint64_t totalInputsSatoshis = 0;
+//    uint64_t totalOutputsSatoshis = 0;
+//
+//    for (auto &i : inputs) {
+//        // TODO Simplify this!
+//        if (!i.isSpendable(utxoSet))
+//            return false;
+//
+//        // TODO std::forward rvalue reference
+//        Output output = i.getUsedOutput(utxoSet);
+//        totalInputsSatoshis += output.getValue();
+//    }
+//
+//    for (auto &o : outputs)
+//        totalOutputsSatoshis += o.getValue();
+//
+//    return totalInputsSatoshis >= totalOutputsSatoshis;
+//}
 
 Sha256Hash Transaction::getHash() const {
     return hash;
-}
-
-
-Output Transaction::getOutput(int index) const {
-    try {
-        Output output = outputs.at(index);
-        return output;
-    } catch (const std::out_of_range &error) {
-        throw std::invalid_argument("Output index out of range!");
-    }
 }
 
 std::vector<Output> Transaction::getOutputs() const {
@@ -170,48 +160,51 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
  * UtxoSet
  */
 UtxoSet::UtxoSet()
-: container(std::vector<Output>()) {
-}
-
-
-std::vector<Output> UtxoSet::getUtxosForAddress(const std::string &address) const {
-    std::vector<Output> outputs;
-
-    for (auto const& o: container) {
-        if (o.getAddress() == address)
-            outputs.emplace_back(o);
-    }
-    return outputs;
+: container(std::map<std::string, Utxo>()) {
 }
 
 
 void UtxoSet::update(const Transaction &transaction) {
+    for (const auto &usedInput: transaction.getInputs())
+        removeUsedUtxo(usedInput);
 
-
-
-
-
-    std::vector<Output> outputs = transaction.getOutputs();
-    container.insert(container.end(), outputs.begin(), outputs.end());
+    for (const auto &output: transaction.getOutputs())
+        insertUtxo(output);
 }
 
-//bool UtxoSet::insertOutput(const Output &output) {
-//    auto [it, result] = container.try_emplace(output.getAddress(), output);
-//    return result == 1;
-//}
-//
-//
-//bool UtxoSet::removeTransaction(const std::string &hash) {
-//    auto it = container.find(hash);
-//    if (it != container.end()) {
-//        container.erase(it);
-//        return true;
-//    }
-//    return false;
-//}
 
 int UtxoSet::getSize() const {
     return container.size();
+}
+
+
+uint64_t UtxoSet::getTotal() const {
+    uint64_t total = 0;
+
+    for (const auto &[key, val]: container)
+        total += val.value;
+    return total;
+}
+
+
+void UtxoSet::insertUtxo(const Output &output) {
+
+
+}
+
+
+void UtxoSet::removeUsedUtxo(const Input &usedInput) {
+    std::string hash = cryptography::sha256HashToStr(usedInput.getPrevHash());
+    uint16_t index = usedInput.getIndex();
+
+    std::stringstream s;
+    s << hash << '_' << index;
+    std::string utxoKey = s.str();
+
+
+
+
+
 }
 
 

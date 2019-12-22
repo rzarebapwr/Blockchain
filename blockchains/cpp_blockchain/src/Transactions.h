@@ -7,6 +7,7 @@
 
 #include "cryptography.h"
 #include <iostream>
+#include <map>
 
 static const uint32_t COINBASE_LOCK_TIME = 100;
 static const uint32_t BITCOIN_FACTOR = 100000000;  // Satoshis
@@ -14,8 +15,10 @@ static const uint32_t BITCOIN_FACTOR = 100000000;  // Satoshis
 
 class UtxoSet;
 
+// TODO Consider const struct !
 struct ScriptSig {
     // Used to unlock previous output (specific ScriptPubKey)
+    // Witness part
     cryptography::Signature signature;
     CurvePoint publicKey;
 };
@@ -37,14 +40,8 @@ class Input {
 public:
     Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
     [[nodiscard]] std::string getStringRepr() const;
-
-    [[nodiscard]] Output getUsedOutput(const UtxoSet &utxoSet) const;
-    [[nodiscard]] bool isSpendable(const UtxoSet &utxoSet) const;
-//    template <typename UtxoSet>
-//    Output getUsedOutput(UtxoSet &&transactions) const;
-//
-//    template <typename UtxoSet>
-//    bool isSpendable(UtxoSet &&transactions) const;
+    [[nodiscard]] Sha256Hash getPrevHash() const;
+    [[nodiscard]] uint16_t getIndex() const;
 
 private:
     Sha256Hash prevOutputHash;
@@ -58,7 +55,7 @@ public:
     Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version);
     [[nodiscard]] bool verify(int currentBlockHeight, const UtxoSet &utxoSet) const;
     [[nodiscard]] Sha256Hash getHash() const;
-    [[nodiscard]] Output getOutput(int index) const;
+    [[nodiscard]] std::vector<Input> getInputs() const;
     [[nodiscard]] std::vector<Output> getOutputs() const;
 
 //    template <typename T, typename UtxoSet>
@@ -79,18 +76,24 @@ private:
 };
 
 
+struct Utxo {
+    std::string address;
+    uint64_t value;
+};
+
+
 class UtxoSet {
 public:
     UtxoSet();
-    [[nodiscard]] std::vector<Output> getUtxosForAddress(const std::string &address) const;
-    [[nodiscard]] int getSize() const;
     void update(const Transaction &transaction);
+    [[nodiscard]] int getSize() const;
+    [[nodiscard]] uint64_t getTotal() const;
 
 private:
-    std::vector<Output> container;
+    std::map<std::string, Utxo> container;
 
-    bool insertOutput(const Output &transaction);
-    bool removeOutput(const std::string &hash);
+    void insertUtxo(const Output &output);
+    void removeUsedUtxo(const Input &usedInput);
 
 };
 

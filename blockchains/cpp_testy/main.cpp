@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <set>
+#include <string>
+#include <sstream>
 
 
 
@@ -24,16 +26,30 @@ int main() {
 //
 //    auto x = v1.insert(v1.end(), v2.begin(), v2.end());
 //
-    for (const auto &i: v1) {
-        if (i == 3)
-            v1.erase(v1.begin() + i-1);
+//    for (const auto &i: v1) {
+//        if (i == 3)
+//            v1.erase(v1.begin() + i-1);
+//
+//    }
+//
+//    for (const auto &i: v1) {
+//        std::cout << i;
+//
+//    }
+
+    std::map<std::string, int> map;
+    auto [it, result] = map.try_emplace("Hello", 2);
+    if (!result)
+        std::cout << "Fuck you";
+
+    for (const auto &[key, val]: map) {
+        std::cout << key << " --> " << val;
 
     }
 
-    for (const auto &i: v1) {
-        std::cout << i;
 
-    }
+
+
 
 
 

@@ -74,6 +74,14 @@ cstdint
 FieldInt.hpp
 ../lib/cryptoLib/FieldInt.hpp
 
+../src/Transactions.h
+cryptography.h
+../src/cryptography.h
+iostream
+-
+map
+-
+
 ../src/cryptography.h
 string
 -
@@ -123,6 +131,8 @@ map
 -
 cryptography.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/cryptography.h
+Transactions.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Transactions.h
 ctime
 -
 

@@ -99,6 +99,8 @@ cryptography.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h
 iostream
 -
+map
+-
 
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp
 Wallet.h
