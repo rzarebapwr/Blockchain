@@ -5,7 +5,7 @@
 #include "UtxoSet.h"
 
 UtxoSet::UtxoSet()
-        : container(std::map<std::string, Utxo>()) {
+        : container(std::map<std::string, Output>()) {
 }
 
 
@@ -22,10 +22,13 @@ void UtxoSet::update(const Transaction &transaction) {
 }
 
 bool UtxoSet::contains(const Input &input) const {
-    std::stringstream s;
-    s << cryptography::sha256HashToStr(input.getPrevHash()) << '_' << input.getIndex();
-    auto it = container.find(s.str());
+    auto it = container.find(getKey(input));
     return (it != container.end());
+}
+
+
+Output UtxoSet::getUsedOutput(const Input &input) const {
+
 }
 
 
@@ -38,8 +41,18 @@ uint64_t UtxoSet::getTotal() const {
     uint64_t total = 0;
 
     for (const auto &[key, val]: container)
-        total += val.value;
+        total += val.getValue();
     return total;
+}
+
+
+std::string UtxoSet::getKey(const Input &input) const {
+    std::string hash = cryptography::sha256HashToStr(input.getPrevHash());
+    uint16_t index = input.getIndex();
+
+    std::stringstream s;
+    s << hash << '_' << index;
+    return s.str();
 }
 
 
@@ -48,19 +61,13 @@ void UtxoSet::insertUtxo(const std::string &txHash, const Output &output, uint16
     s << txHash << '_' << index;
     std::string UtxoKey = s.str();
 
-    Utxo utxo{output.getAddress(), output.getValue()};
-    container.try_emplace(UtxoKey, utxo);
+    container.try_emplace(UtxoKey, output);
 //    auto [it, result] = container.try_emplace(UtxoKey, utxo);
 }
 
 
 void UtxoSet::removeUsedUtxo(const Input &usedInput) {
-    std::string hash = cryptography::sha256HashToStr(usedInput.getPrevHash());
-    uint16_t index = usedInput.getIndex();
-
-    std::stringstream s;
-    s << hash << '_' << index;
-    std::string utxoKey = s.str();
+    std::string utxoKey = getKey(usedInput);
 
     auto it = container.find(utxoKey);
     if (it != container.end())

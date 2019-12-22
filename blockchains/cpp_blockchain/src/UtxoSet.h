@@ -11,23 +11,19 @@
 #include "Transactions.h"
 
 
-struct Utxo {
-    std::string address;
-    uint64_t value;
-};
-
-
 class UtxoSet {
 public:
     UtxoSet();
     void update(const Transaction &transaction);
     [[nodiscard]] bool contains(const Input &input) const;
+    [[nodiscard]] Output getUsedOutput(const Input &input) const;
     [[nodiscard]] size_t getSize() const;
     [[nodiscard]] uint64_t getTotal() const;
 
 private:
-    std::map<std::string, Utxo> container;
+    std::map<std::string, Output> container;
 
+    [[nodiscard]] std::string getKey(const Input &input) const;
     void insertUtxo(const std::string &txHash, const Output &output, uint16_t index);
     void removeUsedUtxo(const Input &usedInput);
 };
