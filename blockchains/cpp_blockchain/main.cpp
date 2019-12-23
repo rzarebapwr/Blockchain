@@ -65,33 +65,30 @@ int main() {
 //    transactions[coinbaseHashStr] = coinBaseTransaction;
 
     // Every transaction represents a state change in UTXO !
-    std::cout << utxoSet.getSize();
+//    std::cout << utxoSet.getSize();
     utxoSet.update(coinBaseTransaction);
-    std::cout << '\n' << utxoSet.getSize();
-    std::cout << "..." << utxoSet.getTotal();
+//    std::cout << '\n' << utxoSet.getSize();
+//    std::cout << "..." << utxoSet.getTotal();
 
-
-
-
-//     Transaction needs to have default constructor !
 
 
 //     Miner Creates Output to user2 - sends 50 satoshis
-//    Output output{50, address2};
-//
-//    Sha256Hash prevHash = coinBaseTransaction.getHash();
-//    cryptography::Signature sig = cryptography::sign(minerPrivateKey, prevHash);
-//    ScriptSig scriptSig{sig, minerPublicKey};
-//    Input input{prevHash, 0, scriptSig};
-//    Transaction transaction{{input}, {output}, 0, 0};
-//
-//
-////     Check if miner is able to spend that output
-//    bool isSpendable = transaction.verify(0, utxoSet);
-//    std::cout << "Is spendable: " << isSpendable;
-//
-//    utxoSet.update(transaction);
+    Output output{50, address2};
 
+    Sha256Hash prevHash = coinBaseTransaction.getHash();
+    ScriptSig scriptSig{minerPrivateKey, prevHash};
+    Input input{prevHash, 0, scriptSig};
+    Transaction transaction{{input}, {output}, 0, 0};
+    transaction.sign(minerPrivateKey);
+
+
+//     Check if miner is able to spend that output
+    bool isSpendable = transaction.verify(0, utxoSet);
+    std::cout << "Is spendable: " << isSpendable;
+
+    utxoSet.update(transaction);
+    std::cout << '\n' << utxoSet.getSize();
+    std::cout << "..." << utxoSet.getTotal();
 
 
 

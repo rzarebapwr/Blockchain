@@ -15,12 +15,27 @@ static const uint32_t BITCOIN_FACTOR = 100000000;  // Satoshis
 
 class UtxoSet;
 
-// TODO Consider const struct !
+
 struct ScriptSig {
-    // Used to unlock previous output (specific ScriptPubKey)
-    // Witness part
-    cryptography::Signature signature;
+    ScriptSig(const Uint256 &privateKey, const Sha256Hash &txid);
     CurvePoint publicKey;
+    cryptography::Signature signature;
+};
+
+
+class Input {
+public:
+    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
+    [[nodiscard]] std::string getStringRepr() const;
+    [[nodiscard]] Sha256Hash getPrevHash() const;
+    [[nodiscard]] uint16_t getIndex() const;
+    [[nodiscard]] ScriptSig getScriptSig() const;
+    void setScriptSig(ScriptSig s);
+
+private:
+    Sha256Hash prevOutputHash;
+    uint16_t outputIndex;
+    ScriptSig scriptSig;
 };
 
 
@@ -36,24 +51,10 @@ private:
 };
 
 
-class Input {
-public:
-    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
-    [[nodiscard]] std::string getStringRepr() const;
-    [[nodiscard]] Sha256Hash getPrevHash() const;
-    [[nodiscard]] uint16_t getIndex() const;
-    [[nodiscard]] ScriptSig getScriptSig() const;
-
-private:
-    Sha256Hash prevOutputHash;
-    uint16_t outputIndex;
-    ScriptSig scriptSig;
-};
-
-
 class Transaction {
 public:
     Transaction(std::vector<Input> inputs, std::vector<Output> outputs, uint32_t lockTime, int32_t version);
+    void sign(const Uint256 &privateKey);
     [[nodiscard]] bool verify(int currentBlockHeight, const UtxoSet &utxoSet) const;
     [[nodiscard]] Sha256Hash getHash() const;
     [[nodiscard]] std::vector<Input> getInputs() const;
@@ -70,7 +71,10 @@ private:
     std::vector<Input> inputs;
     std::vector<Output> outputs;
 
+
     [[nodiscard]] std::string getStringRepr() const;
+    Sha256Hash getHashToSign(size_t inputIndex) const;
+
 };
 
 

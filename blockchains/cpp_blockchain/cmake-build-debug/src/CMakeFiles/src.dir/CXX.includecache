@@ -74,6 +74,20 @@ cstdint
 FieldInt.hpp
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/FieldInt.hpp
 
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Block.cpp
+Block.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Block.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Block.h
+string
+-
+utility
+-
+vector
+-
+Transactions.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
+
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.cpp
 iostream
 -
@@ -99,6 +113,16 @@ iostream
 -
 map
 -
+Transactions.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp
+Wallet.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.h
+cryptography.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h
 Transactions.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
 

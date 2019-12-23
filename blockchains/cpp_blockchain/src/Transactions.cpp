@@ -7,6 +7,54 @@
 #include "UtxoSet.h"
 
 
+
+/*
+ * ScriptSig
+ */
+ScriptSig::ScriptSig(const Uint256 &privateKey, const Sha256Hash &txid)
+: publicKey(cryptography::generatePublicKey(privateKey)), signature(cryptography::sign(privateKey, txid)) {}
+
+
+
+/*
+ * Input
+ */
+Input::Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig)
+        : prevOutputHash(prevOutputHash), outputIndex(outputIndex), scriptSig(scriptsig){}
+
+
+std::string Input::getStringRepr() const {
+    std::stringstream ss;
+    ss << cryptography::sha256HashToStr(prevOutputHash);
+    ss << outputIndex;
+//    ss << cryptography::Uint256ToStr(scriptSig.signature.r);
+//    ss << cryptography::Uint256ToStr(scriptSig.signature.s);
+//    ss << cryptography::Uint256ToStr(Uint256{scriptSig.publicKey.x});
+//    ss << cryptography::Uint256ToStr(Uint256{scriptSig.publicKey.y});
+
+    return ss.str();
+}
+
+
+Sha256Hash Input::getPrevHash() const {
+    return prevOutputHash;
+}
+
+
+uint16_t Input::getIndex() const {
+    return outputIndex;
+}
+
+
+ScriptSig Input::getScriptSig() const {
+    return scriptSig;
+}
+
+void Input::setScriptSig(ScriptSig s) {
+    scriptSig = s;
+}
+
+
 /*
  * Output
  */
@@ -36,39 +84,6 @@ std::string Output::getAddress() const {
 }
 
 
-/*
- * Input
- */
-Input::Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig)
-: prevOutputHash(prevOutputHash), outputIndex(outputIndex), scriptSig(scriptsig){}
-
-
-std::string Input::getStringRepr() const {
-    std::stringstream ss;
-    ss << cryptography::sha256HashToStr(prevOutputHash);
-    ss << outputIndex;
-    ss << cryptography::Uint256ToStr(scriptSig.signature.r);
-    ss << cryptography::Uint256ToStr(scriptSig.signature.s);
-    ss << cryptography::Uint256ToStr(Uint256{scriptSig.publicKey.x});
-    ss << cryptography::Uint256ToStr(Uint256{scriptSig.publicKey.y});
-
-    return ss.str();
-}
-
-
-Sha256Hash Input::getPrevHash() const {
-    return prevOutputHash;
-}
-
-
-uint16_t Input::getIndex() const {
-    return outputIndex;
-}
-
-
-ScriptSig Input::getScriptSig() const {
-    return scriptSig;
-}
 
 /*
  * Transaction
@@ -77,6 +92,16 @@ Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs,
                          : inputs(std::move(inputs)), outputs(std::move(outputs)), lockTime(lockTime), version(version) {
     nInputs = inputs.size();
     nOutputs = outputs.size();
+//    hash = cryptography::doubleSha256(getStringRepr());
+}
+
+
+void Transaction::sign(const Uint256 &privateKey) {
+    for (size_t i=0; i<inputs.size(); ++i) {
+        inputs[i].setScriptSig(ScriptSig{privateKey, cryptography::sha256(i)});
+        Sha256Hash txid = cryptography::doubleSha256(getStringRepr());
+        inputs[i].setScriptSig(ScriptSig{privateKey, txid});
+    }
     hash = cryptography::doubleSha256(getStringRepr());
 }
 
@@ -91,31 +116,20 @@ bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
     if (inputs.empty() || outputs.empty())
         return false;
 
-    // 3. If any scriptSig in inputs does not executes with assiociated output.
+    // 3. If any scriptSig (witness) does not match to assiosiated scriptPubKey
     // 4. If total amount of inputs satoshis is less than outputs to spend.
-
     uint64_t totalInputsSatoshis = 0;
     uint64_t totalOutputsSatoshis = 0;
 
-    for (const auto &i : inputs) {
-        if (!utxoSet.contains(i))
+    for (size_t i=0; i<inputs.size(); ++i) {
+        if (!utxoSet.contains(inputs[i]))
             return false;
 
-        // TODO finish this
-        Output usedOutput = utxoSet.getUsedOutput(i);
-        if (!usedOutput.executeScriptPubKey(i.getScriptSig(), hash))
+        Output usedOutput = utxoSet.getUsedOutput(inputs[i]);
+        if (!usedOutput.executeScriptPubKey(inputs[i].getScriptSig(), getHashToSign(i)))
             return false;
-
-
-//        // TODO Simplify this!
-//        if (!i.isSpendable(utxoSet))
-//            return false;
-//
-//        // TODO std::forward rvalue reference
-//        Output output = i.getUsedOutput(utxoSet);
-//        totalInputsSatoshis += output.getValue();
+        totalInputsSatoshis += usedOutput.getValue();
     }
-
     for (auto &o : outputs)
         totalOutputsSatoshis += o.getValue();
 
@@ -138,6 +152,22 @@ std::vector<Output> Transaction::getOutputs() const {
 }
 
 
+Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
+
+    // TODO to fix
+    // Generate Coinbase transaction - supply specific miner
+    Output output{nSatoshis, minerAddress};
+
+    // Generate fake input - doesn't matter for coinbase transaction
+    auto [privateKey, publicKey] = cryptography::generateKeys();
+    Sha256Hash txid = cryptography::sha256(0);
+    cryptography::Signature signature = cryptography::sign(privateKey, txid);
+    Input fakeInput{txid, 0, ScriptSig{privateKey, txid}};
+
+    return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
+}
+
+
 std::string Transaction::getStringRepr() const {
     std::stringstream s;
     s << version << nInputs << nOutputs << lockTime;
@@ -152,22 +182,24 @@ std::string Transaction::getStringRepr() const {
 }
 
 
+Sha256Hash Transaction::getHashToSign(size_t inputIndex) const {
+    Transaction t = *this;
+    std::vector<Input> inputs_ = t.getInputs();
+
+    for (size_t i=0; i<inputs_.size(); ++i) {
+        
+    }
+
+    Input i = t.getInputs()[inputIndex];
 
 
-
-Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
-
-    // Generate Coinbase transaction - supply specific miner
-    Output output{nSatoshis, minerAddress};
-
-    // Generate fake input - doesn't matter for coinbase transaction
-    auto [privateKey, publicKey] = cryptography::generateKeys();
-    Sha256Hash prevHash = cryptography::sha256(0);
-    cryptography::Signature signature = cryptography::sign(privateKey, prevHash);
-    Input fakeInput{prevHash, 0, ScriptSig{signature, publicKey}};
-
-    return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
 }
+
+
+
+
+
+
 
 
 
