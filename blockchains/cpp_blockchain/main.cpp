@@ -31,6 +31,10 @@ public:
         return y;
     }
 
+    void setX(int x_) {
+        x = x_;
+    }
+
 private:
     int x;
     int y;
@@ -43,11 +47,11 @@ private:
 
 int main() {
 
+
     // Simulation of transactions
 
     UtxoSet utxoSet;
 
-//    std::map<std::string, int> myMap;
 
 
     auto [minerPrivateKey, minerPublicKey] = cryptography::generateKeys();
@@ -76,8 +80,7 @@ int main() {
     Output output{50, address2};
 
     Sha256Hash prevHash = coinBaseTransaction.getHash();
-    ScriptSig scriptSig{minerPrivateKey, prevHash};
-    Input input{prevHash, 0, scriptSig};
+    Input input{prevHash, 0};
     Transaction transaction{{input}, {output}, 0, 0};
     transaction.sign(minerPrivateKey);
 
@@ -86,13 +89,12 @@ int main() {
     bool isSpendable = transaction.verify(0, utxoSet);
     std::cout << "Is spendable: " << isSpendable;
 
-    utxoSet.update(transaction);
+    if (isSpendable)
+        utxoSet.update(transaction);
+
     std::cout << '\n' << utxoSet.getSize();
     std::cout << "..." << utxoSet.getTotal();
 
-
-
-
-
+    
     return 0;
 }

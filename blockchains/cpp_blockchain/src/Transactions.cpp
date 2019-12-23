@@ -19,8 +19,9 @@ ScriptSig::ScriptSig(const Uint256 &privateKey, const Sha256Hash &txid)
 /*
  * Input
  */
-Input::Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig)
-        : prevOutputHash(prevOutputHash), outputIndex(outputIndex), scriptSig(scriptsig){}
+Input::Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex)
+: prevOutputHash(prevOutputHash), outputIndex(outputIndex),
+scriptSig(ScriptSig{cryptography::generateRandomUint256(), cryptography::sha256(0)}) {}
 
 
 std::string Input::getStringRepr() const {
@@ -98,8 +99,7 @@ Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs,
 
 void Transaction::sign(const Uint256 &privateKey) {
     for (size_t i=0; i<inputs.size(); ++i) {
-        inputs[i].setScriptSig(ScriptSig{privateKey, cryptography::sha256(i)});
-        Sha256Hash txid = cryptography::doubleSha256(getStringRepr());
+        Sha256Hash txid = getTxidToSign(i);
         inputs[i].setScriptSig(ScriptSig{privateKey, txid});
     }
     hash = cryptography::doubleSha256(getStringRepr());
@@ -126,7 +126,7 @@ bool Transaction::verify(int currentBlockHeight, const UtxoSet &utxoSet) const {
             return false;
 
         Output usedOutput = utxoSet.getUsedOutput(inputs[i]);
-        if (!usedOutput.executeScriptPubKey(inputs[i].getScriptSig(), getHashToSign(i)))
+        if (!usedOutput.executeScriptPubKey(inputs[i].getScriptSig(), getTxidToSign(i)))
             return false;
         totalInputsSatoshis += usedOutput.getValue();
     }
@@ -162,7 +162,7 @@ Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string 
     auto [privateKey, publicKey] = cryptography::generateKeys();
     Sha256Hash txid = cryptography::sha256(0);
     cryptography::Signature signature = cryptography::sign(privateKey, txid);
-    Input fakeInput{txid, 0, ScriptSig{privateKey, txid}};
+    Input fakeInput{txid, 0};
 
     return {{fakeInput}, {output}, COINBASE_LOCK_TIME, 0};
 }
@@ -182,17 +182,11 @@ std::string Transaction::getStringRepr() const {
 }
 
 
-Sha256Hash Transaction::getHashToSign(size_t inputIndex) const {
-    Transaction t = *this;
-    std::vector<Input> inputs_ = t.getInputs();
-
-    for (size_t i=0; i<inputs_.size(); ++i) {
-        
-    }
-
-    Input i = t.getInputs()[inputIndex];
-
-
+Sha256Hash Transaction::getTxidToSign(size_t inputIndex) const {
+    // TODO consider zero out some information of the rest of inputs while signing
+    Transaction t = *this; // copy of transaction
+    Input signedInput = t.getInputs()[inputIndex];
+    return cryptography::doubleSha256(t.getStringRepr());
 }
 
 

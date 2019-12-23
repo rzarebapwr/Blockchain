@@ -25,7 +25,7 @@ struct ScriptSig {
 
 class Input {
 public:
-    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex, const ScriptSig &scriptsig);
+    Input(const Sha256Hash &prevOutputHash, uint16_t outputIndex);
     [[nodiscard]] std::string getStringRepr() const;
     [[nodiscard]] Sha256Hash getPrevHash() const;
     [[nodiscard]] uint16_t getIndex() const;
@@ -73,7 +73,7 @@ private:
 
 
     [[nodiscard]] std::string getStringRepr() const;
-    Sha256Hash getHashToSign(size_t inputIndex) const;
+    Sha256Hash getTxidToSign(size_t inputIndex) const;
 
 };
 
