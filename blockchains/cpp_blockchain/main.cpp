@@ -95,6 +95,6 @@ int main() {
     std::cout << '\n' << utxoSet.getSize();
     std::cout << "..." << utxoSet.getTotal();
 
-    
+
     return 0;
 }
