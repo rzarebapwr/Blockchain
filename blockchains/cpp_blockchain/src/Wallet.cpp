@@ -4,6 +4,7 @@
 
 #include "Wallet.h"
 #include "UtxoSet.h"
+#include "Transactions.h"
 
 
 Wallet::Wallet()
@@ -24,9 +25,15 @@ std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatos
 
     uint64_t toSpend = 0;
     for (const auto &[key, val]: Utxos) {
+        int pos = key.find_first_of('_');
+        Sha256Hash prevHash = cryptography::hashStrToSha256(key.substr(0, pos));
+        uint16_t index = std::stoi(key.substr(pos+1));
 
+        inputs.emplace_back(Input{prevHash, index});
+        toSpend += val.getValue();
 
-
-
+        if (toSpend >= nSatoshis)
+            break;
     }
+    return {inputs, toSpend};
 }

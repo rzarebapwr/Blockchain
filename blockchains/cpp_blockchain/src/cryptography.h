@@ -73,14 +73,25 @@ namespace cryptography {
 
         for (int i=size - 1; i>=0; --i)
             ss << std::setfill('0') << std::hex << std::setw(8) << x.value[i];
-//        for (int i=0; i<size; ++i)
-//            ss << std::setfill('0') << std::hex << std::setw(8) << x.value[i];
         return ss.str();
     }
 
 
     inline std::string sha256HashToStr(const Sha256Hash &hash) {
         return Uint256ToStr(Uint256{hash.value});
+    }
+
+
+    inline Sha256Hash hashStrToSha256(const std::string &hashStr) {
+        // Change endianess
+        int size = hashStr.size();
+        std::stringstream ss;
+
+        for (int i=size; i>=0; i-=2)
+            ss << hashStr.substr(i, 2);
+
+        std::string s = ss.str();
+        return Sha256Hash{s.c_str()};
     }
 
 

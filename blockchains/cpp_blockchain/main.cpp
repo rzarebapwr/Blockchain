@@ -98,41 +98,21 @@ int main() {
 
 
 
-//    std::string s = "scott_hello";
-//    int pos = s.find_first_of('_');
-//    std::string firstname = s.substr(0, pos),
-//                lastname = s.substr(pos+1);
-//
-////    int id = std::stoi(lastname);
-//    std::cout << '\n' << firstname;
-//    std::cout << '\n' << lastname;
+    std::string s = "scott_10";
+    int pos = s.find_first_of('_');
+    std::string firstname = s.substr(0, pos);
+    int x = std::stoi(s.substr(pos+1));
+
+//    int id = std::stoi(lastname);
+    std::cout << '\n' << firstname;
+    std::cout << '\n' << x;
 
     Sha256Hash a = cryptography::sha256(125, "asd");
     std::string aString = cryptography::sha256HashToStr(a);
 
     std::cout << aString << '\n';
 
-
-    int size = aString.size();
-    std::stringstream ss;
-//    std::cout << "\nSize: " << size;
-    for (int i=size; i>=0;) {
-        std::string s = aString.substr(i, 2);
-        ss << s;
-        i -= 2;
-    }
-
-    std::string bString = ss.str();
-
-
-//        bString.push_back(aString[i]);
-//
-//    std::cout << '\n';
-//    std::cout << bString;
-////
-////
-////
-    Sha256Hash b{bString.c_str()};
+    Sha256Hash b = cryptography::hashStrToSha256(aString);
 
     std::cout << '\n';
     std::cout << "Is Equal: " << (a == b);
