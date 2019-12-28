@@ -93,7 +93,6 @@ Transaction::Transaction(std::vector<Input> inputs, std::vector<Output> outputs,
                          : inputs(std::move(inputs)), outputs(std::move(outputs)), lockTime(lockTime), version(version) {
     nInputs = inputs.size();
     nOutputs = outputs.size();
-//    hash = cryptography::doubleSha256(getStringRepr());
 }
 
 
