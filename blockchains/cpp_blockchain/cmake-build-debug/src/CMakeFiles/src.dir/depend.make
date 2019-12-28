@@ -56,6 +56,7 @@ src/CMakeFiles/src.dir/Wallet.cpp.o: ../lib/cryptoLib/Sha256.hpp
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../lib/cryptoLib/Sha256Hash.hpp
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../lib/cryptoLib/Uint256.hpp
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../src/Transactions.h
+src/CMakeFiles/src.dir/Wallet.cpp.o: ../src/UtxoSet.h
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../src/Wallet.cpp
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../src/Wallet.h
 src/CMakeFiles/src.dir/Wallet.cpp.o: ../src/cryptography.h

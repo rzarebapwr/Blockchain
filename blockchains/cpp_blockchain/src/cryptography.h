@@ -66,15 +66,18 @@ namespace cryptography {
         return Sha256::getDoubleHash(bytes.data(), bytes.size());
     }
 
+
     inline std::string Uint256ToStr(const Uint256 &x) {
         std::stringstream ss;
         int size = std::size(x.value);
 
         for (int i=size - 1; i>=0; --i)
             ss << std::setfill('0') << std::hex << std::setw(8) << x.value[i];
-
+//        for (int i=0; i<size; ++i)
+//            ss << std::setfill('0') << std::hex << std::setw(8) << x.value[i];
         return ss.str();
     }
+
 
     inline std::string sha256HashToStr(const Sha256Hash &hash) {
         return Uint256ToStr(Uint256{hash.value});

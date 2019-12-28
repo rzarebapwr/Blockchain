@@ -17,6 +17,7 @@ public:
     void update(const Transaction &transaction);
     [[nodiscard]] bool contains(const Input &input) const;
     [[nodiscard]] Output getUsedOutput(const Input &input) const;
+    [[nodiscard]] std::map<std::string, Output> getUtxosForAddress(const std::string &address) const;
     [[nodiscard]] size_t getSize() const;
     [[nodiscard]] uint64_t getTotal() const;
 

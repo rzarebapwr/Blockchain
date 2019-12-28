@@ -27,9 +27,21 @@ bool UtxoSet::contains(const Input &input) const {
 }
 
 
+
 Output UtxoSet::getUsedOutput(const Input &input) const {
     std::string key = getKey(input);
     return container.at(key);
+}
+
+
+std::map<std::string, Output> UtxoSet::getUtxosForAddress(const std::string &address) const {
+    std::map<std::string, Output> Utxos;
+
+    for (const auto &[key, val]: container) {
+        if (val.getAddress() == address)
+            Utxos.try_emplace(key, val);
+    }
+    return Utxos;
 }
 
 
@@ -74,3 +86,4 @@ void UtxoSet::removeUsedUtxo(const Input &usedInput) {
     if (it != container.end())
         container.erase(utxoKey);
 }
+

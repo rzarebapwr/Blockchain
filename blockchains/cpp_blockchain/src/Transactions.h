@@ -73,7 +73,7 @@ private:
 
 
     [[nodiscard]] std::string getStringRepr() const;
-    Sha256Hash getTxidToSign(size_t inputIndex) const;
+    [[nodiscard]] Sha256Hash getTxidToSign(size_t inputIndex) const;
 
 };
 

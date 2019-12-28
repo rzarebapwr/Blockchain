@@ -57,6 +57,7 @@ src/CMakeFiles/src.dir/Wallet.cpp.o
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Sha256Hash.hpp
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/lib/cryptoLib/Uint256.hpp
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
+ /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.h
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.h
  /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h

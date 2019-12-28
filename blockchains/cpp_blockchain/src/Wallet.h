@@ -12,15 +12,17 @@
 class Wallet {
 public:
     Wallet();
-    Transaction createTransaction(uint64_t nSatoshis, std::string receiverAddress);
+    Transaction createTransaction(uint64_t nSatoshis, const std::string &receiverAddress);
 
 
 
 private:
     Uint256 privateKey;
     CurvePoint publicKey;
+    std::string address;
 
-    std::vector<Input> getInputsNeeded(const UtxoSet &utxoSet, uint64_t nSatoshis);
+    std::tuple<std::vector<Input>, uint64_t> getInputsNeeded(uint64_t nSatoshis, const UtxoSet &utxoSet);
+
 
 
 
