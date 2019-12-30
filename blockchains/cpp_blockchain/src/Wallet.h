@@ -12,7 +12,7 @@
 class Wallet {
 public:
     Wallet();
-    Transaction createTransaction(uint64_t nSatoshis, const std::string &receiverAddress);
+    Transaction createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis, const std::string &receiverAddress, uint64_t fee);
 
 
 

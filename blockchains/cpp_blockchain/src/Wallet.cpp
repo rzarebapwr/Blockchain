@@ -14,8 +14,25 @@ address(cryptography::generateAddress(publicKey)) {
 }
 
 
-Transaction Wallet::createTransaction(uint64_t nSatoshis, const std::string &receiverAddress) {
+Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis, const std::string &receiverAddress, uint64_t fee) {
+    /*
+     * Simple Transaction scheme, one output plus change if needed.
+     * TODO make it possible to create payroll payments scheme (multiple outputs)
+     */
+    auto [inputs, toSpend] = getInputsNeeded(nSatoshis, utxoSet);
 
+    if (toSpend < nSatoshis + fee)
+        throw std::out_of_range("Cannot create transaction - not enough coins available!");
+
+    uint64_t coinsLeft = toSpend - nSatoshis;
+    uint64_t changeCoins = coinsLeft - fee;
+
+    Output output1{nSatoshis, receiverAddress};
+    Output changeOutput{changeCoins, address};
+    std::vector<Output> outputs{output1, changeOutput};
+
+    return {inputs, outputs, 0, 0};
+    // TODO sign teransaction here?
 }
 
 
@@ -27,9 +44,9 @@ std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatos
     for (const auto &[key, val]: Utxos) {
         int pos = key.find_first_of('_');
         Sha256Hash prevHash = cryptography::hashStrToSha256(key.substr(0, pos));
-        uint16_t index = std::stoi(key.substr(pos+1));
+        uint16_t outputIndex = std::stoi(key.substr(pos+1));
 
-        inputs.emplace_back(Input{prevHash, index});
+        inputs.emplace_back(Input{prevHash, outputIndex});
         toSpend += val.getValue();
 
         if (toSpend >= nSatoshis)
