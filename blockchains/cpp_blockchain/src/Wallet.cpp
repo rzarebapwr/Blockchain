@@ -24,6 +24,7 @@ Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis
     if (toSpend < nSatoshis + fee)
         throw std::out_of_range("Cannot create transaction - not enough coins available!");
 
+    // TODO calculate change, make outputs methods
     uint64_t coinsLeft = toSpend - nSatoshis;
     uint64_t changeCoins = coinsLeft - fee;
 
