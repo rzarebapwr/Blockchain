@@ -153,7 +153,7 @@ std::vector<Output> Transaction::getOutputs() const {
 
 Transaction Transaction::generateCoinBase(uint64_t nSatoshis, const std::string &minerAddress) {
 
-    // TODO to fix
+    // TODO to fix - verification
     // Generate Coinbase transaction - supply specific miner
     Output output{nSatoshis, minerAddress};
 

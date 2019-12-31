@@ -14,7 +14,7 @@ address(cryptography::generateAddress(publicKey)) {
 }
 
 
-Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis, const std::string &receiverAddress, uint64_t fee) {
+Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis, const std::string &receiverAddress, uint64_t fee) const {
     /*
      * Simple Transaction scheme, one output plus change if needed.
      * TODO make it possible to create payroll payments scheme (multiple outputs)
@@ -25,6 +25,7 @@ Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis
         throw std::out_of_range("Cannot create transaction - not enough coins available!");
 
     // TODO calculate change, make outputs methods
+    // TODO simplify this
     uint64_t coinsLeft = toSpend - nSatoshis;
     uint64_t changeCoins = coinsLeft - fee;
 
@@ -32,12 +33,18 @@ Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis
     Output changeOutput{changeCoins, address};
     std::vector<Output> outputs{output1, changeOutput};
 
-    return {inputs, outputs, 0, 0};
-    // TODO sign teransaction here?
+    Transaction t{inputs, outputs, 0, 0};
+    t.sign(privateKey);
+    return t;
 }
 
 
-std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatoshis, const UtxoSet &utxoSet) {
+std::string Wallet::getAddress() const {
+    return address;
+}
+
+
+std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatoshis, const UtxoSet &utxoSet) const {
     std::map<std::string, Output> Utxos = utxoSet.getUtxosForAddress(address);
     std::vector<Input> inputs;
 
@@ -55,3 +62,5 @@ std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatos
     }
     return {inputs, toSpend};
 }
+
+

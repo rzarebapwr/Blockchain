@@ -18,8 +18,7 @@ public:
     [[nodiscard]] bool contains(const Input &input) const;
     [[nodiscard]] Output getUsedOutput(const Input &input) const;
     [[nodiscard]] std::map<std::string, Output> getUtxosForAddress(const std::string &address) const;
-    [[nodiscard]] size_t getSize() const;
-    [[nodiscard]] uint64_t getTotal() const;
+    void printState() const;
 
 private:
     std::map<std::string, Output> container;
@@ -27,6 +26,7 @@ private:
     [[nodiscard]] std::string getKey(const Input &input) const;
     void insertUtxo(const std::string &txHash, const Output &output, uint16_t index);
     void removeUsedUtxo(const Input &usedInput);
+    [[nodiscard]] uint64_t getTotal() const;
 };
 
 

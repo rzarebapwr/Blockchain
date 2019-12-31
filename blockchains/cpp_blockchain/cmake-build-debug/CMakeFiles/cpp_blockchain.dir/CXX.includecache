@@ -90,6 +90,12 @@ map
 Transactions.h
 ../src/Transactions.h
 
+../src/Wallet.h
+cryptography.h
+../src/cryptography.h
+Transactions.h
+../src/Transactions.h
+
 ../src/cryptography.h
 string
 -
@@ -143,6 +149,6 @@ Transactions.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Transactions.h
 UtxoSet.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/UtxoSet.h
-ctime
--
+Wallet.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/Wallet.h
 

@@ -45,17 +45,15 @@ std::map<std::string, Output> UtxoSet::getUtxosForAddress(const std::string &add
 }
 
 
-size_t UtxoSet::getSize() const {
-    return container.size();
-}
-
-
-uint64_t UtxoSet::getTotal() const {
-    uint64_t total = 0;
+void UtxoSet::printState() const {
+    std::cout << "\nUtxoSet Current State: \n";
 
     for (const auto &[key, val]: container)
-        total += val.getValue();
-    return total;
+        std::cout << key << " ---> " << val.getAddress() << " (" << val.getValue() << ")\n";
+
+    std::cout << "\nNumber of Utxos:  " << container.size() << '\n';
+    std::cout << "Total Satoshis:  " << getTotal();
+    std::cout << "\n------------------------------------------------";
 }
 
 
@@ -87,3 +85,11 @@ void UtxoSet::removeUsedUtxo(const Input &usedInput) {
         container.erase(utxoKey);
 }
 
+
+uint64_t UtxoSet::getTotal() const {
+    uint64_t total = 0;
+
+    for (const auto &[key, val]: container)
+        total += val.getValue();
+    return total;
+}

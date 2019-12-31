@@ -12,22 +12,17 @@
 class Wallet {
 public:
     Wallet();
-    Transaction createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis, const std::string &receiverAddress, uint64_t fee);
-
-
+    [[nodiscard]] Transaction createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis,
+                                                const std::string &receiverAddress, uint64_t fee) const;
+    [[nodiscard]] std::string getAddress() const;
 
 private:
     Uint256 privateKey;
     CurvePoint publicKey;
     std::string address;
 
-    std::tuple<std::vector<Input>, uint64_t> getInputsNeeded(uint64_t nSatoshis, const UtxoSet &utxoSet);
-
-
-
-
-
-
+    [[nodiscard]] std::tuple<std::vector<Input>, uint64_t> getInputsNeeded(uint64_t nSatoshis,
+                                                                           const UtxoSet &utxoSet) const;
 };
 
 

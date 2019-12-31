@@ -12,6 +12,7 @@ CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../lib/cryptoLib/Sha256Hash.hpp
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../lib/cryptoLib/Uint256.hpp
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../src/Transactions.h
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../src/UtxoSet.h
+CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../src/Wallet.h
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../src/cryptography.h
 CMakeFiles/cpp_blockchain.dir/main.cpp.o: ../main.cpp
 
