@@ -19,23 +19,19 @@ Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis
      * Simple Transaction scheme, one output plus change if needed.
      * TODO make it possible to create payroll payments scheme (multiple outputs)
      */
-    auto [inputs, toSpend] = getInputsNeeded(nSatoshis, utxoSet);
+    auto [inputs, nAvailable] = getInputsNeeded(nSatoshis, utxoSet);
 
-    if (toSpend < nSatoshis + fee)
+    if (nAvailable < nSatoshis + fee)
         throw std::out_of_range("Cannot create transaction - not enough coins available!");
 
-    // TODO calculate change, make outputs methods
-    // TODO simplify this
-    uint64_t coinsLeft = toSpend - nSatoshis;
-    uint64_t changeCoins = coinsLeft - fee;
-
+    Output changeOutput = getChangeOutput(nSatoshis, nAvailable, fee);
     Output output1{nSatoshis, receiverAddress};
-    Output changeOutput{changeCoins, address};
+
     std::vector<Output> outputs{output1, changeOutput};
 
-    Transaction t{inputs, outputs, 0, 0};
-    t.sign(privateKey);
-    return t;
+    Transaction tx{inputs, outputs, 0, 0};
+    tx.sign(privateKey);
+    return tx;
 }
 
 
@@ -61,6 +57,13 @@ std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatos
             break;
     }
     return {inputs, toSpend};
+}
+
+
+Output Wallet::getChangeOutput(uint64_t nSatoshis, uint64_t nAvailable, uint64_t fee) const {
+    uint64_t coinsLeft = nAvailable - nSatoshis;
+    uint64_t changeCoins = coinsLeft - fee;
+    return {changeCoins, address};
 }
 
 

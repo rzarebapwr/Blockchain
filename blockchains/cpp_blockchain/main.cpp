@@ -55,6 +55,7 @@ int main() {
     utxoSet.update(coinBaseTransaction);
     utxoSet.printState();
 
+    std::map<std::string, uint64_t> paymentMap1{ {wallet2.getAddress(), 50} };
     Transaction transaction1 = wallet1.createTransaction(utxoSet, 50, wallet2.getAddress(), 2);
 
     if (transaction1.verify(0, utxoSet))

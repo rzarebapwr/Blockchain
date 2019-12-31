@@ -23,6 +23,7 @@ private:
 
     [[nodiscard]] std::tuple<std::vector<Input>, uint64_t> getInputsNeeded(uint64_t nSatoshis,
                                                                            const UtxoSet &utxoSet) const;
+    [[nodiscard]] Output getChangeOutput(uint64_t nSatoshis, uint64_t nAvailable, uint64_t fee) const;
 };
 
 
