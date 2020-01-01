@@ -83,7 +83,7 @@ namespace cryptography {
 
 
     inline Sha256Hash hashStrToSha256(const std::string &hashStr) {
-        // Change endianess
+        // Change endianess of Sha256 Hash
         int size = hashStr.size();
         std::stringstream ss;
 

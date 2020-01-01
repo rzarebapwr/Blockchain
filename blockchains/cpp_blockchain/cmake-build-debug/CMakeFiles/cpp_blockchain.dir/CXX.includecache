@@ -91,6 +91,8 @@ Transactions.h
 ../src/Transactions.h
 
 ../src/Wallet.h
+map
+-
 cryptography.h
 ../src/cryptography.h
 Transactions.h

@@ -82,15 +82,27 @@ iostream
 map
 -
 
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.cpp
-UtxoSet.h
-/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.h
-
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.h
 iostream
 -
 map
 -
+Transactions.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.cpp
+Wallet.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.h
+UtxoSet.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/UtxoSet.h
+Transactions.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
+
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Wallet.h
+map
+-
+cryptography.h
+/Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/cryptography.h
 Transactions.h
 /Users/kq794tb/Desktop/Blockchain/Projects/blockchains/cpp_blockchain/src/Transactions.h
 

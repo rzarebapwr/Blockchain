@@ -14,20 +14,15 @@ address(cryptography::generateAddress(publicKey)) {
 }
 
 
-Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis, const std::string &receiverAddress, uint64_t fee) const {
-    /*
-     * Simple Transaction scheme, one output plus change if needed.
-     * TODO make it possible to create payroll payments scheme (multiple outputs)
-     */
-    auto [inputs, nAvailable] = getInputsNeeded(nSatoshis, utxoSet);
+Transaction Wallet::createTransaction(const UtxoSet &utxoSet, const std::map<std::string, uint64_t> &paymentMap, uint64_t fee) const {
+    uint64_t nSatoshisToSpend = getNSatoshisToSpend(paymentMap);
+    auto [inputs, nAvailable] = getInputsNeeded(nSatoshisToSpend, utxoSet);
 
-    if (nAvailable < nSatoshis + fee)
+    if (nAvailable < nSatoshisToSpend + fee)
         throw std::out_of_range("Cannot create transaction - not enough coins available!");
 
-    Output changeOutput = getChangeOutput(nSatoshis, nAvailable, fee);
-    Output output1{nSatoshis, receiverAddress};
-
-    std::vector<Output> outputs{output1, changeOutput};
+    std::vector<Output> outputs = createOutputs(paymentMap);
+    outputs.emplace_back(getChangeOutput(nSatoshisToSpend, nAvailable, fee));
 
     Transaction tx{inputs, outputs, 0, 0};
     tx.sign(privateKey);
@@ -37,6 +32,15 @@ Transaction Wallet::createTransaction(const UtxoSet &utxoSet, uint64_t nSatoshis
 
 std::string Wallet::getAddress() const {
     return address;
+}
+
+
+uint64_t Wallet::getNSatoshisToSpend(const std::map<std::string, uint64_t> &paymentMap) const {
+    uint64_t toSpend = 0;
+    for (const auto &[key, val]: paymentMap)
+        toSpend += val;
+    return toSpend;
+
 }
 
 
@@ -60,10 +64,21 @@ std::tuple<std::vector<Input>, uint64_t> Wallet::getInputsNeeded(uint64_t nSatos
 }
 
 
-Output Wallet::getChangeOutput(uint64_t nSatoshis, uint64_t nAvailable, uint64_t fee) const {
-    uint64_t coinsLeft = nAvailable - nSatoshis;
+Output Wallet::getChangeOutput(uint64_t nSatoshisToSpend, uint64_t nAvailable, uint64_t fee) const {
+    uint64_t coinsLeft = nAvailable - nSatoshisToSpend;
     uint64_t changeCoins = coinsLeft - fee;
     return {changeCoins, address};
 }
+
+std::vector<Output> Wallet::createOutputs(const std::map<std::string, uint64_t> &paymentMap) const {
+    std::vector<Output> outputs;
+    outputs.reserve(paymentMap.size());
+
+    for (const auto &[key, val]: paymentMap)
+        outputs.emplace_back(Output{val, key});
+    return outputs;
+}
+
+
 
 
