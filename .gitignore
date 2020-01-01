@@ -1,3 +1,6 @@
 .DS_Store
 .idea
 cmake-build-debug
+
+smart_contracts/inbox/package.json
+smart_contracts/inbox/package-lock.json
