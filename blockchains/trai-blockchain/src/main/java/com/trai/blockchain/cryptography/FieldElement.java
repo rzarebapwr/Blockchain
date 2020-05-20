@@ -2,12 +2,14 @@ package com.trai.blockchain.cryptography;
 
 import lombok.Data;
 
+import java.math.BigInteger;
+
 
 @Data
 public class FieldElement {
-
-    private int num;
-    private int prime;
+    /* Field Element - represents one element of finite field */
+    private final int num;
+    private final int prime;
 
     public FieldElement(int num, int prime) {
         validateAttrs(num, prime);
@@ -69,7 +71,12 @@ public class FieldElement {
             throw new IllegalArgumentException(String.format(
                     "Cannot divide FieldElement with different prime (%d != %d", other.getPrime(), prime));
 
-        int value = (int) (num * (Math.pow(other.getNum(), prime-2) % prime) % prime);
+        BigInteger thisValue = BigInteger.valueOf(num);
+        BigInteger thisPrime = BigInteger.valueOf(prime);
+
+        int value = BigInteger.valueOf(other.getNum()).pow(prime-2).multiply(thisValue).mod(thisPrime).intValue();
+
+//        int value = (int) (num * (Math.pow(other.getNum(), prime-2)) % prime) % prime;
         return new FieldElement(value, prime);
     }
 

@@ -1,5 +1,7 @@
 package com.trai.blockchain;
 
+import com.trai.blockchain.cryptography.EllipticCurve;
+import com.trai.blockchain.cryptography.Point;
 import com.trai.blockchain.cryptography.FieldElement;
 
 /**
@@ -10,11 +12,14 @@ import com.trai.blockchain.cryptography.FieldElement;
 public class App {
     public static void main(String[] args) {
 
-        FieldElement fieldElement1 = new FieldElement(8, 10);
-        FieldElement fieldElement2 = new FieldElement(7, 10);
-        System.out.println(fieldElement1.equals(fieldElement2));
-        FieldElement fieldElement3 = fieldElement1.add(fieldElement2);
-        System.out.println(fieldElement3);
+        int prime = 223;
+        FieldElement a = new FieldElement(0, prime);
+        FieldElement b = new FieldElement(7, prime);
+        FieldElement x = new FieldElement(192, prime);
+        FieldElement y = new FieldElement(105, prime);
+
+        EllipticCurve ellipticCurve = new EllipticCurve(a, b);
+        Point point = new Point(x, y, ellipticCurve);
 
     }
 }
