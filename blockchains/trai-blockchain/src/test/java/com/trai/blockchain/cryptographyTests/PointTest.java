@@ -4,6 +4,10 @@ import com.trai.blockchain.cryptography.EllipticCurve;
 import com.trai.blockchain.cryptography.Point;
 import com.trai.blockchain.cryptography.FieldElement;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class PointTest {
@@ -38,31 +42,51 @@ public class PointTest {
     }
 
     @Test
-    public void addOperator() {
+    public void addDifferentPoints() {
         FieldElement a = new FieldElement(0, prime);
         FieldElement b = new FieldElement(7, prime);
         EllipticCurve ellipticCurve = new EllipticCurve(a, b);
 
-        FieldElement x1 = new FieldElement(170, prime);
-        FieldElement y1 = new FieldElement(142, prime);
-        Point point1 = new Point(x1, y1, ellipticCurve);
+        List<Point> points1 = Arrays.asList(
+                new Point(new FieldElement(170, prime), new FieldElement(142, prime), ellipticCurve),
+                new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve),
+                new Point(new FieldElement(143, prime), new FieldElement(98, prime), ellipticCurve));
 
-        FieldElement x2 = new FieldElement(60, prime);
-        FieldElement y2 = new FieldElement(139, prime);
-        Point point2 = new Point(x2, y2, ellipticCurve);
-//
-        Point added1 = point1.add(point2);
+        List<Point> points2 = Arrays.asList(
+                new Point(new FieldElement(60, prime), new FieldElement(139, prime), ellipticCurve),
+                new Point(new FieldElement(17, prime), new FieldElement(56, prime), ellipticCurve),
+                new Point(new FieldElement(76, prime), new FieldElement(66, prime), ellipticCurve));
 
-//        EllipticCurvePoint ellipticCurvePoint3 = new EllipticCurvePoint(2, 5, ellipticCurve);
-//        EllipticCurvePoint ellipticCurvePoint4 = new EllipticCurvePoint(-1, -1, ellipticCurve);
-//        EllipticCurvePoint added2 = ellipticCurvePoint3.add(ellipticCurvePoint4);
+        List<Point> expectedValues = Arrays.asList(
+                new Point(new FieldElement(220, prime), new FieldElement(181, prime), ellipticCurve),
+                new Point(new FieldElement(215, prime), new FieldElement(68, prime), ellipticCurve),
+                new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve));
 
-//        System.out.println(added1);
+        for (int i=0; i<expectedValues.size(); ++i)
+            assertTrue(points1.get(i).add(points2.get(i)).isEqual(expectedValues.get(i)));
+    }
 
-//        assertEquals(new FieldElement(200, prime), added1.getX());
-//        assertEquals(new FieldElement(181, prime), added1.getY());
-//        assertEquals(3, added2.getX());
-//        assertEquals(-7, added2.getY());
+    @Test
+    public void addSamePoints() {
+        FieldElement a = new FieldElement(0, prime);
+        FieldElement b = new FieldElement(7, prime);
+        EllipticCurve ellipticCurve = new EllipticCurve(a, b);
+
+        List<Point> points = Arrays.asList(
+                new Point(new FieldElement(192, prime), new FieldElement(105, prime), ellipticCurve),
+                new Point(new FieldElement(143, prime), new FieldElement(98, prime), ellipticCurve),
+                new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve));
+
+        List<Point> expectedValues = Arrays.asList(
+                new Point(new FieldElement(49, prime), new FieldElement(71, prime), ellipticCurve),
+                new Point(new FieldElement(64, prime), new FieldElement(168, prime), ellipticCurve),
+                new Point(new FieldElement(36, prime), new FieldElement(111, prime), ellipticCurve));
+
+        for (int i=0; i<expectedValues.size(); ++i) {
+            Point point = points.get(i);
+            assertTrue((point.add(point)).isEqual(expectedValues.get(i)));
+        }
+
     }
 
 }

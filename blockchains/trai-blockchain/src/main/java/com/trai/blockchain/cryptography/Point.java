@@ -38,17 +38,23 @@ public class Point {
             FieldElement newY = s.mul((x.sub(newX))).sub(y);
             return new Point(newX, newY, ellipticCurve);
         }
-//        if (this.equals(other)) {
-//            FieldElement s =
-//
-//            int s = (int) (((3 * Math.pow(x, 2)) + ellipticCurve.a) / (2 * y));
-//            int newX = (int) (Math.pow(s, 2) - (2 * x));
-//            int newY = s * (x - newX) - y;
-//            return new EllipticCurvePoint(newX, newY, ellipticCurve);
-//        }
+        // If p1 == p2
+        if (this.equals(other)) {
+            FieldElement s = (x.pow(2).mul(3).add(ellipticCurve.a)).div(y.mul(2));
+            FieldElement newX = s.pow(2).sub(x.mul(2));
+            FieldElement newY = s.mul(x.sub(newX)).sub(y);
+            return new Point(newX, newY, ellipticCurve);
+        }
 
         else
             return this;
 
     }
+
+//    public Point mul(int value) {
+//        int coefficient = value;
+//        Point current = this;
+//        Point result = Point(FieldElement(0))
+//
+//    }
 }

@@ -56,6 +56,12 @@ public class FieldElement {
         return new FieldElement(value, prime);
     }
 
+    public FieldElement mul(int val) {
+        // A * B = (a * b) % prime
+        int value = (num * val) % prime;
+        return new FieldElement(value, prime);
+    }
+
     public FieldElement pow(int exponent) {
         // pow(A, exponent)
         while (exponent < 0)
