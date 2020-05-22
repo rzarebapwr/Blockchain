@@ -51,10 +51,25 @@ public class Point {
 
     }
 
-//    public Point mul(int value) {
-//        int coefficient = value;
-//        Point current = this;
-//        Point result = Point(FieldElement(0))
+//    public Point mul(int coefficient) {
+//        Point result = this;
 //
+//        for (int i=0; i<coefficient-1; ++i)
+//            result = result.add(this);
+//        return result;
 //    }
+
+    public Point mul(int coefficient) {
+        int coef = coefficient-1;
+        Point current = this;
+        Point result = this;
+
+        while (coef != 0) {
+            if ((coef & 1) == 1)
+                result = result.add(current);
+            current = current.add(current);
+            coef >>= 1;
+        }
+        return result;
+    }
 }

@@ -35,9 +35,6 @@ public class App {
         System.out.println(rmultiplied);
 
 
-
-
-
     }
 
     public static int rmul(int coefficient) {
