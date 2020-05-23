@@ -26,17 +26,17 @@ public class FieldElementTest {
         FieldElement fieldElement1 = new FieldElement(8, 10);
         FieldElement fieldElement2 = new FieldElement(7, 10);
         FieldElement added = fieldElement1.add(fieldElement2);
-        assertEquals(10, added.getPrime());
-        assertEquals(5, added.getNum());
+        FieldElement expected = new FieldElement(5, 10);
+        assertTrue(added.isEqual(expected));
     }
 
     @Test
     public void subOperator() {
         FieldElement fieldElement1 = new FieldElement(9, 57);
         FieldElement fieldElement2 = new FieldElement(29, 57);
-        FieldElement sub = fieldElement1.sub(fieldElement2);
-        assertEquals(57, sub.getPrime());
-        assertEquals(37, sub.getNum());
+        FieldElement subtracted = fieldElement1.sub(fieldElement2);
+        FieldElement expected = new FieldElement(37, 57);
+        assertTrue(subtracted.isEqual(expected));
     }
 
     @Test
@@ -44,16 +44,16 @@ public class FieldElementTest {
         FieldElement fieldElement1 = new FieldElement(3, 13);
         FieldElement fieldElement2 = new FieldElement(12, 13);
         FieldElement multiplied = fieldElement1.mul(fieldElement2);
-        assertEquals(13, multiplied.getPrime());
-        assertEquals(10, multiplied.getNum());
+        FieldElement expected = new FieldElement(10, 13);
+        assertTrue(multiplied.isEqual(expected));
     }
 
     @Test
     public void powOperator() {
         FieldElement fieldElement1 = new FieldElement(7, 13);
         FieldElement powered = fieldElement1.pow(-3);
-        assertEquals(13, powered.getPrime());
-        assertEquals(8, powered.getNum());
+        FieldElement expected = new FieldElement(8, 13);
+        assertTrue(powered.isEqual(expected));
     }
 
     @Test
@@ -61,9 +61,8 @@ public class FieldElementTest {
         FieldElement fieldElement1 = new FieldElement(3, 31);
         FieldElement fieldElement2 = new FieldElement(24, 31);
         FieldElement divided = fieldElement1.div(fieldElement2);
-
-        assertEquals(31, divided.getPrime());
-        assertEquals(4, divided.getNum());
+        FieldElement expected = new FieldElement(4, 31);
+        assertTrue(divided.isEqual(expected));
     }
 
 }
