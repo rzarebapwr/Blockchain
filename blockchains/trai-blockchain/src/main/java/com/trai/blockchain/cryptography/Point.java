@@ -2,6 +2,8 @@ package com.trai.blockchain.cryptography;
 
 import lombok.Data;
 
+import java.math.BigInteger;
+
 @Data
 public class Point {
     private FieldElement x;
@@ -51,13 +53,17 @@ public class Point {
 
     }
 
-//    public Point mul(int coefficient) {
-//        Point result = this;
-//
-//        for (int i=0; i<coefficient-1; ++i)
-//            result = result.add(this);
-//        return result;
-//    }
+    public Point mul(BigInteger coefficient) {
+        Point result = this;
+
+        for (BigInteger i=BigInteger.valueOf(0);
+             i.compareTo(coefficient.subtract(BigInteger.valueOf(1))) < 0;
+             i = i.add(BigInteger.ONE)) {
+            result = result.add(this);
+        }
+
+        return result;
+    }
 
     public Point mul(int coefficient) {
         int coef = coefficient-1;
@@ -72,4 +78,21 @@ public class Point {
         }
         return result;
     }
+
+    public Point rmul(BigInteger coefficient) {
+        BigInteger coef = coefficient.subtract(BigInteger.ONE);
+        Point current = this;
+        Point result = this;
+
+        while (coef.compareTo(BigInteger.ZERO) != 0) {
+            if (coef.and(BigInteger.ONE).compareTo(BigInteger.ONE) == 0)
+                result = result.add(current);
+            current = current.add(current);
+            coef = coef.shiftRight(1);
+        }
+        return result;
+    }
+
+
+
 }

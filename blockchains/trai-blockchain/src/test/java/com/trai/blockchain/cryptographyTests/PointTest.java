@@ -5,6 +5,7 @@ import com.trai.blockchain.cryptography.Point;
 import com.trai.blockchain.cryptography.FieldElement;
 import org.junit.Test;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +28,11 @@ public class PointTest {
 
     @Test
     public void equalOperator() {
-        FieldElement x = new FieldElement(192, prime);
-        FieldElement y = new FieldElement(105, prime);
+//        FieldElement x = new FieldElement(192, prime);
+//        FieldElement y = new FieldElement(105, prime);
+
+        FieldElement x = new FieldElement(BigInteger.valueOf(192), BigInteger.valueOf(prime));
+        FieldElement y = new FieldElement(BigInteger.valueOf(105), BigInteger.valueOf(prime));
 
         Point point1 = new Point(x, y, ellipticCurve);
         Point point2 = new Point(x, y, ellipticCurve);
@@ -85,6 +89,33 @@ public class PointTest {
                 new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve));
 
         List<Integer> coefficients = Arrays.asList(2, 2, 2, 4, 8);
+
+        List<Point> expected = Arrays.asList(
+                new Point(new FieldElement(49, prime), new FieldElement(71, prime), ellipticCurve),
+                new Point(new FieldElement(64, prime), new FieldElement(168, prime), ellipticCurve),
+                new Point(new FieldElement(36, prime), new FieldElement(111, prime), ellipticCurve),
+                new Point(new FieldElement(194, prime), new FieldElement(51, prime), ellipticCurve),
+                new Point(new FieldElement(116, prime), new FieldElement(55, prime), ellipticCurve));
+
+        for (int i=0; i<points.size(); ++i)
+            assertTrue(points.get(i).mul(coefficients.get(i)).isEqual(expected.get(i)));
+    }
+
+    @Test
+    public void multiplyBigNumber() {
+        List<Point> points = Arrays.asList(
+                new Point(new FieldElement(192, prime), new FieldElement(105, prime), ellipticCurve),
+                new Point(new FieldElement(143, prime), new FieldElement(98, prime), ellipticCurve),
+                new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve),
+                new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve),
+                new Point(new FieldElement(47, prime), new FieldElement(71, prime), ellipticCurve));
+
+        List<BigInteger> coefficients = Arrays.asList(
+                BigInteger.valueOf(2),
+                BigInteger.valueOf(2),
+                BigInteger.valueOf(2),
+                BigInteger.valueOf(4),
+                BigInteger.valueOf(8));
 
         List<Point> expected = Arrays.asList(
                 new Point(new FieldElement(49, prime), new FieldElement(71, prime), ellipticCurve),

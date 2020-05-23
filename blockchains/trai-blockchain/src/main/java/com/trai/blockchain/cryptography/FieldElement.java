@@ -34,6 +34,13 @@ public class FieldElement {
         this.prime = prime;
     }
 
+    public FieldElement(String hexNum, BigInteger prime) {
+        BigInteger num = new BigInteger(hexNum, 16);
+        validateAttrs(num, prime);
+        this.num = num;
+        this.prime = prime;
+    }
+
     private void validateAttrs(BigInteger num, BigInteger prime) {
         if (num.compareTo(prime) >= 0 || num.signum() < 0)
             throw new IllegalArgumentException(String.format("Number %d is not in range 0 - %d",
@@ -105,8 +112,8 @@ public class FieldElement {
             throw new IllegalArgumentException(String.format(
                     "Cannot divide FieldElement with different prime (%d != %d", other.getPrime(), prime));
 
-        int exponent = prime.subtract(BigInteger.valueOf(2)).intValue();
-        BigInteger value = other.getNum().pow(exponent).multiply(num).mod(prime);
+        BigInteger exponent = prime.subtract(BigInteger.valueOf(2));
+        BigInteger value = num.multiply(other.getNum().modPow(exponent, prime)).mod(prime);
         return new FieldElement(value, prime);
     }
 
