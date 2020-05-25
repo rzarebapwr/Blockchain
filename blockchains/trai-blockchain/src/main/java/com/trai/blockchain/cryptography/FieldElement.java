@@ -1,7 +1,6 @@
 package com.trai.blockchain.cryptography;
 
 import lombok.Data;
-
 import java.math.BigInteger;
 
 
@@ -44,7 +43,7 @@ public class FieldElement {
     private void validateAttrs(BigInteger num, BigInteger prime) {
         if (num.compareTo(prime) >= 0 || num.signum() < 0)
             throw new IllegalArgumentException(String.format("Number %d is not in range 0 - %d",
-                    num, prime.subtract(BigInteger.valueOf(1))));
+                    num, prime.subtract(BigInteger.ONE)));
     }
 
     public boolean isEqual(FieldElement other) {
@@ -95,7 +94,7 @@ public class FieldElement {
     public FieldElement pow(BigInteger exponent) {
         // pow(A, exponent)
         while (exponent.signum() < 0)
-            exponent = exponent.add(prime.subtract(BigInteger.valueOf(1)));
+            exponent = exponent.add(prime.subtract(BigInteger.ONE));
 
         BigInteger value = num.pow(exponent.intValue()).mod(prime);
         return new FieldElement(value, prime);

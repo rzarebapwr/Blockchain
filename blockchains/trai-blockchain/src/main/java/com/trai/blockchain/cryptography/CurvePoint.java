@@ -5,12 +5,12 @@ import lombok.Data;
 import java.math.BigInteger;
 
 @Data
-public class Point {
+public class CurvePoint {
     private FieldElement x;
     private FieldElement y;
     private EllipticCurve ellipticCurve;
 
-    public Point(FieldElement x, FieldElement y, EllipticCurve ellipticCurve) {
+    public CurvePoint(FieldElement x, FieldElement y, EllipticCurve ellipticCurve) {
         if (!belongsToCurve(x, y, ellipticCurve))
             throw new IllegalArgumentException("Point does not belong to specified Elliptic Curve");
         this.x = x;
@@ -23,12 +23,12 @@ public class Point {
         return y.pow(2).isEqual(x.pow(3).add(ellipticCurve.a.mul(x)).add(ellipticCurve.b));
     }
 
-    public boolean isEqual(Point other) {
+    public boolean isEqual(CurvePoint other) {
         return x.isEqual(other.getX()) && y.isEqual(other.getY()) && ellipticCurve.isEqual(other.getEllipticCurve());
 
     }
 
-    public Point add(Point other) {
+    public CurvePoint add(CurvePoint other) {
         if (!ellipticCurve.isEqual(other.getEllipticCurve()))
             throw new IllegalArgumentException(
                     "Cannot add Elliptic Curve Points that do not belong to the same Elliptic Curve");
@@ -38,14 +38,14 @@ public class Point {
             FieldElement s = (other.getY().sub(y)).div(other.getX().sub(x));
             FieldElement newX = s.pow(2).sub(x).sub(other.getX());
             FieldElement newY = s.mul((x.sub(newX))).sub(y);
-            return new Point(newX, newY, ellipticCurve);
+            return new CurvePoint(newX, newY, ellipticCurve);
         }
         // If p1 == p2
         if (this.equals(other)) {
             FieldElement s = (x.pow(2).mul(3).add(ellipticCurve.a)).div(y.mul(2));
             FieldElement newX = s.pow(2).sub(x.mul(2));
             FieldElement newY = s.mul(x.sub(newX)).sub(y);
-            return new Point(newX, newY, ellipticCurve);
+            return new CurvePoint(newX, newY, ellipticCurve);
         }
 
         else
@@ -53,22 +53,10 @@ public class Point {
 
     }
 
-    public Point mul(BigInteger coefficient) {
-        Point result = this;
-
-        for (BigInteger i=BigInteger.valueOf(0);
-             i.compareTo(coefficient.subtract(BigInteger.valueOf(1))) < 0;
-             i = i.add(BigInteger.ONE)) {
-            result = result.add(this);
-        }
-
-        return result;
-    }
-
-    public Point mul(int coefficient) {
+    public CurvePoint mul(int coefficient) {
         int coef = coefficient-1;
-        Point current = this;
-        Point result = this;
+        CurvePoint current = this;
+        CurvePoint result = this;
 
         while (coef != 0) {
             if ((coef & 1) == 1)
@@ -79,10 +67,10 @@ public class Point {
         return result;
     }
 
-    public Point rmul(BigInteger coefficient) {
+    public CurvePoint mul(BigInteger coefficient) {
         BigInteger coef = coefficient.subtract(BigInteger.ONE);
-        Point current = this;
-        Point result = this;
+        CurvePoint current = this;
+        CurvePoint result = this;
 
         while (coef.compareTo(BigInteger.ZERO) != 0) {
             if (coef.and(BigInteger.ONE).compareTo(BigInteger.ONE) == 0)
@@ -91,6 +79,12 @@ public class Point {
             coef = coef.shiftRight(1);
         }
         return result;
+    }
+
+    public CurvePoint mul(BigInteger coefficient, BigInteger n) {
+        /* for better efficiency if order of field n is known */
+        coefficient = coefficient.mod(n);
+        return mul(coefficient);
     }
 
 
