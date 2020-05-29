@@ -96,7 +96,7 @@ public class FieldElement {
         while (exponent.signum() < 0)
             exponent = exponent.add(prime.subtract(BigInteger.ONE));
 
-        BigInteger value = num.pow(exponent.intValue()).mod(prime);
+        BigInteger value = num.modPow(exponent, prime);
         return new FieldElement(value, prime);
     }
 
@@ -114,6 +114,11 @@ public class FieldElement {
         BigInteger exponent = prime.subtract(BigInteger.valueOf(2));
         BigInteger value = num.multiply(other.getNum().modPow(exponent, prime)).mod(prime);
         return new FieldElement(value, prime);
+    }
+
+    public FieldElement sqrt() {
+        BigInteger exponent = prime.add(BigInteger.ONE).divide(BigInteger.valueOf(4));
+        return this.pow(exponent);
     }
 
 }

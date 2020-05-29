@@ -61,22 +61,38 @@ public class App {
 
 
 
-//        BigInteger privateKey = ECDSA.generatePrivateKey();
-//        CurvePoint publicKey = ECDSA.generatePublicKey(privateKey);
-//        BigInteger message = sha256("Hello");
+        BigInteger privateKey = ECDSA.generatePrivateKey();
+        CurvePoint publicKey = ECDSA.generatePublicKey(privateKey);
 //        Signature sig = ECDSA.sign(message, privateKey);
 //
 ////        System.out.println(privateKey);
 //
-//        BigInteger messageToCheck = sha256("Hello");
+//        BigInteger messageToCheck = sha256("Hello2");
 //        boolean verified = ECDSA.verify(messageToCheck, publicKey, sig);
 //        System.out.println(verified);
 
-        BigInteger num = new BigInteger("79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798", 16);
-        String hexNum = num.toString(16);
-        String reversed = reverseHex(hexNum);
-        System.out.println(hexNum);
-        System.out.println(reversed);
+        System.out.println(publicKey.getX().getNum().toString(16));
+        System.out.println(publicKey.getY().getNum().toString(16));
+        String sec = publicKey.toSEC();
+        String secCompressed = publicKey.toCompressedSEC();
+
+
+        CurvePoint fromSec = CurvePoint.fromSEC(sec);
+        System.out.println("FROM SEC:");
+        System.out.println(fromSec.getX().getNum().toString(16));
+        System.out.println(fromSec.getY().getNum().toString(16));
+
+        CurvePoint fromCompressedSec = CurvePoint.fromSEC(secCompressed);
+        System.out.println("FROM Compressed SEC:");
+        System.out.println(fromCompressedSec.getX().getNum().toString(16));
+        System.out.println(fromCompressedSec.getY().getNum().toString(16));
+
+////        System.out.println(publicKeyFromSec);
+
+
+
+
+
 
 
     }

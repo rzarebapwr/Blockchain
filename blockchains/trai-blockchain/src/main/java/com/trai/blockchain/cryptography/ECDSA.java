@@ -48,12 +48,21 @@ public final class ECDSA {
         BigInteger messageHash = sha256(message.toString());
         BigInteger privateKeyHash = sha256(privateKey.toString());
         String combined = messageHash.add(privateKeyHash).toString();
-//        return sha256(combined);
-        return BigInteger.valueOf(2);
+        return sha256(combined);
+//        return BigInteger.valueOf(2);
     }
 
-    public static BigInteger generatePrivateKey() throws NoSuchAlgorithmException {
-        return generateRandomBigInteger();
+    public static BigInteger generatePrivateKey() {
+        int xlen;
+        int ylen;
+        BigInteger randomNumber;
+        do {
+            randomNumber = generateRandomBigInteger();
+            CurvePoint publicKey = generatePublicKey(randomNumber);
+            xlen = publicKey.getX().getNum().toString(16).length();
+            ylen = publicKey.getY().getNum().toString(16).length();
+        } while (xlen != 64 || ylen != 64);
+        return randomNumber;
     }
 
     public static CurvePoint generatePublicKey(BigInteger privateKey) {

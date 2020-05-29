@@ -19,6 +19,57 @@ public class CurvePoint {
 
     }
 
+    public static CurvePoint fromSEC(String secFormat) {
+        boolean isCompressed = !secFormat.startsWith("04");
+        FieldElement x;
+        FieldElement y;
+
+        if (!isCompressed) {
+            x = new FieldElement(secFormat.substring(2, 66), ECDSA.prime);
+            y = new FieldElement(secFormat.substring(66, 130), ECDSA.prime);
+            return new CurvePoint(x, y, ECDSA.ellipticCurve);
+        }
+
+        System.out.println("HERE");
+        boolean isEven = secFormat.startsWith("02");
+        x = new FieldElement(new BigInteger(secFormat.substring(2, 66), 16), ECDSA.prime);
+        // alpha = x^3 + 7
+        FieldElement alpha = x.pow(3).add(new FieldElement(BigInteger.valueOf(7), ECDSA.prime));
+        FieldElement beta = alpha.sqrt();
+        System.out.println("ALPHA:");
+        System.out.println(alpha.getNum().toString(16));
+        System.out.println("BETA:");
+        System.out.println(beta.getNum().toString(16));
+
+        FieldElement evenBeta;
+        FieldElement oddBeta;
+
+
+        if (beta.getNum().mod(BigInteger.valueOf(2)).equals(BigInteger.ZERO)) {
+            evenBeta = beta;
+            oddBeta = new FieldElement(ECDSA.prime.subtract(beta.getNum()), ECDSA.prime);
+        } else {
+            evenBeta = new FieldElement(ECDSA.prime.subtract(beta.getNum()), ECDSA.prime);
+            oddBeta = beta;
+        }
+
+        System.out.println("C1");
+        CurvePoint c1 = new CurvePoint(x, oddBeta, ECDSA.ellipticCurve);
+        System.out.println("C2");
+        CurvePoint c2 = new CurvePoint(x, oddBeta, ECDSA.ellipticCurve);
+
+
+        if (isEven) {
+            System.out.println("EVEN: ");
+            return new CurvePoint(x, evenBeta, ECDSA.ellipticCurve);
+        } else {
+            System.out.println("ODD");
+            return new CurvePoint(x, oddBeta, ECDSA.ellipticCurve);
+        }
+
+
+    }
+
     private boolean belongsToCurve(FieldElement x, FieldElement y, EllipticCurve ellipticCurve) {
         return y.pow(2).isEqual(x.pow(3).add(ellipticCurve.a.mul(x)).add(ellipticCurve.b));
     }
@@ -82,9 +133,23 @@ public class CurvePoint {
     }
 
     public CurvePoint mul(BigInteger coefficient, BigInteger n) {
-        /* for better efficiency if order of field n is known */
+        /* for better efficiency if order of field 'n' is known */
         coefficient = coefficient.mod(n);
         return mul(coefficient);
+    }
+
+    public String toSEC() {
+        return "04" + x.getNum().toString(16) + y.getNum().toString(16);
+    }
+
+    public String toCompressedSEC() {
+        String prefix;
+        if (y.getNum().mod(BigInteger.valueOf(2)).equals(BigInteger.ZERO))
+            prefix = "02";
+        else
+            prefix = "03";
+        return prefix + x.getNum().toString(16);
+
     }
 
 
