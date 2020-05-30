@@ -60,32 +60,19 @@ public class App {
 
 
 
-
+        BigInteger message = sha256("Hello");
         BigInteger privateKey = ECDSA.generatePrivateKey();
         CurvePoint publicKey = ECDSA.generatePublicKey(privateKey);
-//        Signature sig = ECDSA.sign(message, privateKey);
-//
-////        System.out.println(privateKey);
-//
-//        BigInteger messageToCheck = sha256("Hello2");
-//        boolean verified = ECDSA.verify(messageToCheck, publicKey, sig);
-//        System.out.println(verified);
+        Signature sig = ECDSA.sign(message, privateKey);
 
-        System.out.println(publicKey.getX().getNum().toString(16));
-        System.out.println(publicKey.getY().getNum().toString(16));
-        String sec = publicKey.toSEC();
-        String secCompressed = publicKey.toCompressedSEC();
+//        System.out.println(privateKey);
+
+        BigInteger messageToCheck = sha256("Hello2");
+        boolean verified = ECDSA.verify(messageToCheck, publicKey, sig);
+        String der = sig.toDER();
+        System.out.println(der);
 
 
-        CurvePoint fromSec = ECDSA.generatePublicKeyFromSEC(sec);
-        System.out.println("FROM SEC:");
-        System.out.println(fromSec.getX().getNum().toString(16));
-        System.out.println(fromSec.getY().getNum().toString(16));
-
-        CurvePoint fromCompressedSec = ECDSA.generatePublicKeyFromSEC(secCompressed);
-        System.out.println("FROM Compressed SEC:");
-        System.out.println(fromCompressedSec.getX().getNum().toString(16));
-        System.out.println(fromCompressedSec.getY().getNum().toString(16));
 
 
     }
