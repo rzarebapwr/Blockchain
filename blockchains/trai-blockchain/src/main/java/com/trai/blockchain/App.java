@@ -77,22 +77,15 @@ public class App {
         String secCompressed = publicKey.toCompressedSEC();
 
 
-        CurvePoint fromSec = CurvePoint.fromSEC(sec);
+        CurvePoint fromSec = ECDSA.generatePublicKeyFromSEC(sec);
         System.out.println("FROM SEC:");
         System.out.println(fromSec.getX().getNum().toString(16));
         System.out.println(fromSec.getY().getNum().toString(16));
 
-        CurvePoint fromCompressedSec = CurvePoint.fromSEC(secCompressed);
+        CurvePoint fromCompressedSec = ECDSA.generatePublicKeyFromSEC(secCompressed);
         System.out.println("FROM Compressed SEC:");
         System.out.println(fromCompressedSec.getX().getNum().toString(16));
         System.out.println(fromCompressedSec.getY().getNum().toString(16));
-
-////        System.out.println(publicKeyFromSec);
-
-
-
-
-
 
 
     }

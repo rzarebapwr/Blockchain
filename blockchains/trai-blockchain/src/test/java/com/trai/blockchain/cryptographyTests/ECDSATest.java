@@ -48,6 +48,37 @@ public class ECDSATest {
         assertFalse(notVerified4);
     }
 
+    @Test
+    public void publicKeyToSEC() {
+        BigInteger privateKey = ECDSA.generatePrivateKey();
+        CurvePoint publicKey = ECDSA.generatePublicKey(privateKey);
+        String sec = publicKey.toSEC();
+        assertTrue(sec.startsWith("04"));
+    }
+
+    @Test
+    public void publicKeyToCompressedSEC() {
+        BigInteger privateKey = ECDSA.generatePrivateKey();
+        CurvePoint publicKey = ECDSA.generatePublicKey(privateKey);
+        String sec = publicKey.toCompressedSEC();
+        assertTrue(sec.startsWith("02") || sec.startsWith("03"));
+    }
+
+    @Test
+    public void publicKeyFromSEC() {
+        BigInteger privateKey = ECDSA.generatePrivateKey();
+        CurvePoint publicKey = ECDSA.generatePublicKey(privateKey);
+        String sec = publicKey.toSEC();
+        String compressedSec = publicKey.toCompressedSEC();
+
+        CurvePoint publicKeyFromSec = ECDSA.generatePublicKeyFromSEC(sec);
+        CurvePoint publicKeyFromCompressedSec = ECDSA.generatePublicKeyFromSEC(compressedSec);
+
+        assertTrue(publicKeyFromSec.isEqual(publicKey));
+        assertTrue(publicKeyFromCompressedSec.isEqual(publicKey));
+        assertTrue(publicKeyFromSec.isEqual(publicKeyFromCompressedSec));
+    }
+
 
 
 }

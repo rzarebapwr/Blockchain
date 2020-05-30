@@ -69,6 +69,10 @@ public final class ECDSA {
         return generatorCurvePoint.mul(privateKey, n);
     }
 
+    public static CurvePoint generatePublicKeyFromSEC(String secFormat) {
+        return CurvePoint.fromSEC(secFormat, prime, ellipticCurve);
+    }
+
     public static Signature sign(BigInteger message, BigInteger privateKey) throws NoSuchAlgorithmException {
         BigInteger k = getDeterministicK(message, privateKey);
         BigInteger r = generatorCurvePoint.mul(k, n).getX().getNum();
@@ -86,13 +90,5 @@ public final class ECDSA {
         CurvePoint total = generatorCurvePoint.mul(u).add(publicKey.mul(v));
         return total.getX().getNum().equals(sig.r);
     }
-
-
-
-
-
-
-
-
 
 }

@@ -19,55 +19,38 @@ public class CurvePoint {
 
     }
 
-    public static CurvePoint fromSEC(String secFormat) {
+    public static CurvePoint fromSEC(String secFormat, BigInteger prime, EllipticCurve ellipticCurve) {
         boolean isCompressed = !secFormat.startsWith("04");
+        int firstHalf = (secFormat.length() / 2) + 1;
+        System.out.println(secFormat.length());
         FieldElement x;
         FieldElement y;
 
         if (!isCompressed) {
-            x = new FieldElement(secFormat.substring(2, 66), ECDSA.prime);
-            y = new FieldElement(secFormat.substring(66, 130), ECDSA.prime);
-            return new CurvePoint(x, y, ECDSA.ellipticCurve);
+            x = new FieldElement(secFormat.substring(2, firstHalf), prime);
+            y = new FieldElement(secFormat.substring(firstHalf), prime);
+            return new CurvePoint(x, y, ellipticCurve);
         }
-
-        System.out.println("HERE");
         boolean isEven = secFormat.startsWith("02");
-        x = new FieldElement(new BigInteger(secFormat.substring(2, 66), 16), ECDSA.prime);
-        // alpha = x^3 + 7
-        FieldElement alpha = x.pow(3).add(new FieldElement(BigInteger.valueOf(7), ECDSA.prime));
+        x = new FieldElement(new BigInteger(secFormat.substring(2), 16), prime);
+        // alpha = x^3 + b
+        FieldElement alpha = x.pow(3).add(new FieldElement(ellipticCurve.b.getNum(), prime));
         FieldElement beta = alpha.sqrt();
-        System.out.println("ALPHA:");
-        System.out.println(alpha.getNum().toString(16));
-        System.out.println("BETA:");
-        System.out.println(beta.getNum().toString(16));
-
         FieldElement evenBeta;
         FieldElement oddBeta;
 
-
         if (beta.getNum().mod(BigInteger.valueOf(2)).equals(BigInteger.ZERO)) {
             evenBeta = beta;
-            oddBeta = new FieldElement(ECDSA.prime.subtract(beta.getNum()), ECDSA.prime);
+            oddBeta = new FieldElement(prime.subtract(beta.getNum()), prime);
         } else {
-            evenBeta = new FieldElement(ECDSA.prime.subtract(beta.getNum()), ECDSA.prime);
+            evenBeta = new FieldElement(prime.subtract(beta.getNum()), prime);
             oddBeta = beta;
         }
 
-        System.out.println("C1");
-        CurvePoint c1 = new CurvePoint(x, oddBeta, ECDSA.ellipticCurve);
-        System.out.println("C2");
-        CurvePoint c2 = new CurvePoint(x, oddBeta, ECDSA.ellipticCurve);
-
-
-        if (isEven) {
-            System.out.println("EVEN: ");
-            return new CurvePoint(x, evenBeta, ECDSA.ellipticCurve);
-        } else {
-            System.out.println("ODD");
-            return new CurvePoint(x, oddBeta, ECDSA.ellipticCurve);
-        }
-
-
+        if (isEven)
+            return new CurvePoint(x, evenBeta, ellipticCurve);
+        else
+            return new CurvePoint(x, oddBeta, ellipticCurve);
     }
 
     private boolean belongsToCurve(FieldElement x, FieldElement y, EllipticCurve ellipticCurve) {
